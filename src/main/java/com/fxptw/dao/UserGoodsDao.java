@@ -44,7 +44,7 @@ public class UserGoodsDao {
 
     //更改购物车的货品数量
     public int updateUserGoodsNum(int userid,int goodid,int num) {
-        String sql = "update t_user_goods set buynum=? where userid=? and goodid=? and flag='0'";
+        String sql = "update t_user_goods set buynum=?,totalprice=buyprice*num where userid=? and goodid=? and flag='0'";
         return baseDao.update2(sql,new Object[]{num,userid,goodid});
     }
 
