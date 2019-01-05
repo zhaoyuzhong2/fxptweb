@@ -135,4 +135,7 @@ public class UserGoodsDao {
 
 
 
+    //王春伟添加的方法
+    
+
 }
