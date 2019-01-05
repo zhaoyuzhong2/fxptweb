@@ -115,9 +115,9 @@ public class UserGoodsDao {
 
 
     //更改某个商品的状态
-    public int updateUgFlag(int id,String postname,String postmobile,String postadd,String message) {
-        String sql = "update t_user_goods set flag='1',postname=?,postmobile=?,postadd=?,message=? where id=?";
-        return baseDao.update2(sql,new Object[]{postname,postmobile,postadd,message,id});
+    public int updateUgFlag(int id,String postname,String postmobile,String postadd,String message,String code) {
+        String sql = "update t_user_goods set flag='1',postname=?,postmobile=?,postadd=?,message=?,code=? where id=?";
+        return baseDao.update2(sql,new Object[]{postname,postmobile,postadd,message,code,id});
     }
 
 
