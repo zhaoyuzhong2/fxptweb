@@ -136,6 +136,10 @@ public class UserGoodsDao {
 
 
     //王春伟添加的方法
-    
+    //查询出所有的订单号
+    public List<UserGoods> getCode(String search_name) {
+        String sql = "select code From t_user_goods where flag!=9 group by code and code like ?";
+        return baseDao.query(sql,UserGoods.class,new Object[]{"%"+search_name+"%"});
+    }
 
 }
