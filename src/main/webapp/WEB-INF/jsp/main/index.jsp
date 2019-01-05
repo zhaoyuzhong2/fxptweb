@@ -45,7 +45,7 @@
         </a>
     </li>
     <li>
-        <a href="./buy_cloud_stock/buy_cloudstock.html">
+        <a href="${ctx}/stock/wantToBy">
             <i class="icon icon2"></i>
             <span class="name">买云库存</span>
         </a>
