@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" class="md">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+    <title>物流订单下单</title>
+    <link rel="stylesheet" href="../../css/framework7.min.css">
+    <link rel="stylesheet" href="../../css/public.css">
+</head>
+<body class="page-placeorder">
+<div id="app">
+    <div class="page-subtip">请核对订单信息！</div>
+    <div class="order-line"></div>
+
+    <a href="#" class="local-btn sheet-open" data-sheet=".add-address">
+        <div><i class="local-icon"></i><span class="txt">请先填写地址</span></div>
+        <div class="to-icon"></div>
+    </a>
+
+    <div class="product">
+        <div class="left">
+            <img class="product-img" src="../../img/product_img.png"/>
+            <div class="product-name">胶原蛋白小分子泰银</div>
+        </div>
+        <div class="right text-right">
+            <div class="price">¥120</div>
+            <div class="num">X80</div>
+        </div>
+    </div>
+
+    <div class="freight">
+        <div class="txt">运费</div>
+        <div class="price">¥0</div>
+    </div>
+
+    <ul class="order-detail">
+        <li>
+            <div>配送方式</div>
+            <div>快递</div>
+        </li>
+        <li>
+            <div>卖家留言</div>
+            <input class="word-ipt" type="text" value="选填，请在这里留下您的要求"/>
+        </li>
+        <li>
+            <div>商品总价</div>
+            <div class="price">¥12000.00</div>
+        </li>
+    </ul>
+
+    <div class="submit-order">
+        <div class="money"><span class="total">合计：</span><span class="price">¥12000.00</span></div>
+        <a href="./truck_entry_complete.html" class="btn external">提交订单</a>
+    </div>
+
+    <div class="sheet-modal add-address">
+        <div class="toolbar">
+            <div class="toolbar-inner">
+                <div class="right" style="visibility:hidden;"><a class="link sheet-close" href="#"></a></div>
+                <div class="left">新建收货地址</div>
+                <div class="right"><a class="link sheet-close" href="#"></a></div>
+            </div>
+        </div>
+        <div class="sheet-modal-inner">
+            <div class="intel-address display-flex justify-content-space-between align-items-center">
+                <div class="display-flex left">
+                    <div class="intel-icon"></div>
+                    <div class="name">智能地址</div>
+                    <div class="tip display-flex align-items-center flex-shrink-1">(在下方粘贴整段地址信息，系统自动识别)</div>
+                </div>
+                <div class="to-icon"></div>
+            </div>
+
+            <div class="list inline-labels no-hairlines-md list-ipt">
+                <ul>
+                    <li class="item-content item-input">
+                        <div class="item-inner">
+                            <div class="item-title item-label">收货人</div>
+                            <div class="item-input-wrap">
+                                <input type="text" placeholder="请填写收货人">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="item-content item-input">
+                        <div class="item-inner">
+                            <div class="item-title item-label">手机号码</div>
+                            <div class="item-input-wrap">
+                                <input type="password" placeholder="请填写手机号码">
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="list list-link">
+                <ul>
+                    <li>
+                        <a href="#" class="item-link item-content">
+                            <div class="item-inner">
+                                <div class="item-title">省市区选择</div>
+                                <div class="item-after">请选择</div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <textarea class="street-info" placeholder="请输入街道门牌信息"></textarea>
+
+            <div class="obtain-address display-flex justify-content-flex-end">
+                <a href="#" class="weixin-address">获取微信收货地址</a>
+                <a href="javascript:void(0);" class="clear-address">清空当前地址</a>
+            </div>
+        </div>
+        <button class="button button-fill button-big save-btn sheet-close">保存</button>
+    </div>
+</div>
+
+
+<a href="javascript:history.back(-1);" class="goback" id="goBack"></a>
+
+<script src="../../js/framework7.min.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/my-app.js"></script>
+<script>
+
+</script>
+</body>
+</html>

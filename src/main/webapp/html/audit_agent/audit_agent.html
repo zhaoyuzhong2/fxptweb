@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+    <title>审核代理</title>
+    <link rel="stylesheet" href="../../css/public.css">
+</head>
+<body class="page-audit-agent">
+
+<ul class="page-nav">
+    <li><a href="javascript:void(0);" class="active">待审核</a></li>
+    <li><a href="javascript:void(0);">准代理</a></li>
+    <li><a href="javascript:void(0);">已代理</a></li>
+    <li><a href="javascript:void(0);">已拒绝</a></li>
+</ul>
+
+<div class="pagenav-content" style="display: block;">
+    <div class="null-tip">
+        <img src="../../img/null.png" class="img"/>
+        <div class="info">没有内容可供显示</div>
+    </div>
+</div>
+<div class="pagenav-content">
+    <div class="null-tip">
+        <img src="../../img/null.png" class="img"/>
+        <div class="info">没有内容可供显示哦</div>
+    </div>
+</div>
+<div class="pagenav-content">
+    <div class="null-tip">
+        <img src="../../img/null.png" class="img"/>
+        <div class="info">没有内容可供显示</div>
+    </div>
+</div>
+<div class="pagenav-content">
+    <div class="null-tip">
+        <img src="../../img/null.png" class="img"/>
+        <div class="info">没有内容可供显示哦</div>
+    </div>
+</div>
+
+<a href="javascript:history.back(-1);" class="goback" id="goBack"></a>
+
+<script src="../../js/jquery.min.js"></script>
+<script>
+    $(".page-nav li").on('click',function(){
+        $('.pagenav-content').hide();
+        $('.pagenav-content').eq($(this).index()).show();
+
+        $('.page-nav a').removeClass('active');
+        $(this).find('a').addClass('active');
+    });
+</script>
+
+</body>
+</html>
