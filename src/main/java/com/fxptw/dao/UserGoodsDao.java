@@ -53,7 +53,7 @@ public class UserGoodsDao {
     public int getMyGoodNum(int userid,int goodid) {
         String sql = "select * from t_user_goods where userid=? and goodid=? and flag='0'";
         List<UserGoods> gs = baseDao.query(sql,UserGoods.class,new Object[]{userid,goodid});
-        if(gs.size()>0){
+        if(gs!=null && gs.size()>0){
             return gs.get(0).getBuynum();
         }else {
             return 0;
@@ -109,7 +109,7 @@ public class UserGoodsDao {
     public List<UserGoods> getShopingList(int userid,String flag) {
         String sql = "select * from t_user_goods where flag=? and userid=?  order by cdate desc ";
 
-        return baseDao.query(sql,UserGoods.class,new Object[]{userid,flag});
+        return baseDao.query(sql,UserGoods.class,new Object[]{flag,userid});
     }
 
 
