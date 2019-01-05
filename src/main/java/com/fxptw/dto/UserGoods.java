@@ -25,6 +25,7 @@ public class UserGoods extends BaseDTO {
     private String message;
     private double totalprice;
     private String flag;
+    private String code;
 
     public int getId() {
         return id;
@@ -176,5 +177,13 @@ public class UserGoods extends BaseDTO {
 
     public void setFlag(String flag) {
         this.flag = flag;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }
