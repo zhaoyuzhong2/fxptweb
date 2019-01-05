@@ -58,6 +58,13 @@ public class UserDao {
     }
 
 
+    //获取某个用户的直属下级某个状态的列表
+    public List<User> getDownUsersByFlag(int userid,String flag){
+        String sql = "select * from t_user where pid=? and flag=?";
+        return baseDao.query(sql,User.class,new Object[]{userid,flag});
+    }
+
+
     //获取上级信息
     public User getUpUser(int userid){
         String sql = "select a.* from t_user a where a.id=(select b.pid from t_user b where b.id=?)";
