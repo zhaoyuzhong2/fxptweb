@@ -31,76 +31,94 @@
 </head>
 <body class="page-stock">
 
-<div class="page-tip">向总部（0431-81752818）进货，购买后商品将会邮寄给您。</div>
+<div class="page-tip">向总部购买云库存，可以随时提货。</div>
 <form name="form" action="${ctx}/stock/shopingCar" id="form">
-    <input type="hidden" id="param" value=""/>
+    <input type="hidden" id="param" name="param" value=""/>
 
-<div class="stock-list">
-    <ul class="class-list">
-        <li>
-            <a href="javascript:void(0);">
-                <i class="class-icon icon1"></i>
-                <span class="name">食品</span>
-            </a>
-        </li>
-    </ul>
-    <div class="product-list">
-        <h3 class="title">蛋圆饼干</h3>
-        <ul class="list-detail">
-            <c:forEach items="${gs}" var="g">
+    <div class="stock-list">
+        <ul class="class-list">
             <li>
-                <img src="${ctx}/img/product1.png" width="70" height="70"/>
-                <div class="product-detail">
-                    <div class="name">${g.name}</div>
-                    <div class="price"><span class="pri">¥${g.price}</span><span class="inventory">库存:&nbsp;&nbsp;${g.stock}</span></div>
-                    <div class="num clearfix">
-                        <div class="right">
-                            <%--<i class="sub-btn" id="jian${g.id}" onclick="changenum(${g.id},-1)">-</i>--%>
-                            <input class="val" type="text" id="num${g.id}" value="${g.count}" />
-                            <%--<i class="add-btn" id="jia${g.id}"  onclick="changenum(${g.id},1)">＋</i>--%>
-                        </div>
-                    </div>
-                </div>
+                <a href="javascript:void(0);">
+                    <i class="class-icon icon1"></i>
+                    <span class="name">食品</span>
+                </a>
             </li>
-            </c:forEach>
         </ul>
+        <div class="product-list">
+            <h3 class="title">蛋圆饼干</h3>
+            <ul class="list-detail">
+                <c:forEach items="${gs}" var="g">
+                    <li>
+                        <img src="${ctx}/img/product1.png" width="70" height="70"/>
+                        <div class="product-detail">
+                            <div class="name">${g.name}</div>
+                            <div class="price"><span class="pri">¥${g.price}</span><span class="inventory">库存:&nbsp;&nbsp;${g.stock}</span></div>
+                            <div class="num clearfix">
+                                <div class="right">
+                                        <%--<i class="sub-btn" id="jian${g.id}" onclick="changenum(${g.id},-1)">-</i>--%>
+                                    <input class="val" type="text" id="num${g.id}" value="${g.count}" />
+                                        <%--<i class="add-btn" id="jia${g.id}"  onclick="changenum(${g.id},1)">＋</i>--%>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </c:forEach>
+            </ul>
+        </div>
     </div>
-</div>
 
-<div class="stock-bar">
-    <div class="price">合计:<span id="total">¥${price}</span></div>
-    <a href="#" class="stock-btn" onclick="addShoping()">
-        <i class="icon-cart"></i>
-        <span class="txt" id="totalnum">进货车（${total}）</span>
-    </a>
-</div>
+    <div class="stock-bar">
+        <div class="price">
+            <%--合计:<span id="total">¥${price}</span>--%>
+        </div>
+        <a href="#" class="stock-btn" onclick="addGoods()">
+            <i class="icon-cart"></i>
+            <span class="txt" id="totalnum">购买</span>
+        </a>
+    </div>
 
-<a href="javascript:history.back(-1);" class="goback" id="goBack"></a>
+    <a href="javascript:history.back(-1);" class="goback" id="goBack"></a>
 
 </form>
 
 <script type="text/javascript">
-    var ids = ${ids};
 
-    //删除平台
-    function addShoping() {
+    function addGoods() {
+        var ids = "${ids}";
         var id = ids.split(",");
         var param = "";
+        var total = 0;
         if(id.length<1){
-            Showbo.Msg.alert('没有商品，无法加入进货车！');
+            Showbo.Msg.alert('没有商品，无法加入云库存购物车！');
             return false;
         }else{
             for(var i=0;i<id.length;i++){
                 var num =$("#num"+id[i]).val();//直接拼接字符串就可以了
-                param = param + id+"#"+num+",";
-            }
 
+                if(num>0) {
+                    param = param + id[i] + "#" + num + ",";
+                }
+                total = total + num;
+            }
+            if(total<1){
+                Showbo.Msg.alert('没有输入产品数量，不允许添加云库存购物车！');
+                return false;
+            }
             $("#param").val(param);
-            document.getElementById("form").submit();
+
+
+
+            Showbo.Msg.confirm('确定要购买库存吗？',function (btn) {
+                if(btn=='yes'){
+                    document.getElementById("form").submit();
+                }
+            })
+
+
         }
 
 
     }
-    </script>
+</script>
 </body>
 </html>
