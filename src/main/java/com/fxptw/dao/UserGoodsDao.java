@@ -109,7 +109,7 @@ public class UserGoodsDao {
     public List<UserGoods> getShopingList(int userid,String flag) {
         String sql = "select * from t_user_goods where flag=? and userid=?  order by cdate desc ";
 
-        return baseDao.query(sql,UserGoods.class,new Object[]{userid,flag});
+        return baseDao.query(sql,UserGoods.class,new Object[]{flag,userid});
     }
 
 
