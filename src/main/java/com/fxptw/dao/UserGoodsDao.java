@@ -39,7 +39,7 @@ public class UserGoodsDao {
     //添加购物车货品数量
     public int addUserGoods(UserGoods ug) {
         String sql = "insert into t_user_goods(userid,username,mobile,roleid,goodid,goodname,buyprice,buynum,totalprice,postadd,postname,postmobile,message,cdate,flag) values(:userid,:username,:mobile,:roleid,:goodid,:goodname,:buyprice,:buynum,:totalprice,:postadd,:postname,:postmobile,:message,now(),'0')";
-        return baseDao.insert2(ug);
+        return baseDao.insert(sql,ug);
     }
 
     //更改购物车的货品数量
