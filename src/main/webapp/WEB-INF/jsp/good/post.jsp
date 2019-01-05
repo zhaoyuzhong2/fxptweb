@@ -21,8 +21,8 @@
 </head>
 <body class="page-placeorder">
 <form id="form" action="${ctx}/ug/addpost">
-    <input id="result" type="hidden" value="${result}"/>
-    <input id="userid" type="hidden" value="${userid}"/>
+    <input id="result" type="hidden" name="result" value="${result}"/>
+    <input id="userid" type="hidden" name="userid" value="${userid}"/>
 <div id="app">
     <div class="page-subtip">请核对订单信息！</div>
     <div class="order-line"></div>
@@ -65,7 +65,8 @@
 
     <div class="submit-order">
         <div class="money"><span class="total">合计：</span><span class="price">¥${totalprice}</span></div>
-        <a href="./truck_entry_complete.html" class="btn external">提交订单</a>
+        <%--<a href="./truck_entry_complete.html" class="btn external"  onclick="save()">提交订单</a>--%>
+        <a href="#" class="btn external"  onclick="save()">提交订单</a>
     </div>
 
     <div class="sheet-modal add-address">
@@ -92,7 +93,7 @@
                         <div class="item-inner">
                             <div class="item-title item-label">收货人</div>
                             <div class="item-input-wrap">
-                                <input type="text" placeholder="请填写收货人" id="postname" onblur="queryAdd()">
+                                <input type="text" placeholder="请填写收货人" id="postname" onblur="queryAdd()" name="postname">
                             </div>
                         </div>
                     </li>
@@ -100,34 +101,22 @@
                         <div class="item-inner">
                             <div class="item-title item-label">手机号码</div>
                             <div class="item-input-wrap">
-                                <input type="password" placeholder="请填写手机号码" id="postmobile">
+                                <input type="text" placeholder="请填写手机号码" id="postmobile" name="postmobile">
                             </div>
                         </div>
                     </li>
                 </ul>
             </div>
 
-            <%--<div class="list list-link">--%>
-                <%--<ul>--%>
-                    <%--<li>--%>
-                        <%--<a href="#" class="item-link item-content">--%>
-                            <%--<div class="item-inner">--%>
-                                <%--<div class="item-title">省市区选择</div>--%>
-                                <%--<div class="item-after">请选择</div>--%>
-                            <%--</div>--%>
-                        <%--</a>--%>
-                    <%--</li>--%>
-                <%--</ul>--%>
+            <textarea class="street-info" placeholder="请输入收货地址" id="postadd" name="postadd"></textarea>
+
+            <%--<div class="obtain-address display-flex justify-content-flex-end">--%>
+                <%--<a href="#" class="weixin-address">获取微信收货地址</a>--%>
+                <%--<a href="#" class="clear-address" onclick="clear()">清空当前地址</a>--%>
             <%--</div>--%>
-
-            <textarea class="street-info" placeholder="请输入收货地址" id="postadd"></textarea>
-
-            <div class="obtain-address display-flex justify-content-flex-end">
-                <a href="#" class="weixin-address">获取微信收货地址</a>
-                <a href="#" class="clear-address" onclick="clear()">清空当前地址</a>
-            </div>
         </div>
-        <button class="button button-fill button-big save-btn sheet-close" onclick="save()">保存</button>
+        <%--<button class="button button-fill button-big save-btn sheet-close">保存</button>--%>
+        <a class="link sheet-close" href="#">关闭</a>
     </div>
 </div>
 
@@ -139,6 +128,8 @@
 <script src="${ctx}/js/my-app.js"></script>
 <script>
     function clear() {
+        $("#postname").val("");
+        $("#postmobile").val("");
         $("#postadd").val("");
     }
 
@@ -171,18 +162,18 @@ function save() {
     var postmobile = $("#postmobile").val();
 
     if(postname.length<1){
-        Showbo.Msg.alert('请填写邮寄人信息！');
+        Showbo.Msg.alert('请填写收货人信息！');
         return false;
     }
 
     if(postmobile.length<1){
-        Showbo.Msg.alert('请填写手机号码！');
+        Showbo.Msg.alert('请填写收货人手机号码！');
         return false;
     }
 
 
     if(postadd.length<1){
-        Showbo.Msg.alert('请填写收货地址！');
+        Showbo.Msg.alert('请填写收货人地址！');
         return false;
     }
 
