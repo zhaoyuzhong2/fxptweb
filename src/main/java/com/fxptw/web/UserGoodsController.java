@@ -14,8 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 @Controller
 @RequestMapping(value = "ug")
@@ -53,7 +56,7 @@ public class UserGoodsController {
 
 			User emp1 = (User) request.getSession().getAttribute("user");
 			List<Goods> gs = goodsDao.getList();
-			System.out.println("            " + gs.size());
+			//System.out.println("            " + gs.size());
 			User user = userDao.getUserById(emp1.getId());//重新获取用户是担心用户角色有变化
 
 			List<Goods> gs1 = new ArrayList<>();
@@ -107,54 +110,60 @@ public class UserGoodsController {
 		User user = userDao.getUserById(userid);//重新获取用户是担心用户角色有变化
 		int roleid = user.getRoleid();
 
-        //解析param增加或者修改t_user_goods表flag为0的记录
-        if(param.indexOf(",")>0){
-            String goods[] = param.substring(0,param.length()-1).split(",");//获取商品集合
-            for (int i=0;i<goods.length;i++){
-                int goodid = Integer.parseInt(goods[i].split("#")[0]);//商品id
-                int num = Integer.parseInt(goods[i].split("#")[1]);//放进货车的商品数量
-                if(num>0){
-                    //购买数量大于0放进进货车，等于0的不处理
-                    UserGoods ug = userGoodsDao.getMyGoods(userid,goodid);
-                    if(ug==null){
-                        //说明进货车没有该商品信息，是新增
-                        UserGoods xug = new UserGoods();
-                        Goods g = goodsDao.getGoodsByid(goodid);
-                        xug.setBuynum(num);
-                        xug.setRoleid(roleid);
-                        xug.setGoodid(goodid);
-                        xug.setGoodname(g.getName());
-						if (roleid==2){
-							xug.setBuyprice(g.getBuyprice1());
-							xug.setTotalprice(g.getBuyprice1()*num);
-						}else if (roleid==3){
-							xug.setBuyprice(g.getBuyprice2());
-							xug.setTotalprice(g.getBuyprice2()*num);
-						}else if (roleid==4){
-							xug.setBuyprice(g.getBuyprice3());
-							xug.setTotalprice(g.getBuyprice3()*num);
+		try {
+			//解析param增加或者修改t_user_goods表flag为0的记录
+			if (param.indexOf(",") > 0) {
+				String goods[] = param.substring(0, param.length() - 1).split(",");//获取商品集合
+				for (int i = 0; i < goods.length; i++) {
+					int goodid = Integer.parseInt(goods[i].split("#")[0]);//商品id
+					int num = Integer.parseInt(goods[i].split("#")[1]);//放进货车的商品数量
+
+					if (num > 0) {
+						//购买数量大于0放进进货车，等于0的不处理
+						UserGoods ug = userGoodsDao.getMyGoods(userid, goodid);
+
+						if (ug == null) {
+							//说明进货车没有该商品信息，是新增
+							UserGoods xug = new UserGoods();
+							Goods g = goodsDao.getGoodsByid(goodid);
+							xug.setBuynum(num);
+							xug.setRoleid(roleid);
+							xug.setGoodid(goodid);
+							xug.setGoodname(g.getName());
+							if (roleid == 2) {
+								xug.setBuyprice(g.getBuyprice1());
+								xug.setTotalprice(g.getBuyprice1() * num);
+							} else if (roleid == 3) {
+								xug.setBuyprice(g.getBuyprice2());
+								xug.setTotalprice(g.getBuyprice2() * num);
+							} else if (roleid == 4) {
+								xug.setBuyprice(g.getBuyprice3());
+								xug.setTotalprice(g.getBuyprice3() * num);
+							}
+							xug.setUserid(userid);
+							xug.setMobile(user.getMobile());
+							xug.setUsername(user.getName());
+							xug.setFlag("0");
+
+							userGoodsDao.addUserGoods(xug);
+						} else {
+							//有进货车信息，说明是修改
+							userGoodsDao.updateUserGoodsNum(userid, goodid, num);
 						}
-						xug.setUserid(userid);
-						xug.setUsername(user.getName());
-						xug.setFlag("0");
-
-						userGoodsDao.addUserGoods(xug);
-                    }else{
-						//有进货车信息，说明是修改
-						userGoodsDao.updateUserGoodsNum(userid,goodid,num);
 					}
-                }
-            }
-        }
-        List<UserGoods> ugs = userGoodsDao.getShopingList(userid,"0");
+				}
+			}
+			List<UserGoods> ugs = userGoodsDao.getShopingList(userid, "0");
+			int total = userGoodsDao.getMyGoodsNum(userid);//进货车所有商品之和
+			String totalprice = userGoodsDao.getMyGoodsPrice(userid);
+			model.addAttribute("userid", userid);
+			model.addAttribute("total", total);
+			model.addAttribute("totalprice", totalprice);
+			model.addAttribute("ugs", ugs);
 
-		int total = userGoodsDao.getMyGoodsNum(userid);//进货车所有商品之和
-		String totalprice = userGoodsDao.getMyGoodsPrice(userid);
-
-		model.addAttribute("userid",userid);
-		model.addAttribute("total",total);
-		model.addAttribute("totalprice",totalprice);
-		model.addAttribute("ugs",ugs);
+		}catch (Exception e){
+			e.printStackTrace();
+		}
 		return "good/shopingCar";
 	}
 
@@ -173,18 +182,19 @@ public class UserGoodsController {
 				int ugid = Integer.parseInt(ugids[i]);
                 UserGoods ug = userGoodsDao.getUserGoodsById(ugid);
 				total = total + ug.getBuynum();
-				totalprice = totalprice + ug.getBuyprice();
+				totalprice = totalprice + ug.getBuyprice()*ug.getBuynum();
                 uggs.add(ug);
 
 			}
+			System.out.println("result:"+result);
 			model.addAttribute("userid",userid);
 			model.addAttribute("result",result);
 			model.addAttribute("total",total);
 			model.addAttribute("totalprice",totalprice);
             model.addAttribute("ugs",uggs);
-			return "goods/post";
+			return "good/post";
 		}else{
-			return "goods/error";
+			return "good/error";
 		}
 
 	}
@@ -208,19 +218,30 @@ public class UserGoodsController {
 	//保存收货地址，flag状态变为1，等待付款
 	@RequestMapping(value = "/addpost")
 	public String addpost(String message,String result,String postname,String postmobile,String postadd,Model model){
-		if(result.indexOf(",")>0){
-			result= result.substring(0,result.length()-1);
+		System.out.println("result:"+result);
+		if(result.length()>0){
+			//result= result.substring(0,result.length()-1);
 			String ugids[] = result.split(",");
-
+			Random random = new Random();
+			int s = random.nextInt(1000) ;
+			SimpleDateFormat sdf = new SimpleDateFormat("YYYYMMDDHHmmssSSS");
+			String code = sdf.format(new Date());
+			if(s<10){
+				code = code + "00"+s;
+			}else if(s<100){
+				code = code + "0"+s;
+			}else{
+				code = code + s;
+			}
 			for (int i=0;i<ugids.length;i++){
 				int ugid = Integer.parseInt(ugids[i]);
 				//更改进货车的状态以及邮寄信息
-				userGoodsDao.updateUgFlag(ugid,postname,postmobile,postadd,message);
+				userGoodsDao.updateUgFlag(ugid,postname,postmobile,postadd,message,code);
 
 			}
 
 
-			return "good/post";
+			return "good/success";
 		}else{
 			return "good/error";
 		}
