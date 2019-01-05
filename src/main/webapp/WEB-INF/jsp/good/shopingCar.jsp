@@ -25,8 +25,8 @@
 <body class="page-truck-entry">
 
 <form name="form" id="form" action="${ctx}/ug/jsShopingCar">
-    <input id="result" type="hidden" value=""/>
-    <input id="userid" type="hidden" value="${userid}"/>
+    <input id="result" name="result" type="hidden" value=""/>
+    <input id="userid" name="userid" type="hidden" value="${userid}"/>
     <div class="top">
         <div><span>进货车</span><span class="num">（${total}）</span></div>
         <%--<a class="edit-btn" href="javascript:void(0);">编辑</a>--%>
@@ -75,33 +75,21 @@
         $("#result").val(result);
 
         if(result.length<1){
-            Showbo.Msg.alert('请选择商品！');
+            //Showbo.Msg.alert('请选择商品！');
+            alert('请选择商品！');
             return false;
         }
 
-        Showbo.Msg.confirm('确定要结算进货车吗？',function (btn) {
-            if(btn=='yes'){
-                document.getElementById("form").submit();
-                <%--$.post("${ctx}/ug/jsShopingCar",{result:result},function (d) {--%>
-                    <%--if(d=="ajaxfail"){--%>
-                        <%--Showbo.Msg.confirm1("会话过期,请重新登录!",function(btn){--%>
-                            <%--if(btn=="yes"){--%>
-                                <%--window.location.href="${ctx}/main/tologin";--%>
-                            <%--}--%>
-                        <%--});--%>
-                    <%--}else {--%>
-                        <%--if(d=="ok"){--%>
-                            <%--Showbo.Msg.alert('结算成功');--%>
-                            <%--window.location.href="${ctx}/main/index";--%>
+        if(confirm("确定要结算进货车吗")==true){
+            document.getElementById("form").submit();
+        }
 
-                        <%--}else {--%>
-                            <%--Showbo.Msg.alert('结算失败');--%>
-                        <%--}--%>
-                    <%--}--%>
-
-                <%--});--%>
-            }
-        })
+//        Showbo.Msg.confirm('确定要结算进货车吗？',function (btn) {
+//            if(btn=='yes'){
+//                document.getElementById("form").submit();
+//
+//            }
+//        })
     }
 </script>
 </body>
