@@ -21,6 +21,7 @@ public class Stock extends BaseDTO {
     private String postmobile;
     private String message;
     private String flag;
+    private String mobile;
 
     public Integer getId() {
         return id;
@@ -140,5 +141,13 @@ public class Stock extends BaseDTO {
 
     public void setFlag(String flag) {
         this.flag = flag;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 }
