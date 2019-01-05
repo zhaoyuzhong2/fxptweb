@@ -27,11 +27,21 @@ public class StockDao {
     }
 
 
-    //添加库存包括购买和提取
+    //添加库存包括购买
     public int addStock(Stock ug) {
-        String sql = "insert into t_user_goods(userid,username,mobile,roleid,goodid,goodname,buyprice,buynum,totalprice,postadd,postname,postmobile,message,cdate,flag) values(:userid,:username,:mobile,:roleid,:goodid,:goodname,:buyprice,:buynum,:totalprice,:postadd,:postname,:postmobile,:message,now(),'0')";
-        return baseDao.insert2(ug);
+        String sql = "insert into t_stock(userid,username,mobile,goodid,goodname,price,buynum,buyprice,postadd,postname,postmobile,message,cdate,flag,type) values(:userid,:username,:mobile,:goodid,:goodname,:price,:buynum,:buyprice,:postadd,:postname,:postmobile,:message,now(),'1',:type)";
+        return baseDao.insert(sql,ug);
     }
+
+
+
+    //添加库存  提取
+    public int addStock2(Stock ug) {
+        String sql = "insert into t_stock(userid,username,mobile,goodid,goodname,price,buynum,buyprice,postadd,postname,postmobile,message,cdate,flag,type) values(:userid,:username,:mobile,:goodid,:goodname,:price,:buynum,:buyprice,:postadd,:postname,:postmobile,:message,now(),'3',:type)";
+        return baseDao.insert(sql,ug);
+    }
+
+
 
     //查询所有商品库存量
     public List<Goods> getStockByUserid(int userid) {
