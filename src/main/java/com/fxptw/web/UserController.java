@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -84,8 +85,7 @@ public class UserController {
 
     @PostMapping(value = "/login")
     public String login(String mobile,String pwd, HttpServletRequest request, Model model){
-
-        User user = userDao.login(mobile,pwd);
+		User user = userDao.login(mobile,pwd);
         if(user==null){
 			model.addAttribute("error","用户名和密码输入错误！");
             return "login/login";
@@ -95,11 +95,15 @@ public class UserController {
 			session.setAttribute("user", user);
 
 			model.addAttribute("tyeji","0.00");
-			model.addAttribute("tshouru","0.00");
+			double tshouru = userDao.getShouru(user.getId(),"");
+			model.addAttribute("tshouru",tshouru);
 			model.addAttribute("huokuan","0.00");
 			model.addAttribute("yeji","0.00");
-			model.addAttribute("shouru","120.00");
-			model.addAttribute("money",user.getMoney());
+			SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM");
+			String yearm = sdf.format(new Date());
+			double byshouru = userDao.getByShouru(user.getId(),yearm);
+			model.addAttribute("shouru",byshouru);
+			model.addAttribute("money",byshouru);
 
             return "main/index";
         }
@@ -168,7 +172,7 @@ public class UserController {
             model.addAttribute("huokuan","0.00");
             model.addAttribute("yeji","0.00");
             model.addAttribute("shouru","0.00");
-            model.addAttribute("money",user.getMoney());
+            model.addAttribute("money","0.00");
 
             return "main/index";
         }else{
