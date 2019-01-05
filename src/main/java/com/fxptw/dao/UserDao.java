@@ -124,5 +124,21 @@ public class UserDao {
     }
 
 
+    public double getShouru(int userid,String flag){
+        String sql = "select sum(totalp) from t_user_income where userid=? ";
+        if(flag!=null && !flag.equals("")){
+            sql = sql + " and flag='"+flag+"'";
+        }
+        return baseDao.queryForObject(sql,Double.class,new Object[]{userid});
+    }
+
+
+
+    public double getByShouru(int userid,String yearm){
+        String sql = "select sum(totalp) from t_user_income where userid=? and yearm=?";
+        return baseDao.queryForObject(sql,Double.class,new Object[]{userid,yearm});
+    }
+
+
 
 }
