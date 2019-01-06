@@ -8,7 +8,7 @@ import java.util.Date;
 public class Request extends BaseDTO {
     private Integer id;
     private String username;
-    private String userid;
+    private Integer userid;
     private String mobile;
     private Integer roleid;
     private String roles;
@@ -30,11 +30,11 @@ public class Request extends BaseDTO {
         this.username = username;
     }
 
-    public String getUserid() {
+    public Integer getUserid() {
         return userid;
     }
 
-    public void setUserid(String userid) {
+    public void setUserid(Integer userid) {
         this.userid = userid;
     }
 
