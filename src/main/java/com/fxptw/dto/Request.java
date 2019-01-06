@@ -13,6 +13,15 @@ public class Request extends BaseDTO {
     private Integer roleid;
     private String roles;
     private Date cdate;
+    private String imgpath;
+
+    public String getImgpath() {
+        return imgpath;
+    }
+
+    public void setImgpath(String imgpath) {
+        this.imgpath = imgpath;
+    }
 
     public Integer getId() {
         return id;
