@@ -42,7 +42,7 @@ public class UserController {
 
 
 	@RequestMapping(value = "/request")
-	public String request(int id,Model model){
+	public String request(int id,String result,Model model){
 		Request req = requestDao.getRequestById(id);
 		int requesttime = paramSettings.getRequesttime();//从配置文件获取邀请失效时间
 
