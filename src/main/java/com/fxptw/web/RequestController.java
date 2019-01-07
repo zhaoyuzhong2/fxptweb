@@ -63,10 +63,10 @@ public class RequestController {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-DD HH:mm:ss");
 		req.setImgpath("/fileupload/ewm/"+user.getMobile()+"-"+sdf.format(new Date())+".png");
 		Zxing zxing = new Zxing();
-		zxing.createImg("/fileupload/ewm/"+user.getMobile()+"-"+sdf.format(new Date())+".png");
+
 		int id = requestDao.addRequest(req);
 		req.setId(id);
-
+		zxing.createImg("/fileupload/ewm/"+user.getMobile()+"-"+sdf.format(new Date())+".png",id+"",result);//生成二维码图片
 		model.addAttribute("req",req);
 		model.addAttribute("rolename",user.getRolename());
 
