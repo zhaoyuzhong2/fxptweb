@@ -38,6 +38,7 @@ public class RequestController {
 		int roleid = user.getRoleid();
 
 		List<Role> rs = roleDao.getRoles();
+		model.addAttribute("userid",userid);
 		model.addAttribute("roleid",roleid);
 		model.addAttribute("rs",rs);
 		return "request/index";
@@ -60,13 +61,14 @@ public class RequestController {
 		req.setUserid(userid);
 		req.setUsername(user.getName());
 		req.setRoles(result);
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-DD HH:mm:ss");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMDDHHmmssSSS");
 		req.setImgpath("/fileupload/ewm/"+user.getMobile()+"-"+sdf.format(new Date())+".png");
 		Zxing zxing = new Zxing();
 
 		int id = requestDao.addRequest(req);
 		req.setId(id);
-		zxing.createImg("/fileupload/ewm/"+user.getMobile()+"-"+sdf.format(new Date())+".png",id+"",result);//生成二维码图片
+		System.out.println(request.getRealPath(""));
+		zxing.createImg(request.getRealPath("")+"/fileupload/ewm/"+user.getMobile()+"-"+sdf.format(new Date())+".png",id+"",result);//生成二维码图片
 		model.addAttribute("req",req);
 		model.addAttribute("rolename",user.getRolename());
 
