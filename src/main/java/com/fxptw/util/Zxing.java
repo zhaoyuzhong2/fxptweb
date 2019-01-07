@@ -22,12 +22,12 @@ import org.springframework.stereotype.Component;
 public class Zxing {
     @Autowired
     ParamSettings paramSettings;
-    public void createImg(String path) {
+    public void createImg(String path,String id,String result) {
         int width=300;
         int height=300;
         String format="png";
         //String url="www.baidu.com";
-        String url = paramSettings.getUrl();
+        String url = paramSettings.getUrl()+"/user/request?id="+id+"&result="+result;
         HashMap map=new HashMap();
         map.put(EncodeHintType.CHARACTER_SET, "utf-8");
         map.put(EncodeHintType.ERROR_CORRECTION,ErrorCorrectionLevel.M);
