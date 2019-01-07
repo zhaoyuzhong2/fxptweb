@@ -114,7 +114,7 @@ public class UserDao {
 
 
     public User getUserById(int id){
-        String sql = "select * from t_user where id=?";
+        String sql = "select a.*,b.name as rolename from t_user a left join t_role b on a.roleid=b.id where a.id=?";
         List<User> us = baseDao.query(sql,User.class,new Object[]{id});
         if(us.size()>0){
             return us.get(0);
