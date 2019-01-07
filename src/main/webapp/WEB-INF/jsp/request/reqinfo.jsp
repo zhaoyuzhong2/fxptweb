@@ -24,9 +24,9 @@
         <div class="page-content">
 
             <div class="top-info display-flex align-items-flex-start">
-                <img class="agent-head" src="../../img/product_img.png"/>
+                <img class="agent-head" src="${ctx}/img/product_img.png"/>
                 <div class="agent-name">
-                    <div>${req.name}</div>
+                    <div>${req.username}</div>
                     <div class="tag">${rolename}</div>
                 </div>
             </div>

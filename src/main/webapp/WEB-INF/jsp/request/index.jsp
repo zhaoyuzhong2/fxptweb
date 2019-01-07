@@ -32,7 +32,7 @@
             <form name="form" id="form" action="${ctx}/request/createReq">
                 <input type="hidden" name="userid" id="userid" value="${userid}"/>
                 <input type="hidden" name="result" id="result" value=""/>
-                <input type="hidden" name="userid" id="roleid" value="${roleid}"/>
+                <input type="hidden" name="roleid" id="roleid" value="${roleid}"/>
             <div class="wrapper">
                 <div class="title">邀请代理想代理的产品(单选)</div>
                 <div class="list media-list radio-list">
