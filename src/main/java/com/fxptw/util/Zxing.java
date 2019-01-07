@@ -27,7 +27,7 @@ public class Zxing {
         int height=300;
         String format="png";
         //String url="www.baidu.com";
-        String url = paramSettings.getUrl()+"/user/request?id="+id+"&result="+result;
+        String url = "http://localhost:8080/fxptweb/user/request?id="+id+"&result="+result;
         HashMap map=new HashMap();
         map.put(EncodeHintType.CHARACTER_SET, "utf-8");
         map.put(EncodeHintType.ERROR_CORRECTION,ErrorCorrectionLevel.M);
