@@ -26,7 +26,7 @@ public class AuditController {
 
 	//进入我要进货首页
 	@RequestMapping(value = "/index")
-	public String wantToBy(Model model,HttpServletRequest request) {
+	public String index(Model model,HttpServletRequest request) {
 		//System.out.println("我要进货...........");
 		try {
 
@@ -37,9 +37,13 @@ public class AuditController {
 			List<User> yjj = userDao.getDownUsersByFlag(emp1.getId(),"2");//已拒绝
 
 			model.addAttribute("dsh",dsh);
+			model.addAttribute("dshn",dsh.size());
 			model.addAttribute("zdl",zdl);
+			model.addAttribute("zdln",zdl.size());
 			model.addAttribute("ydl",ydl);
+			model.addAttribute("ydln",ydl.size());
 			model.addAttribute("yjj",yjj);
+			model.addAttribute("yjjn",yjj.size());
 
 		}catch (Exception e){
 			e.printStackTrace();
