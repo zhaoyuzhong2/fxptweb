@@ -26,6 +26,24 @@ public class User extends BaseDTO {
     private int sailnum;
     private int xjnum;
     private double money;
+    private String pmobile;
+    private String pname;
+
+    public String getPmobile() {
+        return pmobile;
+    }
+
+    public void setPmobile(String pmobile) {
+        this.pmobile = pmobile;
+    }
+
+    public String getPname() {
+        return pname;
+    }
+
+    public void setPname(String pname) {
+        this.pname = pname;
+    }
 
     public double getMoney() {
         return money;
