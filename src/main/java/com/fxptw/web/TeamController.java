@@ -25,15 +25,19 @@ public class TeamController {
 		try {
 
 			User emp1 = (User) request.getSession().getAttribute("user");
-			List<User> wyqd = userDao.getDownUsersByFlag(emp1.getId(),"0");//待审核
+			List<User> dsh = userDao.getDownUsersByFlag(emp1.getId(),"0");//待审核
 			List<User> zdl = userDao.getDownUsersByFlag(emp1.getId(),"0");//准代理
 			List<User> ydl = userDao.getDownUsersByFlag(emp1.getId(),"1");//已代理
 			List<User> yjj = userDao.getDownUsersByFlag(emp1.getId(),"2");//已拒绝
 
-			model.addAttribute("dsh",wyqd);
+			model.addAttribute("dsh",dsh);
+			model.addAttribute("dshn",dsh.size());
 			model.addAttribute("zdl",zdl);
+			model.addAttribute("zdln",zdl.size());
 			model.addAttribute("ydl",ydl);
+			model.addAttribute("ydln",ydl.size());
 			model.addAttribute("yjj",yjj);
+			model.addAttribute("yjjn",yjj.size());
 
 		}catch (Exception e){
 			e.printStackTrace();
