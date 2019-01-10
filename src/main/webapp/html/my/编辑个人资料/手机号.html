@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+    <title>手机号</title>
+    <link rel="stylesheet" href="../../../css/framework7.min.css">
+    <link rel="stylesheet" href="../../../css/font.css">
+    <link rel="stylesheet" href="../../../css/public.css">
+</head>
+<body class="page-cellphone-num">
+<div id="app">
+    <div class="page">
+        <div class="page-content">
+            <div class="top">
+                <div class="text-align-center"><i class="iconfont icon-shouji"></i></div>
+                <div class="txt">您当前的手机号码:&nbsp;&nbsp;13732187964</div>
+            </div>
+
+            <a href="#" class="col button button-big button-fill button-round c-block-btn" onclick="changePhone()">更换手机号</a>
+            <div class="c-btn-tip">更换手机号后，下次登录将使用新手机号登录</div>
+
+            <a href="javascript:history.back(-1);" class="goback" id="goBack"></a>
+        </div>
+    </div>
+</div>
+
+
+<script src="../../../js/framework7.min.js"></script>
+<script src="../../../js/jquery.min.js"></script>
+<script src="../../../js/my-app.js"></script>
+<script src="../../../js/public.js"></script>
+<script>
+    function changePhone(){
+        app.dialog.create({
+            title: '验证登录信息<i class="iconfont icon-close"></i>',
+            text: '',
+            cssClass: 'c-custom-dialog',
+            content: '' +
+                    '<div class="info" style="margin-bottom: 18px;">为了您的资金安全，请再次输入您的登录密码！</div>' +
+                    '<input type="text" class="num-ipt" value="" placeholder="请输入代理账户密码"/>' +
+                    '<div class="text-right"><a href="#" class="external link">忘记密码？</a></div>',
+            buttons: [
+                {
+                    text: '取消',
+                },
+                {
+                    text: '确认',
+                    cssClass: 'btn-confirm',
+                    onClick: function (e){
+                        var num = $(e.el).find('.num-ipt').val();
+                        console.log(num);
+                    },
+                },
+            ],
+            on: {
+                open: function (e){
+                    e.$el.find('.icon-close').on('click',function(){
+                        e.close();
+                    });
+                }
+            },
+            verticalButtons: false,
+        }).open();
+    }
+</script>
+</body>
+</html>

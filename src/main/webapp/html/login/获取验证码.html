@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+    <title>获取验证码</title>
+    <link rel="stylesheet" href="../../css/framework7.min.css">
+    <link rel="stylesheet" href="../../css/font.css">
+    <link rel="stylesheet" href="../../css/public.css">
+</head>
+<body class="page-obtain-vercode">
+<div id="app">
+    <div class="page">
+        <div class="page-content">
+            <div class="top-info">
+                <div>我们已发送验证码短信到您的手机:</div>
+                <div class="phone">13795264486</div>
+            </div>
+
+            <div class="codeipt-box">
+                <div class="ipts display-flex align-items-center justify-content-center" id="vercode">
+                    <input type="text" class="ipt" maxlength="1"/>
+                    <input type="text" class="ipt" maxlength="1"/>
+                    <input type="text" class="ipt" maxlength="1"/>
+                    <input type="text" class="ipt" maxlength="1"/>
+                </div>
+                <div class="txt">55秒后重发</div>
+            </div>
+
+            <a href="javascript:history.back(-1);" class="goback" id="goBack"></a>
+        </div>
+    </div>
+</div>
+
+<script src="../../js/framework7.min.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/my-app.js"></script>
+<!--<script src="../../js/public.js"></script>-->
+<script>
+    onload = function(){
+        var txts = vercode.getElementsByTagName("input");
+        for(var i = 0; i<txts.length;i++){
+            var t = txts[i];
+            t.index = i;
+            t.setAttribute("readonly", true);
+            t.onkeyup=function(){
+                this.value=this.value.replace(/^(.).*$/,'$1');
+                var next = this.index + 1;
+                if(next > txts.length - 1) return;
+                txts[next].removeAttribute("readonly");
+                txts[next].focus();
+            }
+        }
+        txts[0].removeAttribute("readonly");
+    }
+</script>
+</body>
+</html>

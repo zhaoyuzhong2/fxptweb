@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
-    <title>物流订单下单</title>
+    <title>提货下单</title>
     <link rel="stylesheet" href="../../css/framework7.min.css">
     <link rel="stylesheet" href="../../css/font.css">
     <link rel="stylesheet" href="../../css/public.css">
@@ -19,8 +19,9 @@
                 <a href="#" class="local-btn sheet-open" data-sheet=".c-add-address">
                     <div class="left">
                         <i class="iconfont icon-location"></i>
-                        <div class="info info-null">
-                            <div class="address">请先填写地址</div>
+                        <div class="info">
+                            <div class="people">收货人：&nbsp;陈玲玲 18243580088 <span class="tag">默认</span></div>
+                            <div class="address">收货地址：&nbsp;吉林省 通化市 梅河口市 维港城A区4楼166号天润美容养生馆</div>
                         </div>
                     </div>
                     <div class="iconfont icon-right"></div>
@@ -59,7 +60,7 @@
 
                 <div class="submit-order">
                     <div class="money"><span class="total">合计：</span><span class="price">¥12000.00</span></div>
-                    <a href="truck_entry_complete备份.html" class="btn external">提交订单</a>
+                    <a href="./truck_entry_complete.html" class="btn external">提交订单</a>
                 </div>
 
                 <div class="sheet-modal c-add-address">
@@ -128,7 +129,7 @@
                                     <a href="#" class="item-link item-content">
                                         <div class="item-inner" id="picker-local">
                                             <div class="item-title">省市区选择</div>
-                                            <div class="item-after" id="provinces">请选择</div>
+                                            <div class="item-after">请选择</div>
                                         </div>
                                     </a>
                                 </li>
@@ -158,107 +159,101 @@
 <script src="../../js/my-app.js"></script>
 <script src="../../js/public.js"></script>
 <script>
-var mainView = app.views.create('.view-main',{});
+    var mainView = app.views.create('.view-main',{});
 
-/*选择电话号前缀*/
-var pickerDevice = app.picker.create({
-    inputEl: '#picker-phonenumber',
-    renderToolbar: function () {
-        return '<div class="toolbar">' +
-                '<div class="toolbar-inner">' +
-                '<div class="left">' +
-                '<a href="#" class="link toolbar-cancel-link">取消</a>' +
-                '</div>' +
-                '<div class="title">选择手机归属地</div>'+
-                '<div class="right">' +
-                '<a href="#" class="link popover-close sure-btn">确定</a>' +
-                '</div>' +
-                '</div>' +
-                '</div>';
-    },
-    cssClass: 'c-custom-picker',
-    openIn: 'sheet',
-    cols: [
-        {
-            textAlign: 'center',
-            values: ['+86', '+852', '+853'],
-            displayValues: ['+86 中国', '+852 中国香港', '+853 中国澳门'],
-        }
-    ],
-    on: {
-        open: function (picker) {
-            $(picker.$el[0]).before('<div class="sheet-backdrop" style="z-index: 12500;"></div>');
-            picker.$el.prev().addClass('backdrop-in');
-
-            picker.$el.find('.toolbar-cancel-link').on('click', function () {
-                picker.close();
-            });
-            picker.$el.find('.sure-btn').on('click', function () {
-                $('#phoneNumber').html(picker.getValue());
-                picker.close();
-            });
+    var pickerDevice = app.picker.create({
+        inputEl: '#picker-phonenumber',
+        renderToolbar: function () {
+            return '<div class="toolbar">' +
+                    '<div class="toolbar-inner">' +
+                    '<div class="left">' +
+                    '<a href="#" class="link toolbar-cancel-link">取消</a>' +
+                    '</div>' +
+                    '<div class="title">选择手机归属地</div>'+
+                    '<div class="right">' +
+                    '<a href="#" class="link popover-close sure-btn">确定</a>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>';
         },
-        close: function (picker) {
-            picker.$el.prev().remove();
-        }
-        /*opened: function (picker) {
-            $(picker.$el[0]).before('<div class="sheet-backdrop"></div>');
-            picker.$el.prev().addClass('backdrop-in');
-        }*/
-    }
-});
+        cssClass: 'c-custom-picker',
+        openIn: 'sheet',
+        cols: [
+            {
+                textAlign: 'center',
+                values: ['+86', '+852', '+853'],
+                displayValues: ['+86 中国', '+852 中国香港', '+853 中国澳门'],
+            }
+        ],
+        on: {
+            open: function (picker) {
+                $(picker.$el[0]).before('<div class="sheet-backdrop" style="z-index: 12500;"></div>');
+                picker.$el.prev().addClass('backdrop-in');
 
-
-/*选择地区*/
-var pickerDevice2 = app.picker.create({
-    inputEl: '#picker-local',
-    renderToolbar: function () {
-        return '<div class="toolbar">' +
-                '<div class="toolbar-inner">' +
-                '<div class="left">' +
-                '<a href="#" class="link toolbar-cancel-link">取消</a>' +
-                '</div>' +
-                '<div class="title">选择地区</div>'+
-                '<div class="right">' +
-                '<a href="#" class="link popover-close sure-btn">确定</a>' +
-                '</div>' +
-                '</div>' +
-                '</div>';
-    },
-    cssClass: 'c-custom-picker',
-    openIn: 'sheet',
-    cols: [
-        {
-            textAlign: 'center',
-            values: ['湖北省', '湖南省', '广东省','广西壮族自治区'],
-        },
-        {
-            textAlign: 'center',
-            values: ['南林市', '柳州市', '桂林市'],
-        },
-        {
-            textAlign: 'center',
-            values: ['市辖区', '兴宁区', '青秀区'],
+                picker.$el.find('.toolbar-cancel-link').on('click', function () {
+                    picker.close();
+                });
+                picker.$el.find('.sure-btn').on('click', function () {
+                    $('#phoneNumber').html(picker.getValue());
+                    picker.close();
+                });
+            },
+            close: function (picker) {
+                picker.$el.prev().remove();
+            }
+            /*opened: function (picker) {
+             $(picker.$el[0]).before('<div class="sheet-backdrop"></div>');
+             picker.$el.prev().addClass('backdrop-in');
+             }*/
         }
-    ],
-    on: {
-        open: function (picker) {
-            $(picker.$el[0]).before('<div class="sheet-backdrop" style="z-index: 12500;"></div>');
-            picker.$el.prev().addClass('backdrop-in');
+    });
 
-            picker.$el.find('.toolbar-cancel-link').on('click', function () {
-                picker.close();
-            });
-            picker.$el.find('.sure-btn').on('click', function () {
-                $('#provinces').html(picker.getValue().join(','));
-                picker.close();
-            });
+    var pickerDevice2 = app.picker.create({
+        inputEl: '#picker-local',
+        renderToolbar: function () {
+            return '<div class="toolbar">' +
+                    '<div class="toolbar-inner">' +
+                    '<div class="left">' +
+                    '<a href="#" class="link toolbar-cancel-link">取消</a>' +
+                    '</div>' +
+                    '<div class="title">选择地区</div>'+
+                    '<div class="right">' +
+                    '<a href="#" class="link popover-close sure-btn">确定</a>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>';
         },
-        close: function (picker) {
-            picker.$el.prev().remove();
+        cssClass: 'c-custom-picker',
+        openIn: 'sheet',
+        cols: [
+            {
+                textAlign: 'center',
+                values: ['+86', '+852', '+853'],
+                displayValues: ['+86 中国', '+852 中国香港', '+853 中国澳门'],
+            }
+        ],
+        on: {
+            open: function (picker) {
+                $(picker.$el[0]).before('<div class="sheet-backdrop" style="z-index: 12500;"></div>');
+                picker.$el.prev().addClass('backdrop-in');
+
+                picker.$el.find('.toolbar-cancel-link').on('click', function () {
+                    picker.close();
+                });
+                picker.$el.find('.sure-btn').on('click', function () {
+                    $('#phoneNumber').html(picker.getValue());
+                    picker.close();
+                });
+            },
+            close: function (picker) {
+                picker.$el.prev().remove();
+            }
+            /*opened: function (picker) {
+             $(picker.$el[0]).before('<div class="sheet-backdrop"></div>');
+             picker.$el.prev().addClass('backdrop-in');
+             }*/
         }
-    }
-});
+    });
 </script>
 </body>
 </html>

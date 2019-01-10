@@ -3,14 +3,13 @@
 <head lang="en">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
-    <title>进货车-结算</title>
+    <title>云进货车-结算</title>
     <link rel="stylesheet" href="../../css/framework7.min.css"/>
     <link rel="stylesheet" href="../../css/public.css">
     <style>
 
     </style>
-    <script src="../../js/vue.js"></script>
-    <script src="../../js/jquery.min.js"></script>
+
 </head>
 <body class="page-truck-entry">
 <div id="app">
@@ -18,7 +17,7 @@
         <div class="page-content">
             <div id="pageTruckEntry">
                 <div class="top">
-                    <div><span>进货车</span><span class="num">({{productTotalNum}})</span></div>
+                    <div><span>云进货车</span><span class="num">({{productTotalNum}})</span></div>
                     <a class="edit-btn" href="javascript:void(0);" @click="editPage(0)" v-if="editPageHide">编辑</a>
                     <a class="del-btn" href="javascript:void(0);" v-else="editPageHide">删除</a>
                 </div>
@@ -32,6 +31,7 @@
                         <img class="product-img" v-bind:src="item.imgsrc"/>
                         <div class="info" v-if="editPageHide">
                             <div class="product-name">{{item.name}}</div>
+                            <a href="#" class="tag">云库存</a>
                             <div class="price">¥{{item.price}}</div>
                         </div>
                         <div class="num" v-else="editPageHide">
@@ -67,6 +67,8 @@
 
 <a href="javascript:history.back(-1);" class="goback" id="goBack"></a>
 
+<script src="../../js/vue.js"></script>
+<script src="../../js/jquery.min.js"></script>
 <script src="../../js/framework7.min.js"></script>
 <script src="../../js/my-app.js"></script>
 <script>
@@ -85,109 +87,109 @@
                 var num = 0;
                 this.productsData.forEach((el,i)=>{
                     num+=parseInt(el.num);
-                });
-                return num;
-            },
-            productSelNum: function (){
-                var selNum = 0;
+            });
+    return num;
+    },
+    productSelNum: function (){
+        var selNum = 0;
+        this.productsData.forEach((el,i)=>{
+            if(this.selProducts.indexOf(el.value) >=0 ){
+            selNum += parseInt(el.num);
+        }
+    });
+    return selNum;
+    },
+    productSelPrice: function (){
+        var selPrice = 0;
+        this.productsData.forEach((el,i)=>{
+            if(this.selProducts.indexOf(el.value) >=0 ){
+            selPrice += parseInt(el.price)*parseInt(el.num);
+        }
+    });
+    return selPrice;
+    },
+    isAll:function (){
+        if(this.selProducts.length == this.productsData.length){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    },
+    methods: {
+        checkAll: function (e){
+            if(e.target.checked){
                 this.productsData.forEach((el,i)=>{
-                    if(this.selProducts.indexOf(el.value) >=0 ){
-                        selNum += parseInt(el.num);
-                    }
-                });
-                return selNum;
-            },
-            productSelPrice: function (){
-                var selPrice = 0;
-                this.productsData.forEach((el,i)=>{
-                    if(this.selProducts.indexOf(el.value) >=0 ){
-                        selPrice += parseInt(el.price)*parseInt(el.num);
-                    }
-                 });
-                return selPrice;
-            },
-            isAll:function (){
-                if(this.selProducts.length == this.productsData.length){
-                    return true;
-                }else{
-                    return false;
+                    if(this.selProducts.indexOf(el.value) == -1){
+                    this.selProducts.push(el.value);
                 }
-            }
-        },
-        methods: {
-            checkAll: function (e){
-                if(e.target.checked){
-                    this.productsData.forEach((el,i)=>{
-                        if(this.selProducts.indexOf(el.value) == -1){
-                            this.selProducts.push(el.value);
-                        }
-                    });
-                }else {
-                    this.selProducts = [];
-                }
-            },
-            editPage: function (bool){
-                this.editPageHide = Boolean(bool);
-            },
-            addProductNum: function (e){
-                var curVal = $(e.target).closest('.product').find('[type=checkbox]').val();
-                this.productsData.forEach((el,i)=>{
-                    if(el.value == curVal){
-                        el.num += 1;
-                    }
-                });
-            },
-            subProductNum: function (e) {
-                var curVal = $(e.target).closest('.product').find('[type=checkbox]').val();
-                this.productsData.forEach((el,i)=>{
-                    if(el.value == curVal){
-                        el.num -= 1;
-                    }
-                });
-            },
-            changeProductNum: function (e) {
-                var iptBtn = e;
-                var productsData = this.productsData;
-                app.dialog.create({
-                    title: '请输入数量',
-                    text: '',
-                    cssClass: 'c-custom-dialog',
-                    content: '<input type="text" class="num-ipt" value=""/>',
-                    buttons: [
-                        {
-                            text: '取消',
-                        },
-                        {
-                            text: '确认',
-                            cssClass: 'btn-confirm',
-                            onClick: function (e){
-                                var num = $(e.el).find('.num-ipt').val();
-                                var curVal = $(iptBtn.target).closest('.product').find('[type=checkbox]').val();
+            });
+        }else {
+            this.selProducts = [];
+        }
+    },
+    editPage: function (bool){
+        this.editPageHide = Boolean(bool);
+    },
+    addProductNum: function (e){
+        var curVal = $(e.target).closest('.product').find('[type=checkbox]').val();
+        this.productsData.forEach((el,i)=>{
+            if(el.value == curVal){
+            el.num += 1;
+        }
+    });
+    },
+    subProductNum: function (e) {
+        var curVal = $(e.target).closest('.product').find('[type=checkbox]').val();
+        this.productsData.forEach((el,i)=>{
+            if(el.value == curVal){
+            el.num -= 1;
+        }
+    });
+    },
+    changeProductNum: function (e) {
+        var iptBtn = e;
+        var productsData = this.productsData;
+        app.dialog.create({
+            title: '请输入数量',
+            text: '',
+            cssClass: 'c-custom-dialog',
+            content: '<input type="text" class="num-ipt" value=""/>',
+            buttons: [
+                {
+                    text: '取消',
+                },
+                {
+                    text: '确认',
+                    cssClass: 'btn-confirm',
+                    onClick: function (e){
+                        var num = $(e.el).find('.num-ipt').val();
+                        var curVal = $(iptBtn.target).closest('.product').find('[type=checkbox]').val();
 
-                                productsData.forEach((el,i)=>{
-                                    if(el.value == curVal){
-                                        el.num = num;
-                                    }
-                                });
-                            },
-                        }
-                    ],
-
-                    verticalButtons: false,
-                }).open();
-
-                /*app.dialog.prompt('请输入数量','custom-dialog', function (num) {
-
-                    var curVal = $(e.target).closest('.product').find('[type=checkbox]').val();
-                    productsData.forEach((el,i)=>{
+                        productsData.forEach((el,i)=>{
                             if(el.value == curVal){
                             el.num = num;
                         }
                     });
+    },
+    }
+    ],
 
-                });*/
-            }
-        }
+    verticalButtons: false,
+    }).open();
+
+    /*app.dialog.prompt('请输入数量','custom-dialog', function (num) {
+
+     var curVal = $(e.target).closest('.product').find('[type=checkbox]').val();
+     productsData.forEach((el,i)=>{
+     if(el.value == curVal){
+     el.num = num;
+     }
+     });
+
+     });*/
+    }
+    }
     });
 </script>
 </body>
