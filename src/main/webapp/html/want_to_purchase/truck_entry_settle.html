@@ -4,46 +4,191 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
     <title>进货车-结算</title>
+    <link rel="stylesheet" href="../../css/framework7.min.css"/>
     <link rel="stylesheet" href="../../css/public.css">
     <style>
 
     </style>
+    <script src="../../js/vue.js"></script>
+    <script src="../../js/jquery.min.js"></script>
 </head>
 <body class="page-truck-entry">
-<div class="top">
-    <div><span>进货车</span><span class="num">（80）</span></div>
-    <a class="edit-btn" href="javascript:void(0);">编辑</a>
-</div>
-<div class="product">
-    <div class="left">
-        <label class="check">
-            <input type="checkbox" checked/>
-            <i class="check-icon"></i>
-        </label>
-        <img class="product-img" src="../../img/product_img.png"/>
-        <div class="info">
-            <div class="product-name">胶原蛋白小分子钛银</div>
-            <div class="price">¥120.00</div>
+<div id="app">
+    <div class="page">
+        <div class="page-content">
+            <div id="pageTruckEntry">
+                <div class="top">
+                    <div><span>进货车</span><span class="num">({{productTotalNum}})</span></div>
+                    <a class="edit-btn" href="javascript:void(0);" @click="editPage(0)" v-if="editPageHide">编辑</a>
+                    <a class="del-btn" href="javascript:void(0);" v-else="editPageHide">删除</a>
+                </div>
+
+                <div class="product" v-for="item in productsData">
+                    <div class="left">
+                        <label class="check">
+                            <input type="checkbox" v-bind:value="item.value" v-model="selProducts"/>
+                            <i class="check-icon"></i>
+                        </label>
+                        <img class="product-img" v-bind:src="item.imgsrc"/>
+                        <div class="info" v-if="editPageHide">
+                            <div class="product-name">{{item.name}}</div>
+                            <div class="price">¥{{item.price}}</div>
+                        </div>
+                        <div class="num" v-else="editPageHide">
+                            <a href="javascript:void(0);" @click="subProductNum($event)" class="sub"></a><input v-bind:value="item.num" type="text" class="ipt" readonly @click="changeProductNum($event)"/><a href="javascript:void(0);" class="add" @click="addProductNum($event)"></a>
+                        </div>
+                    </div>
+                    <a href="javascript:void(0)" class="right product-num" v-if="editPageHide">
+                        <span>X{{item.num}}</span>
+                    </a>
+                    <a href="javascript:void(0)" class="right" v-else="editPageHide">
+                        <span>删除</span>
+                    </a>
+                </div>
+
+                <div class="bottom">
+                    <label class="check-custom" @click="checkAll($event)">
+                        <input id="allSel" type="checkbox" v-model="isAll"/><i class="check-icon"></i><span class="txt">全选</span>
+                    </label>
+                    <div class="right">
+                        <div class="info">
+                            <div class="money"><span class="total">合计：</span><span class="num">¥{{productSelPrice}}</span></div>
+                            <div class="tip">不含运费</div>
+                        </div>
+                        <a class="btn" v-if="editPageHide" href="./logistics_order_placing.html">结算&nbsp;({{productSelNum}})</a>
+                        <a class="btn" v-else="editPageHide" href="#" @click="editPage(1)">完成</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <a href="javascript:void(0)" class="right product-num">
-        <span>X80</span>
-    </a>
 </div>
 
-<div class="bottom">
-    <label class="check-custom">
-        <input type="checkbox" checked/><i class="check-icon"></i><span class="txt">全选</span>
-    </label>
-    <div class="right">
-        <div class="info">
-            <div class="money"><span class="total">合计：</span><span class="num">¥120000.00</span></div>
-            <div class="tip">不含运费</div>
-        </div>
-        <a class="btn" href="./logistics_order_placing.html">结算&nbsp;(80)</a>
-    </div>
-</div>
 
 <a href="javascript:history.back(-1);" class="goback" id="goBack"></a>
+
+<script src="../../js/framework7.min.js"></script>
+<script src="../../js/my-app.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#pageTruckEntry',
+        data: {
+            productsData: [ /* 后台商品数据 */
+                { imgsrc: '../../img/product_img.png', name: '膳食营养棒', price: 150, num: 1, value: 'yingyangbang' },
+                { imgsrc: '../../img/product_img.png', name: '胶原蛋白小分子钛银', price: 150, num: 3, value: 'jiaoyuandanbai' },
+            ],
+            selProducts:['yingyangbang','jiaoyuandanbai'], /* 被选中多选框value值 */
+            editPageHide: true,
+        },
+        computed: {
+            productTotalNum: function (){
+                var num = 0;
+                this.productsData.forEach((el,i)=>{
+                    num+=parseInt(el.num);
+                });
+                return num;
+            },
+            productSelNum: function (){
+                var selNum = 0;
+                this.productsData.forEach((el,i)=>{
+                    if(this.selProducts.indexOf(el.value) >=0 ){
+                        selNum += parseInt(el.num);
+                    }
+                });
+                return selNum;
+            },
+            productSelPrice: function (){
+                var selPrice = 0;
+                this.productsData.forEach((el,i)=>{
+                    if(this.selProducts.indexOf(el.value) >=0 ){
+                        selPrice += parseInt(el.price)*parseInt(el.num);
+                    }
+                 });
+                return selPrice;
+            },
+            isAll:function (){
+                if(this.selProducts.length == this.productsData.length){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+        },
+        methods: {
+            checkAll: function (e){
+                if(e.target.checked){
+                    this.productsData.forEach((el,i)=>{
+                        if(this.selProducts.indexOf(el.value) == -1){
+                            this.selProducts.push(el.value);
+                        }
+                    });
+                }else {
+                    this.selProducts = [];
+                }
+            },
+            editPage: function (bool){
+                this.editPageHide = Boolean(bool);
+            },
+            addProductNum: function (e){
+                var curVal = $(e.target).closest('.product').find('[type=checkbox]').val();
+                this.productsData.forEach((el,i)=>{
+                    if(el.value == curVal){
+                        el.num += 1;
+                    }
+                });
+            },
+            subProductNum: function (e) {
+                var curVal = $(e.target).closest('.product').find('[type=checkbox]').val();
+                this.productsData.forEach((el,i)=>{
+                    if(el.value == curVal){
+                        el.num -= 1;
+                    }
+                });
+            },
+            changeProductNum: function (e) {
+                var iptBtn = e;
+                var productsData = this.productsData;
+                app.dialog.create({
+                    title: '请输入数量',
+                    text: '',
+                    cssClass: 'c-custom-dialog',
+                    content: '<input type="text" class="num-ipt" value=""/>',
+                    buttons: [
+                        {
+                            text: '取消',
+                        },
+                        {
+                            text: '确认',
+                            cssClass: 'btn-confirm',
+                            onClick: function (e){
+                                var num = $(e.el).find('.num-ipt').val();
+                                var curVal = $(iptBtn.target).closest('.product').find('[type=checkbox]').val();
+
+                                productsData.forEach((el,i)=>{
+                                    if(el.value == curVal){
+                                        el.num = num;
+                                    }
+                                });
+                            },
+                        }
+                    ],
+
+                    verticalButtons: false,
+                }).open();
+
+                /*app.dialog.prompt('请输入数量','custom-dialog', function (num) {
+
+                    var curVal = $(e.target).closest('.product').find('[type=checkbox]').val();
+                    productsData.forEach((el,i)=>{
+                            if(el.value == curVal){
+                            el.num = num;
+                        }
+                    });
+
+                });*/
+            }
+        }
+    });
+</script>
 </body>
 </html>

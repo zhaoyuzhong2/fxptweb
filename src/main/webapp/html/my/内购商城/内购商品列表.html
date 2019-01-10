@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+    <title>内购商品列表</title>
+    <link rel="stylesheet" href="../../../css/framework7.min.css">
+    <link rel="stylesheet" href="../../../css/font.css">
+    <link rel="stylesheet" href="../../../css/public.css">
+</head>
+<body class="page-app-productlist">
+<div id="app">
+    <div class="page">
+        <div class="page-content">
+            <form class="c-searchbar display-flex align-items-center">
+                <div class="input-wrap display-flex align-items-center">
+                    <i class="iconfont icon-sousuo"></i>
+                    <input class="search-ipt" type="text" placeholder="搜索商品名称" style="width: 100px;"/>
+                    <a href="#" class="iconfont icon-cancel-1 clear-btn"></a>
+                </div>
+                <a href="#" class="search-btn">搜索</a>
+            </form>
+            <div class="toolbar tabbar c-tabbar-custom3" id="tabbarRank">
+                <div class="toolbar-inner">
+                    <a href="#tab-1" class="tab-link tab-link-active">默认</a>
+                    <a href="#tab-2" class="tab-link">销量<span class="rank-btn"><i class="iconfont icon-trigon-top"></i><i class="iconfont icon-trigon-down"></i></span></a>
+                    <a href="#tab-3" class="tab-link">价格<span class="rank-btn"><i class="iconfont icon-trigon-top"></i><i class="iconfont icon-trigon-down"></i></span></a>
+                </div>
+                <a href="#" class="iconfont icon-category changelist-btn" id="changeListBtn"></a>
+            </div>
+            <div class="tabs c-tabs-fixed">
+                <div class="tab tab-active" id="tab-1">
+                    <div class="null-tip">
+                        <img src="../../../img/null.png" class="img"/>
+                        <div class="info">没有内容可供显示</div>
+                    </div>
+                </div>
+
+                <div class="tab" id="tab-2">
+                    <div class="null-tip">
+                        <img src="../../../img/null.png" class="img"/>
+                        <div class="info">没有内容可供显示哦</div>
+                    </div>
+                </div>
+
+                <div class="tab" id="tab-3">
+                    <div class="null-tip">
+                        <img src="../../../img/null.png" class="img"/>
+                        <div class="info">没有内容可供显示</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom-toolbox display-flex justify-content-space-between align-items-center">
+                <div class="left display-flex align-items-center">
+                    <div class="card-btn">
+                        <i class="iconfont icon-cart2"></i>
+                        <span class="num">0</span>
+                    </div>
+                    <div class="price">共<span class="red">¥0</span></div>
+                </div>
+                <a href="#" class="settle-btn external">立即结算</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<a href="javascript:history.back(-1);" class="goback" id="goBack"></a>
+
+<script src="../../../js/framework7.min.js"></script>
+<script src="../../../js/jquery.min.js"></script>
+<script src="../../../js/my-app.js"></script>
+<script src="../../../js/public.js"></script>
+<script>
+    /*点击切换商品列表展示方式*/
+    $('#changeListBtn').on('click',function (){
+        if($(this).hasClass('icon-category')){
+            $(this).removeClass('icon-category');
+            $(this).addClass('icon-column');
+        }else {
+            $(this).addClass('icon-category');
+            $(this).removeClass('icon-column');
+        }
+    });
+
+
+    /*点击切换价格、销量从高到低排序*/
+    $('#tabbarRank .tab-link').on('click',function(){
+        if($(this).find('.iconfont').eq(0).hasClass('active')){
+            $('#tabbarRank .rank-btn .iconfont').removeClass('active');
+            $(this).find('.iconfont').eq(1).addClass('active');
+        }else {
+            $('#tabbarRank .rank-btn .iconfont').removeClass('active');
+            $(this).find('.iconfont').eq(0).addClass('active');
+        }
+    });
+</script>
+</body>
+</html>

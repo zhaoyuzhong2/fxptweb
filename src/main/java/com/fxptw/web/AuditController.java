@@ -24,7 +24,7 @@ public class AuditController {
 	UserDao userDao;
 
 
-	//进入我要进货首页
+	//审核代理页面
 	@RequestMapping(value = "/index")
 	public String index(Model model,HttpServletRequest request) {
 		//System.out.println("我要进货...........");

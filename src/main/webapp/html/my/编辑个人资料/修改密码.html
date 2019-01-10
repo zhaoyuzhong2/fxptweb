@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+    <title>修改密码</title>
+    <link rel="stylesheet" href="../../../css/framework7.min.css">
+    <link rel="stylesheet" href="../../../css/font.css">
+    <link rel="stylesheet" href="../../../css/public.css">
+</head>
+<body class="page-change-password">
+<div id="app">
+    <div class="page">
+        <div class="page-content">
+            <div class="top-tip">您是否记得账号当前使用的密码？</div>
+
+            <button class="col button button-big button-fill button-round c-block-btn" onclick="changePhone()">记得密码</button>
+            <button class="col button button-big button-fill button-round c-block-btn white" style="margin-top: 10px;">忘记密码</button>
+
+        </div>
+    </div>
+</div>
+
+
+<a href="javascript:history.back(-1);" class="goback" id="goBack"></a>
+
+<script src="../../../js/framework7.min.js"></script>
+<script src="../../../js/jquery.min.js"></script>
+<script src="../../../js/my-app.js"></script>
+<!--<script src="../../js/public.js"></script>-->
+<script>
+    function changePhone(){
+        app.dialog.create({
+            title: '验证登录信息<i class="iconfont icon-close"></i>',
+            text: '',
+            cssClass: 'c-custom-dialog',
+            content: '' +
+            '<div class="info" style="margin-bottom: 18px;">为了您的资金安全，请再次输入您的登录密码！</div>' +
+            '<input type="text" class="num-ipt" value="" placeholder="请输入代理账户密码"/>' +
+            '<div class="text-right"><a href="#" class="external link">忘记密码？</a></div>',
+            buttons: [
+                {
+                    text: '取消',
+                },
+                {
+                    text: '确认',
+                    cssClass: 'btn-confirm',
+                    onClick: function (e){
+                        var num = $(e.el).find('.num-ipt').val();
+                        console.log(num);
+                    },
+                },
+            ],
+            on: {
+                open: function (e){
+                    e.$el.find('.icon-close').on('click',function(){
+                        e.close();
+                    });
+                }
+            },
+            verticalButtons: false,
+        }).open();
+    }
+</script>
+</body>
+</html>

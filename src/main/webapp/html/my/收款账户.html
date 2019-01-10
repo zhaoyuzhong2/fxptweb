@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+    <title>收款账户</title>
+    <link rel="stylesheet" href="../../css/framework7.min.css">
+    <link rel="stylesheet" href="../../css/font.css">
+    <link rel="stylesheet" href="../../css/public.css">
+</head>
+<body class="page-gather-account">
+<div id="app">
+    <div class="view view-main">
+        <div class="page">
+            <div class="page-content">
+                <ul class="gatherways" id="gatherWays">
+                    <li v-if="wechatName == ''" @click="addWechatAccount()" class="display-flex align-items-center justify-content-space-between">
+                        <div class="display-flex align-items-center">
+                            <i class="iconfont icon-wechat icon"></i>
+                            <div class="txt">添加微信收款账户</div>
+                        </div>
+                        <i class="iconfont icon-add"></i>
+                    </li>
+                    <ul v-else class="c-bankcarts2 wechat" style="padding: 7px 10px 0;">
+                        <li>
+                            <div class="top">
+                                <div class="display-flex align-items-center">
+                                    <i class="iconfont icon-wechat"></i>
+                                    <div class="info">
+                                        <div class="name">{{wechatName}}</div>
+                                        <div>微信收款账户</div>
+                                        <div>{{wechatAccount}}</div>
+                                    </div>
+                                    <img v-bind:src="wechatImg" class="wechat-qrcode"/>
+                                </div>
+                                <div class="display-flex align-items-center toolbox">
+                                    <a href="#" class="btn sheet-open" data-sheet=".c-add-address" @click="addWechatAccount()">编辑</a>
+                                    <a href="#" class="btn" @click="delWechatAccount()">删除</a>
+                                </div>
+                            </div>
+                            <i class="iconfont icon-wechat"></i>
+                        </li>
+                    </ul>
+
+                    <li v-if="alipayName == ''" @click="addAlipayAccount()" class="display-flex align-items-center justify-content-space-between">
+                        <div class="display-flex align-items-center">
+                            <i class="iconfont icon-alipay icon" style="background-color: #5a91ee;"></i>
+                            <div class="txt">添加支付宝收款账户</div>
+                        </div>
+                        <i class="iconfont icon-add"></i>
+                    </li>
+                    <ul v-else class="c-bankcarts2 zhifubaos" style="padding: 0 10px;">
+                        <li>
+                            <div class="top">
+                                <div class="display-flex align-items-center">
+                                    <i class="iconfont icon-alipay"></i>
+                                    <div class="info">
+                                        <div class="name">{{wechatName}}</div>
+                                        <div>支付宝收款账户</div>
+                                        <div>{{wechatAccount}}</div>
+                                    </div>
+                                </div>
+                                <div class="display-flex align-items-center toolbox">
+                                    <a href="#" class="btn sheet-open" data-sheet=".c-add-address" @click="addAlipayAccount()">编辑</a>
+                                    <a href="#" class="btn" @click="delAlipayAccount()">删除</a>
+                                </div>
+                            </div>
+                            <i class="iconfont icon-alipay-1"></i>
+                        </li>
+                    </ul>
+
+                    <li v-if="cardName == ''" @click="addBankcardAccount()" class="display-flex align-items-center justify-content-space-between">
+                        <div class="display-flex align-items-center">
+                            <i class="iconfont icon-balance icon" style="background-color: #eb3945;"></i>
+                            <div class="txt">添加银行卡收款账户</div>
+                        </div>
+                        <i class="iconfont icon-add"></i>
+                    </li>
+                    <ul v-else class="c-bankcarts2" style="padding: 0 10px;">
+                        <li>
+                            <div class="top">
+                                <div class="display-flex align-items-center">
+                                    <i class="iconfont icon-balance"></i>
+                                    <div class="info">
+                                        <div class="name">{{cardName}}</div>
+                                        <div>银行卡收款账户</div>
+                                        <div>{{cardAccount}}</div>
+                                    </div>
+                                </div>
+                                <div class="display-flex align-items-center toolbox">
+                                    <a href="#" class="btn sheet-open" data-sheet=".c-add-address" @click="addBankcardAccount()">编辑</a>
+                                    <a href="#" class="btn" @click="delBankcardAccount()">删除</a>
+                                </div>
+                            </div>
+                            <i class="iconfont icon-balance"></i>
+                        </li>
+                    </ul>
+
+                </ul>
+
+                <a href="javascript:history.back(-1);" class="goback" id="goBack"></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="../../js/framework7.min.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/my-app.js"></script>
+<script src="../../js/public.js"></script>
+
+<script src="../../js/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#gatherWays',
+        data: {
+            wechatName: '', //微信用户名
+            wechatAccount: '', //微信账号
+            wechatImg: '../../img/qr-code.png', //微信二维码
+            alipayName: '', //支付宝用户名
+            alipayAccount: '', //支付宝账号
+            cardDepositBank: '', //开户银行
+            cardDepositAddress: '', //开户地址
+            cardDepositDot: '', //开户网点
+            cardName: '', //姓名
+            cardAccount: '', //卡号
+        },
+        methods: {
+            addWechatAccount: function (){
+                app.dialog.create({
+                    title: '请上传您的微信二维码',
+                    text: '',
+                    cssClass: 'c-custom-dialog',
+                    content: '<input type="text" class="num-ipt text-align-center" value="'+vm.wechatName+'" placeholder="请输入用户名"/>' +
+                    '<input type="text" class="num-ipt text-align-center" value="'+vm.wechatAccount+'" placeholder="请输入微信账号" style="margin-top: 10px;"/>' +
+                    '<div class="head-box" style="display: none;"><img class="head" src=""/><i class="cancel-btn">X</i></div>'+ //二维码展示，当前状态隐藏，显示时将display设置为flex
+                    '<div class="addhead-btn" style="display: block;">+</div>', //二维码上传按钮
+                    buttons: [
+                        {
+                            text: '取消',
+                        },
+                        {
+                            text: '确定',
+                            cssClass: 'btn-confirm',
+                            onClick: function (e){
+                                var username = $(e.el).find('.num-ipt').eq(0).val();
+                                var account = $(e.el).find('.num-ipt').eq(1).val();
+                                var img = $(e.el).find('.head').attr('src');
+                                console.log('用户名和微信账号和二维码地址：',username,account,img);
+
+                                app.dialog.create({
+                                    title: '验证登录信息<i class="iconfont icon-close"></i>',
+                                    text: '',
+                                    cssClass: 'c-custom-dialog',
+                                    content: '' +
+                                    '<div class="info" style="margin-bottom: 18px;">为了您的资金安全，请再次输入您的登录密码！</div>' +
+                                    '<input type="text" class="num-ipt" value="" placeholder="请输入代理账户密码"/>' +
+                                    '<div class="text-right"><a href="#" class="external link">忘记密码？</a></div>',
+                                    buttons: [
+                                        {
+                                            text: '确认',
+                                            cssClass: 'btn-confirm',
+                                            onClick: function (e){
+                                                var code = $(e.el).find('.num-ipt').val();
+                                                console.log('代理账户密码：',code);
+
+                                                vm.wechatName = username;
+                                                vm.wechatAccount = account;
+                                                //vm.wechatImg = img;
+                                            },
+                                        },
+                                    ],
+                                    on: {
+                                        open: function (e){
+                                            e.$el.find('.icon-close').on('click',function(){
+                                                e.close();
+                                            });
+                                        }
+                                    },
+                                    verticalButtons: false,
+                                }).open();
+                            }
+                        },
+                    ],
+                    verticalButtons: false,
+                }).open();
+            },
+            delWechatAccount: function (){
+                this.wechatName = '';
+                this.wechatAccount = '';
+                this.wechatImg = '';
+            },//删除微信账户
+            addAlipayAccount: function (){
+                app.dialog.create({
+                    title: '请添加您的支付宝收款账号',
+                    text: '',
+                    cssClass: 'c-custom-dialog',
+                    content: '<input type="text" class="num-ipt text-align-center" value="'+vm.alipayName+'" placeholder="请输入用户名"/>' +
+                    '<input type="text" class="num-ipt text-align-center" value="'+vm.alipayAccount+'" placeholder="请输入支付宝账号" style="margin-top: 10px;"/>',
+                    buttons: [
+                        {
+                            text: '取消',
+                        },
+                        {
+                            text: '确定',
+                            cssClass: 'btn-confirm',
+                            onClick: function (e){
+                                var username = $(e.el).find('.num-ipt').eq(0).val();
+                                var account = $(e.el).find('.num-ipt').eq(1).val();
+
+                                app.dialog.create({
+                                    title: '验证登录信息<i class="iconfont icon-close"></i>',
+                                    text: '',
+                                    cssClass: 'c-custom-dialog',
+                                    content: '' +
+                                    '<div class="info" style="margin-bottom: 18px;">为了您的资金安全，请再次输入您的登录密码！</div>' +
+                                    '<input type="text" class="num-ipt" value="" placeholder="请输入代理账户密码"/>' +
+                                    '<div class="text-right"><a href="#" class="external link">忘记密码？</a></div>',
+                                    buttons: [
+                                        {
+                                            text: '确认',
+                                            cssClass: 'btn-confirm',
+                                            onClick: function (e){
+                                                var code = $(e.el).find('.num-ipt').val();
+                                                console.log('代理账户密码：',code);
+
+                                                vm.alipayName = username;
+                                                vm.alipayAccount = account;
+                                            },
+                                        },
+                                    ],
+                                    on: {
+                                        open: function (e){
+                                            e.$el.find('.icon-close').on('click',function(){
+                                                e.close();
+                                            });
+                                        }
+                                    },
+                                    verticalButtons: false,
+                                }).open();
+                            }
+                        },
+                    ],
+                    verticalButtons: false,
+                }).open();
+            },
+            delAlipayAccount: function (){
+                this.alipayName = '';
+                this.alipayAccount = '';
+            }, //删除支付宝账户
+            addBankcardAccount: function (){
+                app.dialog.create({
+                    title: '请添加您的银行卡收款账户',
+                    text: '',
+                    cssClass: 'c-custom-dialog',
+                    content: '<label class="ipt-name" style="margin-top: 0;">开户银行</label>' +
+                    '<div class="ipt-box">' +
+                    '<input id="picker-bank" type="text" class="num-ipt" value="'+vm.cardDepositBank+'" placeholder="选择开户银行" readonly="readonly"/>' +
+                    '<i class="iconfont icon-down"></i>' +
+                    '</div>' +
+                    '<label class="ipt-name">开户地址</label>' +
+                    '<div class="ipt-box">' +
+                    '<input id="picker-local" type="text" class="num-ipt" value="'+vm.cardDepositAddress+'" placeholder="请选择" readonly="readonly"/>' +
+                    '<i class="iconfont icon-down"></i>' +
+                    '</div>' +
+                    '<label class="ipt-name">开户网点</label>' +
+                    '<input type="text" class="num-ipt" value="'+vm.cardDepositDot+'" placeholder="如工商银行祥符支行"/>' +
+                    '<label class="ipt-name">姓名</label>' +
+                    '<input type="text" class="num-ipt" value="'+vm.cardName+'" placeholder="如小明"/>' +
+                    '<label class="ipt-name">卡号</label>' +
+                    '<input type="text" class="num-ipt" value="'+vm.cardAccount+'" placeholder="请认真填写银行卡账号并确认"/>',
+                    buttons: [
+                        {
+                            text: '取消',
+                        },
+                        {
+                            text: '确定',
+                            cssClass: 'btn-confirm',
+                            onClick: function (e){
+                                var bank = $(e.el).find('.num-ipt').eq(0).val();
+                                var address = $(e.el).find('.num-ipt').eq(1).val();
+                                var dot = $(e.el).find('.num-ipt').eq(2).val();
+                                var username = $(e.el).find('.num-ipt').eq(3).val();
+                                var account = $(e.el).find('.num-ipt').eq(4).val();
+
+                                app.dialog.create({
+                                    title: '验证登录信息<i class="iconfont icon-close"></i>',
+                                    text: '',
+                                    cssClass: 'c-custom-dialog',
+                                    content: '' +
+                                    '<div class="info" style="margin-bottom: 18px;">为了您的资金安全，请再次输入您的登录密码！</div>' +
+                                    '<input type="text" class="num-ipt" value="" placeholder="请输入代理账户密码"/>' +
+                                    '<div class="text-right"><a href="#" class="external link">忘记密码？</a></div>',
+                                    buttons: [
+                                        {
+                                            text: '确认',
+                                            cssClass: 'btn-confirm',
+                                            onClick: function (e){
+                                                var code = $(e.el).find('.num-ipt').val();
+                                                console.log('代理账户密码：',code);
+
+                                                vm.cardDepositBank = bank;
+                                                vm.cardDepositAddress = address;
+                                                vm.cardDepositDot = dot;
+                                                vm.cardName = username;
+                                                vm.cardAccount = account;
+                                            },
+                                        },
+                                    ],
+                                    on: {
+                                        open: function (e){
+                                            e.$el.find('.icon-close').on('click',function(){
+                                                e.close();
+                                            });
+                                        }
+                                    },
+                                    verticalButtons: false,
+                                }).open();
+                            }
+                        },
+                    ],
+                    verticalButtons: false,
+                }).open();
+            },
+            delBankcardAccount: function (){
+                this.cardDepositBank = '';
+                this.cardDepositAddress = '';
+                this.cardDepositDot = '';
+                this.cardName = '';
+                this.cardAccount = '';
+            }, //删除银行卡账户
+        }
+    });
+</script>
+<script>
+    var mainView = app.views.create('.view-main',{});
+
+
+    /*选择开户银行*/
+    $$(document).on('click','#picker-bank',function(){
+        pickerDevice.open();
+    });
+    var pickerDevice = app.picker.create({
+        inputEl: '#picker-bank',
+        renderToolbar: function () {
+            return '<div class="toolbar">' +
+                    '<div class="toolbar-inner">' +
+                    '<div class="left">' +
+                    '<a href="#" class="link toolbar-cancel-link">取消</a>' +
+                    '</div>' +
+                    '<div class="title">选择开户银行</div>'+
+                    '<div class="right">' +
+                    '<a href="#" class="link popover-close sure-btn">确定</a>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>';
+        },
+        cssClass: 'c-custom-picker',
+        openIn: 'sheet',
+        cols: [
+            {
+                textAlign: 'center',
+                values: ['交通银行', '邮政储蓄银行', '招商银行'],
+            }
+        ],
+        on: {
+            open: function (picker) {
+                $(picker.$el[0]).before('<div class="sheet-backdrop" style="z-index: 13500;"></div>');
+                picker.$el.prev().addClass('backdrop-in');
+
+                picker.$el.find('.toolbar-cancel-link').on('click', function () {
+                    picker.close();
+                });
+                picker.$el.find('.sure-btn').on('click', function () {
+                    $$('#picker-bank').val(picker.getValue());
+                    picker.close();
+                });
+            },
+            close: function (picker) {
+                picker.$el.prev().remove();
+            },
+        }
+    });
+
+
+    /*选择开户地址*/
+    $$(document).on('click','#picker-local',function(){
+        pickerDevice2.open();
+    });
+    var pickerDevice2 = app.picker.create({
+        inputEl: '#picker-local',
+        renderToolbar: function () {
+            return '<div class="toolbar">' +
+                    '<div class="toolbar-inner">' +
+                    '<div class="left">' +
+                    '<a href="#" class="link toolbar-cancel-link">取消</a>' +
+                    '</div>' +
+                    '<div class="title">选择地区</div>'+
+                    '<div class="right">' +
+                    '<a href="#" class="link popover-close sure-btn">确定</a>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>';
+        },
+        cssClass: 'c-custom-picker',
+        openIn: 'sheet',
+        cols: [
+            {
+                textAlign: 'center',
+                values: ['湖北省', '湖南省', '广东省','广西壮族自治区'],
+            },
+            {
+                textAlign: 'center',
+                values: ['南林市', '柳州市', '桂林市'],
+            },
+            {
+                textAlign: 'center',
+                values: ['市辖区', '兴宁区', '青秀区'],
+            }
+        ],
+        on: {
+            open: function (picker) {
+                $(picker.$el[0]).before('<div class="sheet-backdrop" style="z-index: 12500;"></div>');
+                picker.$el.prev().addClass('backdrop-in');
+
+                picker.$el.find('.toolbar-cancel-link').on('click', function () {
+                    picker.close();
+                });
+                picker.$el.find('.sure-btn').on('click', function () {
+                    $$('#picker-local').val(picker.getValue().join(','));
+                    picker.close();
+                });
+            },
+            close: function (picker) {
+                picker.$el.prev().remove();
+            }
+        }
+    });
+</script>
+</body>
+</html>                                                                          

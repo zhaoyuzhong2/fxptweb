@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+    <title>新建银行卡提现账户</title>
+    <link rel="stylesheet" href="../../css/framework7.min.css">
+    <link rel="stylesheet" href="../../css/font.css">
+    <link rel="stylesheet" href="../../css/public.css">
+</head>
+<body class="page-newbuild-bankcard">
+<div id="app">
+    <div class="view view-main">
+        <div class="page">
+            <div class="page-content">
+                <div class="wrapper">
+                    <ul class="c-bankcarts">
+                        <li>
+                            <a href="#" class="top external display-flex justify-content-space-between align-items-flex-end selected"><!--为选中的银行卡账户添加selected类-->
+                                <div class="display-flex align-items-center">
+                                    <i class="iconfont icon-balance"></i>
+                                    <div class="info">
+                                        <div class="name">张三</div>
+                                        <div>银行卡提现账户</div>
+                                    </div>
+                                </div>
+                                <i class="iconfont icon-selected"></i>
+                            </a>
+                            <div class="display-flex justify-content-space-between align-items-center">
+                                <div>123456789101112</div>
+                                <div class="display-flex align-items-center toolbox">
+                                    <a href="#" class="btn sheet-open" data-sheet=".c-add-address">编辑</a>
+                                    <a href="#" class="btn">删除</a>
+                                </div>
+                            </div>
+                            <i class="iconfont icon-balance"></i>
+                        </li>
+                        <li>
+                            <a href="#" class="top external display-flex justify-content-space-between align-items-flex-end">
+                                <div class="display-flex align-items-center">
+                                    <i class="iconfont icon-balance"></i>
+                                    <div class="info">
+                                        <div class="name">张三</div>
+                                        <div>银行卡提现账户</div>
+                                    </div>
+                                </div>
+                                <i class="iconfont icon-selected"></i>
+                            </a>
+                            <div class="display-flex justify-content-space-between align-items-center">
+                                <div>123456789101112</div>
+                                <div class="display-flex align-items-center toolbox">
+                                    <a href="#" class="btn sheet-open" data-sheet=".c-add-address">编辑</a>
+                                    <a href="#" class="btn">删除</a>
+                                </div>
+                            </div>
+                            <i class="iconfont icon-balance"></i>
+                        </li>
+                    </ul>
+
+                    <a href="#" class="col button button-big button-fill button-round c-block-btn sheet-open" style="margin-top: 20px;" data-sheet=".c-add-address">新建银行卡提现账户</a>
+
+                    <div class="sheet-modal c-add-address">
+                        <div class="toolbar">
+                            <div class="toolbar-inner">
+                                <div class="right" style="visibility:hidden;"><a class="link sheet-close" href="#"></a></div>
+                                <div class="left">新建银行卡提现账户</div>
+                                <div class="right"><a class="link sheet-close" href="#"></a></div>
+                            </div>
+                        </div>
+                        <div class="sheet-modal-inner">
+                            <div class="list inline-labels no-hairlines-md list-ipt">
+                                <ul>
+                                    <li class="item-content item-input">
+                                        <div class="item-inner">
+                                            <div class="item-title item-label">开户银行</div>
+                                            <div class="item-after" id="picker-bank"><span id="bank">选择开户银行</span><i class="to-icon"></i></div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="list list-link">
+                                <ul>
+                                    <li>
+                                        <a href="#" class="item-link item-content">
+                                            <div class="item-inner" id="picker-local">
+                                                <div class="item-title">省市区选择</div>
+                                                <div class="item-after" id="provinces">请选择</div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="list inline-labels no-hairlines-md list-ipt">
+                                <ul>
+                                    <li class="item-content item-input">
+                                        <div class="item-inner">
+                                            <div class="item-title item-label">开户网点</div>
+                                            <div class="item-input-wrap">
+                                                <input type="text" placeholder="如 工商银行祥符支行">
+                                                <span class="input-clear-button"></span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="item-content item-input">
+                                        <div class="item-inner">
+                                            <div class="item-title item-label">姓名</div>
+                                            <div class="item-input-wrap">
+                                                <input type="text" placeholder="如 张三">
+                                                <span class="input-clear-button"></span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="item-content item-input">
+                                        <div class="item-inner">
+                                            <div class="item-title item-label">卡号</div>
+                                            <div class="item-input-wrap">
+                                                <input type="text" placeholder="请认真填写银行卡账号并确认">
+                                                <span class="input-clear-button"></span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <a href="#" class="col button button-big button-fill button-round c-block-btn save-btn sheet-close" style="margin-top: 20px;margin-bottom: 20px;">保存账户</a>
+                        </div>
+                    </div>
+                </div>
+                <a href="javascript:history.back(-1);" class="goback" id="goBack"></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../../js/framework7.min.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/my-app.js"></script>
+<script src="../../js/public.js"></script>
+<script>
+    var mainView = app.views.create('.view-main',{});
+
+    var pickerDevice = app.picker.create({
+        inputEl: '#picker-bank',
+        renderToolbar: function () {
+            return '<div class="toolbar">' +
+                    '<div class="toolbar-inner">' +
+                    '<div class="left">' +
+                    '<a href="#" class="link toolbar-cancel-link">取消</a>' +
+                    '</div>' +
+                    '<div class="title">选择开户银行</div>'+
+                    '<div class="right">' +
+                    '<a href="#" class="link popover-close sure-btn">确定</a>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>';
+        },
+        cssClass: 'c-custom-picker',
+        openIn: 'sheet',
+        cols: [
+            {
+                textAlign: 'center',
+                values: ['交通银行', '邮政储蓄银行', '招商银行'],
+            }
+        ],
+        on: {
+            open: function (picker) {
+                $(picker.$el[0]).before('<div class="sheet-backdrop" style="z-index: 12500;"></div>');
+                picker.$el.prev().addClass('backdrop-in');
+
+                picker.$el.find('.toolbar-cancel-link').on('click', function () {
+                    picker.close();
+                });
+                picker.$el.find('.sure-btn').on('click', function () {
+                    $('#bank').html(picker.getValue());
+                    picker.close();
+                });
+            },
+            close: function (picker) {
+                picker.$el.prev().remove();
+            }
+            /*opened: function (picker) {
+             $(picker.$el[0]).before('<div class="sheet-backdrop"></div>');
+             picker.$el.prev().addClass('backdrop-in');
+             }*/
+        }
+    });
+
+    var pickerDevice2 = app.picker.create({
+        inputEl: '#picker-local',
+        renderToolbar: function () {
+            return '<div class="toolbar">' +
+                    '<div class="toolbar-inner">' +
+                    '<div class="left">' +
+                    '<a href="#" class="link toolbar-cancel-link">取消</a>' +
+                    '</div>' +
+                    '<div class="title">选择地区</div>'+
+                    '<div class="right">' +
+                    '<a href="#" class="link popover-close sure-btn">确定</a>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>';
+        },
+        cssClass: 'c-custom-picker',
+        openIn: 'sheet',
+        cols: [
+            {
+                textAlign: 'center',
+                values: ['湖北省', '湖南省', '广东省','广西壮族自治区'],
+            },
+            {
+                textAlign: 'center',
+                values: ['南林市', '柳州市', '桂林市'],
+            },
+            {
+                textAlign: 'center',
+                values: ['市辖区', '兴宁区', '青秀区'],
+            }
+        ],
+        on: {
+            open: function (picker) {
+                $(picker.$el[0]).before('<div class="sheet-backdrop" style="z-index: 12500;"></div>');
+                picker.$el.prev().addClass('backdrop-in');
+
+                picker.$el.find('.toolbar-cancel-link').on('click', function () {
+                    picker.close();
+                });
+                picker.$el.find('.sure-btn').on('click', function () {
+                    $('#provinces').html(picker.getValue().join(','));
+                    picker.close();
+                });
+            },
+            close: function (picker) {
+                picker.$el.prev().remove();
+            }
+        }
+    });
+</script>
+</body>
+</html>

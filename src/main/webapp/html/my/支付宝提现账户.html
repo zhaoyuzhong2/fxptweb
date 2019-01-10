@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+    <title>支付宝提现账户</title>
+    <link rel="stylesheet" href="../../css/framework7.min.css">
+    <link rel="stylesheet" href="../../css/font.css">
+    <link rel="stylesheet" href="../../css/public.css">
+</head>
+<body class="page-newbuild-bankcard">
+<div id="app">
+    <div class="view view-main">
+        <div class="page">
+            <div class="page-content">
+                <div class="wrapper">
+                    <ul class="c-bankcarts zhifubaos">
+                        <li>
+                            <a href="#" class="top external display-flex justify-content-space-between align-items-flex-end selected"><!--为选中的支付宝账户添加selected类-->
+                                <div class="display-flex align-items-center">
+                                    <i class="iconfont icon-alipay-1"></i>
+                                    <div class="info">
+                                        <div class="name">张三</div>
+                                        <div>支付宝提现账户</div>
+                                    </div>
+                                </div>
+                                <i class="iconfont icon-selected"></i>
+                            </a>
+                            <div class="display-flex justify-content-space-between align-items-center">
+                                <div>123456789101112</div>
+                                <div class="display-flex align-items-center toolbox">
+                                    <a href="#" class="btn sheet-open" data-sheet=".c-add-address">编辑</a>
+                                    <a href="#" class="btn">删除</a>
+                                </div>
+                            </div>
+                            <i class="iconfont icon-alipay-1"></i>
+                        </li>
+                        <li>
+                            <a href="#" class="top external display-flex justify-content-space-between align-items-flex-end">
+                                <div class="display-flex align-items-center">
+                                    <i class="iconfont icon-alipay-1"></i>
+                                    <div class="info">
+                                        <div class="name">张三</div>
+                                        <div>支付宝提现账户</div>
+                                    </div>
+                                </div>
+                                <i class="iconfont icon-selected"></i>
+                            </a>
+                            <div class="display-flex justify-content-space-between align-items-center">
+                                <div>123456789101112</div>
+                                <div class="display-flex align-items-center toolbox">
+                                    <a href="#" class="btn sheet-open" data-sheet=".c-add-address">编辑</a>
+                                    <a href="#" class="btn">删除</a>
+                                </div>
+                            </div>
+                            <i class="iconfont icon-alipay-1"></i>
+                        </li>
+                    </ul>
+
+                    <a href="#" class="col button button-big button-fill button-round c-block-btn sheet-open" style="margin-top: 20px;" data-sheet=".c-add-address">新建支付宝提现账户</a>
+
+                    <div class="sheet-modal c-add-address">
+                        <div class="toolbar">
+                            <div class="toolbar-inner">
+                                <div class="right" style="visibility:hidden;"><a class="link sheet-close" href="#"></a></div>
+                                <div class="left">新建支付宝提现账户</div>
+                                <div class="right"><a class="link sheet-close" href="#"></a></div>
+                            </div>
+                        </div>
+                        <div class="sheet-modal-inner">
+                            <div class="list inline-labels no-hairlines-md list-ipt">
+                                <ul>
+                                    <li class="item-content item-input">
+                                        <div class="item-inner">
+                                            <div class="item-title item-label">账户名</div>
+                                            <div class="item-input-wrap">
+                                                <input type="text" placeholder="请输入你的支付宝账号名字">
+                                                <span class="input-clear-button"></span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="item-content item-input">
+                                        <div class="item-inner">
+                                            <div class="item-title item-label">账号</div>
+                                            <div class="item-input-wrap">
+                                                <input type="text" placeholder="请输入你的支付宝账号">
+                                                <span class="input-clear-button"></span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <a href="#" class="col button button-big button-fill button-round c-block-btn save-btn sheet-close" style="margin-top: 20px;margin-bottom: 150px;">保存账户</a>
+                        </div>
+                    </div>
+                </div>
+                <a href="javascript:history.back(-1);" class="goback" id="goBack"></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../../js/framework7.min.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/my-app.js"></script>
+<script src="../../js/public.js"></script>
+<script>
+    var mainView = app.views.create('.view-main',{});
+</script>
+</body>
+</html>

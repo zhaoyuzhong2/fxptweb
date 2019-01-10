@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+    <title>收货地址</title>
+    <link rel="stylesheet" href="../../css/framework7.min.css">
+    <link rel="stylesheet" href="../../css/font.css">
+    <link rel="stylesheet" href="../../css/public.css">
+</head>
+<body class="page-receive-address">
+<div id="app">
+    <div class="view view-main">
+        <div class="page">
+            <div class="page-content">
+                <ul class="address-list">
+                    <li>
+                        <div class="display-flex justify-content-space-between align-items-center">
+                            <div class="people">收货人：陈玲玲</div>
+                            <div class="phone-number">18243580088</div>
+                        </div>
+                        <div class="address">收货地址：吉林省 通化市 梅河口市 维港城A区4楼166号天润美容养生馆</div>
+                        <div class="tool-box display-flex justify-content-space-between align-items-center">
+                            <label class="checkbox display-flex"><input type="checkbox" checked><i class="icon-checkbox"></i>设置默认</label>
+                            <div>
+                                <a href="#" class="btn sheet-open" data-sheet=".c-add-address"><i class="iconfont icon-bianji"></i>编辑</a>
+                                <a href="#" class="btn"><i class="iconfont icon-delete"></i>删除</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="display-flex justify-content-space-between align-items-center">
+                            <div class="people">收货人：陈玲玲</div>
+                            <div class="phone-number">18243580088</div>
+                        </div>
+                        <div class="address">收货地址：吉林省 通化市 梅河口市 维港城A区4楼166号天润美容养生馆</div>
+                        <div class="tool-box display-flex justify-content-space-between align-items-center">
+                            <label class="checkbox display-flex"><input type="checkbox" checked><i class="icon-checkbox"></i>设置默认</label>
+                            <div>
+                                <a href="#" class="btn sheet-open" data-sheet=".c-add-address"><i class="iconfont icon-bianji"></i>编辑</a>
+                                <a href="#" class="btn"><i class="iconfont icon-delete"></i>删除</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+                <a href="#" class="col button button-big button-fill button-round c-block-btn sheet-open" data-sheet=".c-add-address">新增收货地址</a>
+                <div class="sheet-modal c-add-address">
+                    <div class="toolbar">
+                        <div class="toolbar-inner">
+                            <div class="right" style="visibility:hidden;"><a class="link sheet-close" href="#"></a></div>
+                            <div class="left">新建收货地址</div>
+                            <div class="right"><a class="link sheet-close" href="#"></a></div>
+                        </div>
+                    </div>
+                    <div class="sheet-modal-inner">
+                        <div class="list intel-address">
+                            <ul>
+                                <li class="accordion-item"><a href="#" class="item-content item-link">
+                                    <div class="item-inner">
+                                        <div class="item-title">
+                                            <div class="intel-icon"></div>
+                                            <div class="name">智能地址</div>
+                                            <div class="tip display-flex align-items-center flex-shrink-1">(在下方粘贴整段地址信息，系统自动识别)</div>
+                                        </div>
+                                    </div></a>
+                                    <div class="accordion-item-content">
+                                        <textarea id="addressText" class="address-text" placeholder="例：微小妹，13550000000，浙江省杭州市拱墅区某某街道某某门牌号(特别说明：若要地址识别度高，请隔开展示姓名、电话、地址三段信息)"></textarea>
+                                        <div class="btn-box">
+                                            <a class="cleartext-btn" onclick="clearText()">清空内容</a>
+                                            <a class="sub-btn" href="#">提交</a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--<div class="intel-address display-flex justify-content-space-between align-items-center">
+                            <div class="display-flex left">
+                                <div class="intel-icon"></div>
+                                <div class="name">智能地址</div>
+                                <div class="tip display-flex align-items-center flex-shrink-1">(在下方粘贴整段地址信息，系统自动识别)</div>
+                            </div>
+                            <div class="to-icon"></div>
+                        </div>-->
+
+                        <div class="list inline-labels no-hairlines-md list-ipt">
+                            <ul>
+                                <li class="item-content item-input">
+                                    <div class="item-inner">
+                                        <div class="item-title item-label">收货人</div>
+                                        <div class="item-input-wrap">
+                                            <input type="text" placeholder="请填写收货人">
+                                            <span class="input-clear-button"></span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="item-content item-input">
+                                    <div class="item-inner">
+                                        <div class="item-title item-label">手机号码</div>
+                                        <div class="item-input-wrap">
+                                            <input type="password" placeholder="请填写手机号码">
+                                        </div>
+                                        <div class="item-after" id="picker-phonenumber"><span id="phoneNumber">+86</span><i class="to-icon"></i></div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="list list-link">
+                            <ul>
+                                <li>
+                                    <a href="#" class="item-link item-content">
+                                        <div class="item-inner" id="picker-local">
+                                            <div class="item-title">省市区选择</div>
+                                            <div class="item-after" id="provinces">请选择</div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <textarea class="street-info" placeholder="请输入街道门牌信息"></textarea>
+
+                        <div class="obtain-address display-flex justify-content-flex-end">
+                            <a href="#" class="weixin-address">获取微信收货地址</a>
+                            <a href="javascript:void(0);" class="clear-address">清空当前地址</a>
+                        </div>
+                    </div>
+                    <button class="button button-fill button-big save-btn sheet-close">保存</button>
+                </div>
+
+                <a href="javascript:history.back(-1);" class="goback" id="goBack"></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="../../js/framework7.min.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/my-app.js"></script>
+<script src="../../js/public.js"></script>
+<script>
+    var mainView = app.views.create('.view-main',{});
+
+    var pickerDevice = app.picker.create({
+        inputEl: '#picker-phonenumber',
+        renderToolbar: function () {
+            return '<div class="toolbar">' +
+                    '<div class="toolbar-inner">' +
+                    '<div class="left">' +
+                    '<a href="#" class="link toolbar-cancel-link">取消</a>' +
+                    '</div>' +
+                    '<div class="title">选择手机归属地</div>'+
+                    '<div class="right">' +
+                    '<a href="#" class="link popover-close sure-btn">确定</a>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>';
+        },
+        cssClass: 'c-custom-picker',
+        openIn: 'sheet',
+        cols: [
+            {
+                textAlign: 'center',
+                values: ['+86', '+852', '+853'],
+                displayValues: ['+86 中国', '+852 中国香港', '+853 中国澳门'],
+            }
+        ],
+        on: {
+            open: function (picker) {
+                $(picker.$el[0]).before('<div class="sheet-backdrop" style="z-index: 12500;"></div>');
+                picker.$el.prev().addClass('backdrop-in');
+
+                picker.$el.find('.toolbar-cancel-link').on('click', function () {
+                    picker.close();
+                });
+                picker.$el.find('.sure-btn').on('click', function () {
+                    $('#phoneNumber').html(picker.getValue());
+                    picker.close();
+                });
+            },
+            close: function (picker) {
+                picker.$el.prev().remove();
+            }
+            /*opened: function (picker) {
+             $(picker.$el[0]).before('<div class="sheet-backdrop"></div>');
+             picker.$el.prev().addClass('backdrop-in');
+             }*/
+        }
+    });
+
+    var pickerDevice2 = app.picker.create({
+        inputEl: '#picker-local',
+        renderToolbar: function () {
+            return '<div class="toolbar">' +
+                    '<div class="toolbar-inner">' +
+                    '<div class="left">' +
+                    '<a href="#" class="link toolbar-cancel-link">取消</a>' +
+                    '</div>' +
+                    '<div class="title">选择地区</div>'+
+                    '<div class="right">' +
+                    '<a href="#" class="link popover-close sure-btn">确定</a>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>';
+        },
+        cssClass: 'c-custom-picker',
+        openIn: 'sheet',
+        cols: [
+            {
+                textAlign: 'center',
+                values: ['湖北省', '湖南省', '广东省','广西壮族自治区'],
+            },
+            {
+                textAlign: 'center',
+                values: ['南林市', '柳州市', '桂林市'],
+            },
+            {
+                textAlign: 'center',
+                values: ['市辖区', '兴宁区', '青秀区'],
+            }
+        ],
+        on: {
+            open: function (picker) {
+                $(picker.$el[0]).before('<div class="sheet-backdrop" style="z-index: 12500;"></div>');
+                picker.$el.prev().addClass('backdrop-in');
+
+                picker.$el.find('.toolbar-cancel-link').on('click', function () {
+                    picker.close();
+                });
+                picker.$el.find('.sure-btn').on('click', function () {
+                    $('#provinces').html(picker.getValue().join(','));
+                    picker.close();
+                });
+            },
+            close: function (picker) {
+                picker.$el.prev().remove();
+            }
+        }
+    });
+</script>
+</body>
+</html>
