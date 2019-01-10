@@ -39,7 +39,7 @@ public class UserDao {
 
     //获取下级列表
     public List<User> getDownUser(int userid){
-        String sql = "select * from t_user where pid=?";
+        String sql = "select a.*,b.name as rolename from t_user a left join t_role b on a.roleid=b.id where a.pid=?";
         return baseDao.query(sql,User.class,new Object[]{userid});
     }
 
@@ -53,7 +53,7 @@ public class UserDao {
 
     //获取某个用户的直属下级列表
     public List<User> getDownUsers(int userid){
-        String sql = "select * from t_user where pid=?";
+        String sql = "select a.* from t_user where pid=?";
         return baseDao.query(sql,User.class,new Object[]{userid});
     }
 
