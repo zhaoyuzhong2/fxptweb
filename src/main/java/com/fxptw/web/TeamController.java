@@ -44,8 +44,19 @@ public class TeamController {
 
 
 		List<User> allxjs = userDao.getAllXjs(emp1.getId());//获取所有子节点用户
-		User sj = userDao.getUpUser(emp1.getId());
+		List<User> allxjs2 = new ArrayList<>();
+		for (User u : allxjs){
+			int zs = userDao.getXjnum(u.getId());//我直接邀请的人数
+			int all = userDao.getAllXjnum(u.getId());//团队所有子节点用户之和
+			int roleid = u.getRoleid();
+			u.setXjnum(zs);
+			u.setCount(all);
+			allxjs2.add(u);
+		}
 
+
+		User sj = userDao.getUpUser(emp1.getId());
+		User topu = userDao.getTopUser(emp1.getId());
 
 		model.addAttribute("r1s",r1s);
 		model.addAttribute("r1sn",r1s.size());
@@ -54,8 +65,10 @@ public class TeamController {
 		model.addAttribute("r3s",r3s);
 		model.addAttribute("r3sn",r3s.size());
 		model.addAttribute("myReqCount",myReq.size());//我直接邀请的人数
-		model.addAttribute("allxjs",allxjs);
+		model.addAttribute("myTeamCount",allxjs.size());//我团队邀请的人数
+		model.addAttribute("allxjs",allxjs2);
 		model.addAttribute("sj",sj);
+		model.addAttribute("topu",topu);
 
 
 
