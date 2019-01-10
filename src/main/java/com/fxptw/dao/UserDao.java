@@ -102,6 +102,22 @@ public class UserDao {
     }
 
 
+    //获取某个用户最顶级用户信息
+    public User getTopUser(int userid){
+        User user = getUserById(userid);
+        if(user.getPid()==0){
+            return user;
+        }else{
+            return getTopUser(user.getId());
+
+        }
+
+
+    }
+
+
+
+
     //获取某个用户下所有子用户,不限于直属是所有层级
     public List<User> getAllXjs(int userid){
         List<User> result = new ArrayList<>();
