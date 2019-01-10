@@ -35,7 +35,6 @@
                 <img class="qr-code" src="${ctx}${req.imgpath}"/>
                 <div class="txt">扫一扫上面的二维码，即可申请代理。</div>
             </div>
-
             <div class="invite-btn-box">
                 <a href="#" class="col button button-big button-fill button-round c-block-btn external" style="margin-top: 0;" onclick="popTip()">邀请代理</a>
                 <div class="txt">在微信中直接分享此页面给意向代理，他点击注册后将成为您的代理商。</div>
