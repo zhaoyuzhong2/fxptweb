@@ -6,6 +6,7 @@ import com.fxptw.dto.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -53,7 +54,7 @@ public class UserDao {
 
     //获取某个用户的直属下级列表
     public List<User> getDownUsers(int userid){
-        String sql = "select a.* from t_user where pid=?";
+        String sql = "select * from t_user where pid=?";
         return baseDao.query(sql,User.class,new Object[]{userid});
     }
 
@@ -97,6 +98,21 @@ public class UserDao {
         }
 
         return total;
+
+    }
+
+
+    //获取某个用户下所有子用户,不限于直属是所有层级
+    public List<User> getAllXjs(int userid){
+        List<User> result = new ArrayList<>();
+        List<User> users = getDownUser(userid);
+        for(User user:users){
+            int id = user.getId();
+            result.add(user);
+            getAllXjnum(id);
+        }
+
+        return result;
 
     }
 
