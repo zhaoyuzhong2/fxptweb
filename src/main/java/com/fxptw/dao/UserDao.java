@@ -60,7 +60,7 @@ public class UserDao {
 
     //获取某个用户的直属下级某个状态的列表
     public List<User> getDownUsersByFlag(int userid,String flag){
-        String sql = "select * from t_user where pid=? and flag=?";
+        String sql = "select a.*,b.name as rolename,c.mobile as pmobile,c.name as pname from t_user a left join t_role b on a.roleid=b.id left join t_user c on a.pid=c.id where a.pid=? and a.flag=?";
         return baseDao.query(sql,User.class,new Object[]{userid,flag});
     }
 
@@ -114,7 +114,7 @@ public class UserDao {
 
 
     public User getUserById(int id){
-        String sql = "select * from t_user where id=?";
+        String sql = "select a.*,b.name as rolename from t_user a left join t_role b on a.roleid=b.id where a.id=?";
         List<User> us = baseDao.query(sql,User.class,new Object[]{id});
         if(us.size()>0){
             return us.get(0);

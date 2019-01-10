@@ -66,7 +66,7 @@
 
 <ul class="index-nav clearfix">
     <li>
-        <a href="#">
+        <a href="${ctx}/request/index">
             <i class="icon icon1"></i>
             <span>邀请代理</span>
         </a>

@@ -13,6 +13,15 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "param")
 public class ParamSettings {
     private int requesttime;
+    private String url;
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     public int getRequesttime() {
         return requesttime;

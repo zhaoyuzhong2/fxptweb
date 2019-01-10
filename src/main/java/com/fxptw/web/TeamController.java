@@ -20,24 +20,12 @@ public class TeamController {
 
 	//进入邀请关系网
 	@RequestMapping(value = "/request")
-	public String wantToBy(Model model,HttpServletRequest request) {
+	public String request(Model model,HttpServletRequest request) {
 		//System.out.println("我要进货...........");
 		try {
 
 			User emp1 = (User) request.getSession().getAttribute("user");
-			List<User> dsh = userDao.getDownUsersByFlag(emp1.getId(),"0");//待审核
-			List<User> zdl = userDao.getDownUsersByFlag(emp1.getId(),"0");//准代理
-			List<User> ydl = userDao.getDownUsersByFlag(emp1.getId(),"1");//已代理
-			List<User> yjj = userDao.getDownUsersByFlag(emp1.getId(),"2");//已拒绝
 
-			model.addAttribute("dsh",dsh);
-			model.addAttribute("dshn",dsh.size());
-			model.addAttribute("zdl",zdl);
-			model.addAttribute("zdln",zdl.size());
-			model.addAttribute("ydl",ydl);
-			model.addAttribute("ydln",ydl.size());
-			model.addAttribute("yjj",yjj);
-			model.addAttribute("yjjn",yjj.size());
 
 		}catch (Exception e){
 			e.printStackTrace();

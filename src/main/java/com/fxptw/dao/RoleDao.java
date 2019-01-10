@@ -20,7 +20,7 @@ public class RoleDao {
 
     //获取所有显示的角色
     public List<Role> getRoles(){
-        String sql = "select * from t_role where type!='admin' order by id";
+        String sql = "select * from t_role order by id asc";
         return baseDao.query(sql,Role.class,new Object[]{});
     }
 

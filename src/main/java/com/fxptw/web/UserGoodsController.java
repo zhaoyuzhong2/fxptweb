@@ -71,13 +71,13 @@ public class UserGoodsController {
 				ids = ids + g.getId() + ",";
 				total = total + num;
 				g.setCount(num);
-				if (roleid == 2) {
+				if (roleid == 1) {
 					g.setPrice(g.getBuyprice1());
 					price = price + g.getBuyprice1() * num;
-				} else if (roleid == 3) {
+				} else if (roleid == 2) {
 					g.setPrice(g.getBuyprice2());
 					price = price + g.getBuyprice2() * num;
-				} else if (roleid == 4) {
+				} else if (roleid == 3) {
 					g.setPrice(g.getBuyprice3());
 					price = price + g.getBuyprice3() * num;
 				}
@@ -130,13 +130,13 @@ public class UserGoodsController {
 							xug.setRoleid(roleid);
 							xug.setGoodid(goodid);
 							xug.setGoodname(g.getName());
-							if (roleid == 2) {
+							if (roleid == 1) {
 								xug.setBuyprice(g.getBuyprice1());
 								xug.setTotalprice(g.getBuyprice1() * num);
-							} else if (roleid == 3) {
+							} else if (roleid == 2) {
 								xug.setBuyprice(g.getBuyprice2());
 								xug.setTotalprice(g.getBuyprice2() * num);
-							} else if (roleid == 4) {
+							} else if (roleid == 3) {
 								xug.setBuyprice(g.getBuyprice3());
 								xug.setTotalprice(g.getBuyprice3() * num);
 							}
