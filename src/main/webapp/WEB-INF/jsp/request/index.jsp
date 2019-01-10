@@ -66,14 +66,10 @@
                                             <c:choose>
 
                                                 <c:when test="${roleid == r.id}">
-
                                                     平级推荐
-
                                                 </c:when>
                                                 <c:otherwise>
-
                                                     跨级推荐
-
                                                 </c:otherwise>
 
                                             </c:choose>

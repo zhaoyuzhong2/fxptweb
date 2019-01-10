@@ -33,6 +33,7 @@ public class RequestController {
 	@RequestMapping(value = "/index")
 	public String index(Model model,HttpServletRequest request) {
 		User emp1 = (User) request.getSession().getAttribute("user");
+
 		int userid = emp1.getId();
 		User user = userDao.getUserById(userid);//重新获取用户是担心用户角色有变化
 		int roleid = user.getRoleid();
