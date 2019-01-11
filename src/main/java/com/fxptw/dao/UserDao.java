@@ -59,6 +59,12 @@ public class UserDao {
     }
 
 
+    public List<User> getDownBuyUsers(int userid){
+        String sql = "SELECT a.*,c.name as rolename FROM t_user a LEFT JOIN t_user_goods b ON a.id = b.userid left join t_role c on a.roleid=c.id WHERE b.flag IN ('2','3') and a.pid=? GROUP BY a.id";
+        return baseDao.query(sql,User.class,new Object[]{userid});
+    }
+
+
     //获取某个用户的直属下级某个状态的列表
     public List<User> getDownUsersByFlag(int userid,String flag){
         String sql = "select a.*,b.name as rolename,c.mobile as pmobile,c.name as pname from t_user a left join t_role b on a.roleid=b.id left join t_user c on a.pid=c.id where a.pid=? and a.flag=?";
@@ -102,6 +108,22 @@ public class UserDao {
     }
 
 
+
+
+    //获取某个用户下所有进货子用户的个数
+    public int getAllBuyXjnum(int userid){
+        List<User> users = getDownBuyUsers(userid);
+        for(User user:users){
+            int id = user.getId();
+            total = total + getXjnum(id);
+            getAllXjnum(id);
+        }
+
+        return total;
+
+    }
+
+
     //获取某个用户最顶级用户信息
     public User getTopUser(int userid){
         User user = getUserById(userid);
@@ -122,6 +144,23 @@ public class UserDao {
     public List<User> getAllXjs(int userid){
         List<User> result = new ArrayList<>();
         List<User> users = getDownUser(userid);
+        for(User user:users){
+            int id = user.getId();
+            result.add(user);
+            getAllXjnum(id);
+        }
+
+        return result;
+
+    }
+
+
+
+
+    //获取某个用户下所有进货子用户,不限于直属是所有层级
+    public List<User> getAllBuyXjs(int userid){
+        List<User> result = new ArrayList<>();
+        List<User> users = getDownBuyUsers(userid);
         for(User user:users){
             int id = user.getId();
             result.add(user);
