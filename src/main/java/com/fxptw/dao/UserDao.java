@@ -139,15 +139,15 @@ public class UserDao {
 
 
 
-
+    public List<User> result = new ArrayList<>();
     //获取某个用户下所有子用户,不限于直属是所有层级
     public List<User> getAllXjs(int userid){
-        List<User> result = new ArrayList<>();
+
         List<User> users = getDownUser(userid);
         for(User user:users){
             int id = user.getId();
             result.add(user);
-            getAllXjnum(id);
+            getAllXjs(id);
         }
 
         return result;
@@ -156,18 +156,18 @@ public class UserDao {
 
 
 
-
+    public List<User> buyresult = new ArrayList<>();
     //获取某个用户下所有进货子用户,不限于直属是所有层级
     public List<User> getAllBuyXjs(int userid){
-        List<User> result = new ArrayList<>();
+
         List<User> users = getDownBuyUsers(userid);
         for(User user:users){
             int id = user.getId();
-            result.add(user);
-            getAllXjnum(id);
+            buyresult.add(user);
+            getAllBuyXjs(id);
         }
 
-        return result;
+        return buyresult;
 
     }
 
