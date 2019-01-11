@@ -80,4 +80,28 @@ public class TeamController {
 
 
 
+    //进入进货关系网
+    @RequestMapping(value = "/buy")
+    public String buy(Model model,HttpServletRequest request) {
+        User emp1 = (User) request.getSession().getAttribute("user");
+        List<User> xjusers = userDao.getAllBuyXjs(emp1.getId());//所有进货 的下级
+        int xjnum = xjusers.size();
+
+        List<User> zsusers = userDao.getDownBuyUsers(emp1.getId());
+        int zsnum = zsusers.size();
+
+
+        model.addAttribute("xjnum",xjnum);
+        model.addAttribute("xjusers",xjusers);
+        model.addAttribute("zsnum",zsnum);
+        model.addAttribute("zsusers",zsusers);
+
+        return "team/buy";
+    }
+
+
+
+
+
+
 }
