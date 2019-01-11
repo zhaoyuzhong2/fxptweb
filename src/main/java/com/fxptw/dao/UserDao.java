@@ -178,14 +178,14 @@ public class UserDao {
         return baseDao.queryForObject(sql,Double.class,new Object[]{userid,yearm});
     }
 
-    //获取邀请人数
+    //获取邀请人数(直推人数)
     public List<User> inviteUsers(Integer userId){
         String sql = "SELECT a.* FROM t_user a where a.pid = ?";
         List<User> us =  baseDao.query(sql,User.class,new Object[]{userId});
         return us;
     }
 
-    //根据传入用户id获取全部用户信息
+    //根据传入用户id获取全部用户信息（团人数）
     public List<User> inviteAllUsers(Integer userId){
         List<User> users = new ArrayList<>();
         for(User user : this.inviteUsers(userId)){
