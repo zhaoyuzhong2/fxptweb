@@ -20,7 +20,7 @@ public class Scheduler {
     /**
      * 定时更新用户的逾期未服务的订单,5分钟执行一次
      */
-    @Scheduled(cron="0 */5 * * * ?")
+    @Scheduled(cron="0 */1 * * * ?")
     public void updateOrderStatus() {
         //System.out.println("111111111111122222222222");
 
