@@ -184,10 +184,10 @@ public class UserGoodsDao {
             return null;
         StringBuffer ids = new StringBuffer();
         for (int i = 0; i < users.size(); i++){
-            ids.append(users.get(i).getId()).append(",");
+            ids.append("'").append(users.get(i).getId()).append("',");
         }
         if(users.isEmpty()){
-            return "";
+            return "''";
         }
         return ids.substring(0,ids.length() - 1);
     }
