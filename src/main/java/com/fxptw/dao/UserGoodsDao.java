@@ -3,10 +3,12 @@ package com.fxptw.dao;
 
 import com.fxptw.dao.base.BaseDao;
 import com.fxptw.dto.Goods;
+import com.fxptw.dto.User;
 import com.fxptw.dto.UserGoods;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -155,5 +157,38 @@ public class UserGoodsDao {
         return baseDao.query(sql,UserGoods.class,new Object[]{code});
     }
 
+    //获取订货数量（是传入人数类型而定）
+    public Integer queryUsersByGoodsNum(List<User> users){
+        String ids = this.usersByIds(users);
+        if(ids == null)
+            return null;
+        String sql = "SELECT COUNT(1) AS totalPersons FROM t_user_goods WHERE userid IN (" +
+                ids + ") AND flag IN ('1','2','3')";
+        int total = baseDao.queryForInt(sql,null);
+        return total;
+    }
 
+    //计算用户列表内的消费总金额
+    public BigDecimal queryUsersByGoodsMoney(List<User> users){
+        String ids = this.usersByIds(users);
+        if(ids == null)
+            return null;
+        String sql = "SELECT SUM(totalprice) AS totalUserMoney FROM t_user_goods WHERE userid IN (" +
+                ids + ") AND flag IN ('1','2','3')";
+        BigDecimal total = baseDao.queryForObject(sql,BigDecimal.class,null);
+        return total;
+    }
+
+    private String usersByIds(List<User> users){
+        if(users == null)
+            return null;
+        StringBuffer ids = new StringBuffer();
+        for (int i = 0; i < users.size(); i++){
+            ids.append(users.get(i).getId()).append(",");
+        }
+        if(users.isEmpty()){
+            return "";
+        }
+        return ids.substring(0,ids.length() - 1);
+    }
 }
