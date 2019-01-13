@@ -90,13 +90,13 @@
         </a>
     </li>
     <li>
-        <a href="#">
+        <a href="${ctx}/team/buy">
             <i class="icon icon5"></i>
             <span>进货关系网</span>
         </a>
     </li>
     <li>
-        <a href="./invitation_networks/invitation_team.html">
+        <a href="${ctx}/team/request">
             <i class="icon icon6"></i>
             <span>邀请关系网</span>
         </a>

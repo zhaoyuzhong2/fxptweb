@@ -3,10 +3,12 @@ package com.fxptw.dao;
 
 import com.fxptw.dao.base.BaseDao;
 import com.fxptw.dto.Goods;
+import com.fxptw.dto.User;
 import com.fxptw.dto.UserGoods;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +24,7 @@ public class UserGoodsDao {
     //查询不同状态的购买物品数量
     public List<UserGoods> getList(int userid,String flag,String search_name) {
         String sql = "select * from t_user_goods where flag=? and userid=?  ";
-        List<String> arr = new ArrayList();
+        List<String> arr = new ArrayList<>();
         arr.add(flag);
         arr.add(userid+"");
         if(search_name!=null && !search_name.equals("")){
@@ -38,7 +40,9 @@ public class UserGoodsDao {
 
     //添加购物车货品数量
     public int addUserGoods(UserGoods ug) {
-        String sql = "insert into t_user_goods(userid,username,mobile,roleid,goodid,goodname,buyprice,buynum,totalprice,postadd,postname,postmobile,message,cdate,flag) values(:userid,:username,:mobile,:roleid,:goodid,:goodname,:buyprice,:buynum,:totalprice,:postadd,:postname,:postmobile,:message,now(),'0')";
+        String sql = "insert into t_user_goods(userid,username,mobile,roleid,goodid,goodname,buyprice,buynum," +
+                "totalprice,postadd,postname,postmobile,message,cdate,flag) values(:userid,:username,:mobile,:roleid," +
+                ":goodid,:goodname,:buyprice,:buynum,:totalprice,:postadd,:postname,:postmobile,:message,now(),'0')";
         return baseDao.insert(sql,ug);
     }
 
@@ -138,13 +142,17 @@ public class UserGoodsDao {
     //王春伟添加的方法
     //查询出所有的订单号
     public List<UserGoods> getCodeByUserid(Integer userid,String search_name) {
-        String sql = "select code From t_user_goods where flag!=9 and userid=? and code like ? or postmobile like ? or postname like ? group by code";
-        return baseDao.query(sql,UserGoods.class,new Object[]{userid,"%"+search_name+"%","%"+search_name+"%","%"+search_name+"%"});
+        String sql = "select code From t_user_goods where flag!=9 and userid=? and code like ? or postmobile like ? " +
+                "or postname like ? group by code";
+        return baseDao.query(sql,UserGoods.class,new Object[]{userid,"%"+search_name+"%","%"+search_name+"%",
+                "%"+search_name+"%"});
     }
     //查询出所有的订单号
     public List<UserGoods> getCodeByUseridByFlag(Integer userid,String flag,String search_name) {
-        String sql = "select code From t_user_goods where flag=? and userid=? and code like ? or postmobile like ? or postname like ? group by code";
-        return baseDao.query(sql,UserGoods.class,new Object[]{flag,userid,"%"+search_name+"%","%"+search_name+"%","%"+search_name+"%"});
+        String sql = "select code From t_user_goods where flag=? and userid=? and code like ? " +
+                "or postmobile like ? or postname like ? group by code";
+        return baseDao.query(sql,UserGoods.class,new Object[]{flag,userid,"%"+search_name+
+                "%","%"+search_name+"%","%"+search_name+"%"});
     }
 
     //根据订单号查询订单
@@ -155,5 +163,38 @@ public class UserGoodsDao {
         return baseDao.query(sql,UserGoods.class,new Object[]{code});
     }
 
+    //获取订货数量（是传入人数类型而定）
+    public Integer queryUsersByGoodsNum(List<User> users){
+        String ids = this.usersByIds(users);
+        if(ids == null)
+            return null;
+        String sql = "SELECT COUNT(1) AS totalPersons FROM t_user_goods WHERE userid IN (" +
+                ids + ") AND flag IN ('1','2','3')";
+        int total = baseDao.queryForInt(sql,null);
+        return total;
+    }
 
+    //计算用户列表内的消费总金额
+    public BigDecimal queryUsersByGoodsMoney(List<User> users){
+        String ids = this.usersByIds(users);
+        if(ids == null)
+            return null;
+        String sql = "SELECT SUM(money) AS totalUserMoney FROM t_user_income WHERE userid IN (" +
+                ids + ") AND flag IN ('1','2','3')";
+        BigDecimal total = baseDao.queryForObject(sql,BigDecimal.class,null);
+        return total;
+    }
+
+    private String usersByIds(List<User> users){
+        if(users == null)
+            return null;
+        StringBuffer ids = new StringBuffer();
+        for (int i = 0; i < users.size(); i++){
+            ids.append("'").append(users.get(i).getId()).append("',");
+        }
+        if(users.isEmpty()){
+            return "''";
+        }
+        return ids.substring(0,ids.length() - 1);
+    }
 }
