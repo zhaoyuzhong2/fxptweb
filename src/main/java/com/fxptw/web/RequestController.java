@@ -11,9 +11,16 @@ import com.fxptw.util.Zxing;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -68,16 +75,17 @@ public class RequestController {
 
 		int id = requestDao.addRequest(req);
 		req.setId(id);
-		System.out.println(request.getRealPath(""));
-		zxing.createImg(request.getRealPath("")+"/fileupload/ewm/"+user.getMobile()+"-"+sdf.format(new Date())+".png",id+"",result);//生成二维码图片
+
+		String filename = "fileupload/ewm/"+user.getMobile()+"-"+sdf.format(new Date())+".png";
+		zxing.createImg(request.getRealPath("")+"/"+filename,id+"",result);//生成二维码图片
 		model.addAttribute("req",req);
 		model.addAttribute("rolename",user.getRolename());
+		model.addAttribute("file",filename);
 
 		return "request/reqinfo";
 	}
 
-
-
+	
 
 
 
