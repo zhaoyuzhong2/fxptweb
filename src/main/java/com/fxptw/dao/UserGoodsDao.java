@@ -40,7 +40,9 @@ public class UserGoodsDao {
 
     //添加购物车货品数量
     public int addUserGoods(UserGoods ug) {
-        String sql = "insert into t_user_goods(userid,username,mobile,roleid,goodid,goodname,buyprice,buynum,totalprice,postadd,postname,postmobile,message,cdate,flag) values(:userid,:username,:mobile,:roleid,:goodid,:goodname,:buyprice,:buynum,:totalprice,:postadd,:postname,:postmobile,:message,now(),'0')";
+        String sql = "insert into t_user_goods(userid,username,mobile,roleid,goodid,goodname,buyprice,buynum," +
+                "totalprice,postadd,postname,postmobile,message,cdate,flag) values(:userid,:username,:mobile,:roleid," +
+                ":goodid,:goodname,:buyprice,:buynum,:totalprice,:postadd,:postname,:postmobile,:message,now(),'0')";
         return baseDao.insert(sql,ug);
     }
 
@@ -173,7 +175,7 @@ public class UserGoodsDao {
         String ids = this.usersByIds(users);
         if(ids == null)
             return null;
-        String sql = "SELECT SUM(totalprice) AS totalUserMoney FROM t_user_goods WHERE userid IN (" +
+        String sql = "SELECT SUM(money) AS totalUserMoney FROM t_user_income WHERE userid IN (" +
                 ids + ") AND flag IN ('1','2','3')";
         BigDecimal total = baseDao.queryForObject(sql,BigDecimal.class,null);
         return total;
@@ -184,10 +186,10 @@ public class UserGoodsDao {
             return null;
         StringBuffer ids = new StringBuffer();
         for (int i = 0; i < users.size(); i++){
-            ids.append(users.get(i).getId()).append(",");
+            ids.append("'").append(users.get(i).getId()).append("',");
         }
         if(users.isEmpty()){
-            return "";
+            return "''";
         }
         return ids.substring(0,ids.length() - 1);
     }
