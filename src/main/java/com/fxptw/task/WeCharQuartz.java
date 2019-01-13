@@ -24,7 +24,7 @@ public class WeCharQuartz {
     private static String accessToken;
 
     //每两个小时执行一次
-    @Scheduled(cron = "0 0 0-2 * * ?")
+    @Scheduled(fixedRate = 1000 * 7200)
     public void reportCurrentByAccessTokenCron(){
         accessToken = accessToken();
         System.out.println("accessToken:"+accessToken);
