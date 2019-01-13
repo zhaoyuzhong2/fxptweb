@@ -17,6 +17,7 @@ public class UserDao {
     @Autowired
     BaseDao baseDao;
     public int total = 0;
+    public int total2 = 0;
 
     //登录系统
     public User login(String mobile, String pwd){
@@ -93,17 +94,24 @@ public class UserDao {
     }
 
 
+    //获取下级销售情况
+    public int getBuyXjnum(int userid){
+        String sql = "select IFNULL(count(*),0) as xjnum from t_user where id in(select userid from t_user_goods where flag in('2','3')) and pid=?";
+        return baseDao.queryForInt(sql,new Object[]{userid});
+    }
+
+
 
     //获取某个用户下所有子用户的个数
     public int getAllXjnum(int userid){
         List<User> users = getDownUsers(userid);
         for(User user:users){
             int id = user.getId();
-            total = total + getXjnum(id);
+            total2 = total2 + getXjnum(id);
             getAllXjnum(id);
         }
 
-        return total;
+        return total2;
 
     }
 
@@ -115,8 +123,10 @@ public class UserDao {
         List<User> users = getDownBuyUsers(userid);
         for(User user:users){
             int id = user.getId();
-            total = total + getXjnum(id);
-            getAllXjnum(id);
+
+            total = total + getBuyXjnum(id);
+            //System.out.println("id:"+id+"       total:"+total);
+            getAllBuyXjnum(id);
         }
 
         return total;
