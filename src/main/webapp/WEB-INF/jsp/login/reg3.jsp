@@ -24,8 +24,8 @@
     <div class="page">
         <div class="page-content">
             <form name="form" action="${ctx}/user/reg" id="form">
-                <input type="hidden" id="pid" value="${reqUserid}"/>
-                <input type="hidden" id="roleid" value="${roleid}"/>
+                <input type="hidden" id="pid" name="pid" value="${reqUserid}"/>
+                <input type="hidden" id="roleid" name="roleid" value="${roleid}"/>
             <div class="c-login-banner">
                 <img class="logo" src="${ctx}/img/1.jpg"/>
                 <div class="title">聚益恒集团</div>
@@ -249,17 +249,17 @@
             return false;
         }
 
+        document.getElementById("form").submit();
+        <%--$.post("${ctx}/user/isYzmExist",{mobile:mobile,yzm:yzm},function (d) {--%>
 
-        $.post("${ctx}/user/isYzmExist",{mobile:mobile,yzm:yzm},function (d) {
+            <%--if(d=="nook") {--%>
+                <%--Showbo.Msg.alert('验证码输入错误！');--%>
+                <%--return false;--%>
+            <%--}else{--%>
+                <%--document.getElementById("form").submit();--%>
+            <%--}--%>
 
-            if(d=="nook") {
-                Showbo.Msg.alert('验证码输入错误！');
-                return false;
-            }else{
-                document.getElementById("form").submit();
-            }
-
-        });
+        <%--});--%>
 
 
 
