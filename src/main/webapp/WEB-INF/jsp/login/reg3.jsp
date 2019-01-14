@@ -23,7 +23,7 @@
 <div id="app">
     <div class="page">
         <div class="page-content">
-            <form name="form" action="${ctx}/user/reg" id="form">
+            <form name="form" action="${ctx}/user/reg" id="form" method="post">
                 <input type="hidden" id="pid" name="pid" value="${reqUserid}"/>
                 <input type="hidden" id="roleid" name="roleid" value="${roleid}"/>
             <div class="c-login-banner">
