@@ -28,7 +28,7 @@ public class RoleDao {
 
     //获取邀请所属的角色列表
     public List<Role> getRolesByReq(String roles){
-        String sql = "select * from t_role where roleid in ("+roles+")";
+        String sql = "select * from t_role where id in ("+roles+")";
         return baseDao.query(sql,Role.class,new Object[]{});
     }
 
