@@ -23,7 +23,7 @@
 <div id="app">
     <div class="page">
         <div class="page-content">
-            <form name="form" action="${ctx}/user/reg2" id="form">
+            <form name="form" action="${ctx}/user/reg2" id="form" method="post">
                 <input type="hidden" id="reqUserid" name="reqUserid" value="${reqUserid}"/>
                 <input type="hidden" id="reqUsername" name="reqUsername" value="${reqUsername}"/>
                 <input type="hidden" id="roles" name="roles" value="${roles}"/>
