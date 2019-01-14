@@ -35,7 +35,7 @@ public class RoleDao {
 
     //根据角色id获取角色
     public Role getRoleById(int roleid){
-        String sql = "select * from t_role where roleid =?";
+        String sql = "select * from t_role where id =?";
         List<Role> rs = baseDao.query(sql,Role.class,new Object[]{roleid});
         if(rs.size()>0){
             return rs.get(0);
