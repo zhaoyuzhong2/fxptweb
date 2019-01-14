@@ -49,7 +49,7 @@
                     </ul>
                 </div>
 
-                <div class="title">选择代理商级别1</div>
+                <div class="title">选择代理商级别</div>
                 <div class="list media-list radio-list">
 
                     <ul>
