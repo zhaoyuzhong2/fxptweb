@@ -45,7 +45,7 @@ public class UserController {
 	public String request(int id,String result,Model model){
 		Request req = requestDao.getRequestById(id);
 		int requesttime = paramSettings.getRequesttime();//从配置文件获取邀请失效时间
-
+		System.out.println("requesttime:"+requesttime);
 		//判断此邀请是否已失效，失效跳转错误页面
 		long nd = 1000 * 24 * 60 * 60;
 		long nh = 1000 * 60 * 60;
@@ -57,13 +57,13 @@ public class UserController {
 		long hour = diff % nd / nh;
 		if(hour>requesttime){
 			//说明此邀请已失效
-			return "user/error";
+			return "login/error";
 		}else{
 			model.addAttribute("reqUserid",req.getUserid());
 			model.addAttribute("reqUsername",req.getUsername());
 			model.addAttribute("roles",req.getRoles());
 
-			return "user/reg1";
+			return "login/reg1";
 		}
 
 
@@ -127,11 +127,12 @@ public class UserController {
 	@RequestMapping(value = "/reg2")
 	public String reg2(String mobile,String reqUserid,String reqUsername,String roles,Model model){
 		List<Role> rs = roleDao.getRolesByReq(roles);
+
 		model.addAttribute("mobile",mobile);
 		model.addAttribute("reqUserid",reqUserid);
 		model.addAttribute("reqUsername",reqUsername);
 		model.addAttribute("rs",rs);
-		return "user/reg2";
+		return "login/reg2";
 	}
 
 
@@ -145,7 +146,7 @@ public class UserController {
 		model.addAttribute("reqUserid",reqUserid);
 		model.addAttribute("reqUsername",reqUsername);
 
-		return "user/reg3";
+		return "login/reg3";
 	}
 
 
