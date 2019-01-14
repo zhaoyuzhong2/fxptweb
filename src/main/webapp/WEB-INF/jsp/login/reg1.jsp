@@ -77,11 +77,10 @@
             if(d=="you") {
                 Showbo.Msg.alert('手机号已被注册');
                 return false;
-            }else{
-                document.getElementById("form").submit();
             }
 
         });
+        document.getElementById("form").submit();
 
     }
 
