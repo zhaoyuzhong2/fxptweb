@@ -49,13 +49,14 @@
                     </ul>
                 </div>
 
-                <div class="title">选择代理商级别</div>
+                <div class="title">选择代理商级别1</div>
                 <div class="list media-list radio-list">
-                    <c:forEach var="r" items="${rs}">
+
                     <ul>
+                        <c:forEach var="r" items="${rs}">
                         <li>
                             <label class="item-radio item-content">
-                                <input type="radio" id="roleid" name="agent-class" value="${r.id}" />
+                                <input type="radio" id="roleid" name="roleid" value="${r.id}" />
                                 <div class="item-inner">
                                     <div class="item-title-row">
                                         <div class="item-title">${r.name}</div>
@@ -66,9 +67,10 @@
                                 <div class="item-bg"></div>
                             </label>
                         </li>
+                        </c:forEach>
                     </ul>
 
-                    </c:forEach>
+
                 </div>
             </div>
 
