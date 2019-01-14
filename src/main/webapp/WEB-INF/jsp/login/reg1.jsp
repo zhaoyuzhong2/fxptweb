@@ -40,7 +40,7 @@
                         </div>
                         <div class="item-inner">
                             <div class="item-input-wrap">
-                                <input type="text" id="mobile" placeholder="请填写手机号码">
+                                <input type="text" id="mobile" name="mobile" placeholder="请填写手机号码">
                                 <span class="input-clear-button"></span>
                             </div>
                         </div>
@@ -64,17 +64,16 @@
 </body>
 
 
-<script type="text/javascript">
+<script>
     //删除平台
     function queren() {
         var mobile = $("#mobile").val();
-        if(mobile.length()!=11){
+        if(mobile.length!=11){
             Showbo.Msg.alert('请输入正确的手机号码！');
             return false;
         }
 
         $.post("${ctx}/user/isExist",{mobile:mobile},function (d) {
-
             if(d=="you") {
                 Showbo.Msg.alert('手机号已被注册');
                 return false;
