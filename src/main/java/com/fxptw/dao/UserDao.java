@@ -184,7 +184,7 @@ public class UserDao {
 
         String sql = "insert into t_user(name,roleid,pid,mobile,chatno,sex,pwd,birthday,idcard,area,cdate,flag) " +
                 "values(:name,:roleid,:pid,:mobile,:chatno,:sex,:pwd,:birthday,:idcard,:area,now(),'0')";
-        return baseDao.insert2(user);
+        return baseDao.insert(sql,user);
     }
 
 
