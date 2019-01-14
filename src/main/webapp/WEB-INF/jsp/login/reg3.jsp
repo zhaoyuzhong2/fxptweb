@@ -200,7 +200,7 @@
 <!--<script src="../../js/public.js"></script>-->
 <script type="text/javascript">
     $(function(){
-        document.getElementById("button").disabled="disabled";
+        $("#button").removeAttr('onclick');
 
     });
 
@@ -271,10 +271,10 @@
     function check() {
         var checkbox = document.getElementById("checkbox");
         if(checkbox.checked == true){
-            document.getElementById("button").disabled="";
+            $("#button").attr('onclick',"queren()");
         }
         else{
-            document.getElementById("button").disabled="disabled";
+            $("#button").removeAttr('onclick');
         }
 
 
