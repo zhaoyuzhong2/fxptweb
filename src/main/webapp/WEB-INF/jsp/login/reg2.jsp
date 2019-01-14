@@ -24,7 +24,7 @@
 <div id="app">
     <div class="page">
         <div class="page-content">
-            <form name="form" action="${ctx}/user/reg3" id="form">
+            <form name="form" action="${ctx}/user/reg3" id="form" method="post">
                 <input type="hidden" id="mobile" name="mobile" value="${mobile}"/>
                 <input type="hidden" id="reqUserid" name="reqUserid" value="${reqUserid}"/>
                 <input type="hidden" id="reqUsername" name="reqUsername" value="${reqUsername}"/>
