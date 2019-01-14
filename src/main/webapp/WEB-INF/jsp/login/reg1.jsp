@@ -24,9 +24,9 @@
     <div class="page">
         <div class="page-content">
             <form name="form" action="${ctx}/user/reg2" id="form">
-                <input type="hidden" id="reqUserid" value="${reqUserid}"/>
-                <input type="hidden" id="reqUsername" value="${reqUsername}"/>
-                <input type="hidden" id="roles" value="${roles}"/>
+                <input type="hidden" id="reqUserid" name="reqUserid" value="${reqUserid}"/>
+                <input type="hidden" id="reqUsername" name="reqUsername" value="${reqUsername}"/>
+                <input type="hidden" id="roles" name="roles" value="${roles}"/>
             <div class="c-login-banner">
                 <img class="logo" src="${ctx}/img/1.jpg"/>
                 <div class="title">聚益恒集团</div>
