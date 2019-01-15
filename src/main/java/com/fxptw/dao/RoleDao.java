@@ -28,14 +28,14 @@ public class RoleDao {
 
     //获取邀请所属的角色列表
     public List<Role> getRolesByReq(String roles){
-        String sql = "select * from t_role where roleid in ("+roles+")";
+        String sql = "select * from t_role where id in ("+roles+")";
         return baseDao.query(sql,Role.class,new Object[]{});
     }
 
 
     //根据角色id获取角色
     public Role getRoleById(int roleid){
-        String sql = "select * from t_role where roleid =?";
+        String sql = "select * from t_role where id =?";
         List<Role> rs = baseDao.query(sql,Role.class,new Object[]{roleid});
         if(rs.size()>0){
             return rs.get(0);

@@ -24,10 +24,10 @@
 <div id="app">
     <div class="page">
         <div class="page-content">
-            <form name="form" action="${ctx}/user/reg3" id="form">
-                <input type="hidden" id="mobile" value="${mobile}"/>
-                <input type="hidden" id="reqUserid" value="${reqUserid}"/>
-                <input type="hidden" id="reqUsername" value="${reqUsername}"/>
+            <form name="form" action="${ctx}/user/reg3" id="form" method="post">
+                <input type="hidden" id="mobile" name="mobile" value="${mobile}"/>
+                <input type="hidden" id="reqUserid" name="reqUserid" value="${reqUserid}"/>
+                <input type="hidden" id="reqUsername" name="reqUsername" value="${reqUsername}"/>
 
             <div class="wrapper">
                 <div class="title">选择您想代理的商品</div>
@@ -51,11 +51,12 @@
 
                 <div class="title">选择代理商级别</div>
                 <div class="list media-list radio-list">
-                    <c:forEach var="r" items="${rs}">
+
                     <ul>
+                        <c:forEach var="r" items="${rs}">
                         <li>
                             <label class="item-radio item-content">
-                                <input type="radio" id="roleid" name="agent-class" value="${r.id}" />
+                                <input type="radio" id="roleid" name="roleid" value="${r.id}" />
                                 <div class="item-inner">
                                     <div class="item-title-row">
                                         <div class="item-title">${r.name}</div>
@@ -66,9 +67,10 @@
                                 <div class="item-bg"></div>
                             </label>
                         </li>
+                        </c:forEach>
                     </ul>
 
-                    </c:forEach>
+
                 </div>
             </div>
 

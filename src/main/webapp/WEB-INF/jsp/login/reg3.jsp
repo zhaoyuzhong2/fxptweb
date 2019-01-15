@@ -23,9 +23,9 @@
 <div id="app">
     <div class="page">
         <div class="page-content">
-            <form name="form" action="${ctx}/user/reg" id="form">
-                <input type="hidden" id="pid" value="${reqUserid}"/>
-                <input type="hidden" id="roleid" value="${roleid}"/>
+            <form name="form" action="${ctx}/user/reg" id="form" method="post">
+                <input type="hidden" id="pid" name="pid" value="${reqUserid}"/>
+                <input type="hidden" id="roleid" name="roleid" value="${roleid}"/>
             <div class="c-login-banner">
                 <img class="logo" src="${ctx}/img/1.jpg"/>
                 <div class="title">聚益恒集团</div>
@@ -67,7 +67,7 @@
                         </div>
                         <div class="item-inner">
                             <div class="item-input-wrap">
-                                <input type="text" value="${mobile}" id="mobile" class="default-val" readonly>
+                                <input type="text" value="${mobile}" id="mobile" name="mobile" class="default-val" readonly>
                                 <span class="input-clear-button"></span>
                             </div>
                         </div>
@@ -78,7 +78,7 @@
                         </div>
                         <div class="item-inner">
                             <div class="item-input-wrap">
-                                <input type="text" placeholder="短信码" id="yzm">
+                                <input type="text" placeholder="短信码" id="yzm" name="yzm">
                                 <span class="input-clear-button"></span>
                             </div>
                         </div>
@@ -90,7 +90,7 @@
                         </div>
                         <div class="item-inner">
                             <div class="item-input-wrap">
-                                <input type="password" id="pwd1" placeholder="请填写密码">
+                                <input type="password" id="pwd1" name="pwd1" placeholder="请填写密码">
                                 <span class="input-clear-button"></span>
                             </div>
                         </div>
@@ -101,7 +101,7 @@
                         </div>
                         <div class="item-inner">
                             <div class="item-input-wrap">
-                                <input type="password" id="pwd2" placeholder="请确认密码">
+                                <input type="password" id="pwd2" name="pwd2" placeholder="请确认密码">
                                 <span class="input-clear-button"></span>
                             </div>
                         </div>
@@ -117,7 +117,7 @@
                         </div>
                         <div class="item-inner">
                             <div class="item-input-wrap">
-                                <input type="text" id="name" placeholder="请填写姓名">
+                                <input type="text" id="name" name="name" placeholder="请填写姓名">
                                 <span class="input-clear-button"></span>
                             </div>
                         </div>
@@ -129,20 +129,7 @@
                         </div>
                         <div class="item-inner">
                             <div class="item-input-wrap">
-                                <input type="text" id="idcard" placeholder="请填写身份证">
-                                <span class="input-clear-button"></span>
-                            </div>
-                        </div>
-                    </li>
-
-
-                    <li class="item-content item-input">
-                        <div class="item-media">
-                            <i class="iconfont icon-xingming"></i>
-                        </div>
-                        <div class="item-inner">
-                            <div class="item-input-wrap">
-                                <input type="text" id="chatno" placeholder="请填写微信号">
+                                <input type="text" id="idcard" name="idcard" placeholder="请填写身份证">
                                 <span class="input-clear-button"></span>
                             </div>
                         </div>
@@ -155,7 +142,20 @@
                         </div>
                         <div class="item-inner">
                             <div class="item-input-wrap">
-                                <select id="sex">
+                                <input type="text" id="chatno" name="chatno" placeholder="请填写微信号">
+                                <span class="input-clear-button"></span>
+                            </div>
+                        </div>
+                    </li>
+
+
+                    <li class="item-content item-input">
+                        <div class="item-media">
+                            <i class="iconfont icon-xingming"></i>
+                        </div>
+                        <div class="item-inner">
+                            <div class="item-input-wrap">
+                                <select id="sex" name="sex">
                                     <option value="男">男</option>
                                     <option value="女">女</option>
                                 </select>
@@ -164,33 +164,22 @@
                     </li>
 
 
-                    <li>
-                        <a href="#" class="item-link item-content">
-                            <div class="item-inner">
-                                <div class="item-title">地区</div>
-                                <div class="item-after">
-
-                                    <select id="province" >
-
-                                        <option value="">请选择省</option>
-
-                                    </select>
-                                    <select id="city">
-                                        <option value="">请选择市</option>
-                                    </select>
-                                    <select id="area">
-                                        <option value="">请选择区</option>
-                                    </select>
-
-                                </div>
+                    <li class="item-content item-input">
+                        <div class="item-media">
+                            <i class="iconfont icon-xingming"></i>
+                        </div>
+                        <div class="item-inner">
+                            <div class="item-input-wrap">
+                                <input type="text" id="area" name="area" placeholder="请填写所在地区">
+                                <span class="input-clear-button"></span>
                             </div>
-                        </a>
+                        </div>
                     </li>
                 </ul>
             </div>
 
             <div class="protocol">
-                <label class="checkbox"><input type="checkbox" id="checkbox"><i class="icon-checkbox"></i></label>
+                <label class="checkbox"><input type="checkbox" id="checkbox" onclick="check()" value="1"><i class="icon-checkbox"></i></label>
                 <span>我同意并遵守</span><span class="protocol-link">《唤醒记忆代理商协议》</span>
             </div>
 
@@ -210,6 +199,12 @@
 <script src="${ctx}/js/area/select.js"></script>
 <!--<script src="../../js/public.js"></script>-->
 <script type="text/javascript">
+    $(function(){
+        $("#button").removeAttr('onclick');
+
+    });
+
+
     //删除平台
     function queren() {
         var pwd1 = $("#pwd1").val();
@@ -220,7 +215,7 @@
         var idcard = $("#idcard").val();
         var sex = $("#sex").val();
 
-        if(pwd1.trim().length()<1){
+        if(pwd1.trim().length<1){
             Showbo.Msg.alert('请填写密码！');
             return false;
         }
@@ -231,40 +226,40 @@
         }
 
 
-        if(name.length()<1){
+        if(name.length<1){
             Showbo.Msg.alert('请填写姓名！');
             return false;
         }
 
 
-        if(idcard.length()<1){
+        if(idcard.length<1){
             Showbo.Msg.alert('请填写身份证号！');
             return false;
         }
 
 
-        if(sex.length()<1){
+        if(sex.length<1){
             Showbo.Msg.alert('请选择性别！');
             return false;
         }
 
 
-        if(area.length()<1){
+        if(area.length<1){
             Showbo.Msg.alert('请选择所在地区！');
             return false;
         }
 
+        document.getElementById("form").submit();
+        <%--$.post("${ctx}/user/isYzmExist",{mobile:mobile,yzm:yzm},function (d) {--%>
 
-        $.post("${ctx}/user/isYzmExist",{mobile:mobile,yzm:yzm},function (d) {
+            <%--if(d=="nook") {--%>
+                <%--Showbo.Msg.alert('验证码输入错误！');--%>
+                <%--return false;--%>
+            <%--}else{--%>
+                <%--document.getElementById("form").submit();--%>
+            <%--}--%>
 
-            if(d=="nook") {
-                Showbo.Msg.alert('验证码输入错误！');
-                return false;
-            }else{
-                document.getElementById("form").submit();
-            }
-
-        });
+        <%--});--%>
 
 
 
@@ -276,10 +271,10 @@
     function check() {
         var checkbox = document.getElementById("checkbox");
         if(checkbox.checked == true){
-            document.getElementById("button").disabled="";
+            $("#button").attr('onclick',"queren()");
         }
         else{
-            document.getElementById("button").disabled="disabled";
+            $("#button").removeAttr('onclick');
         }
 
 

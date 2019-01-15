@@ -24,7 +24,7 @@ public class UserGoodsDao {
     //查询不同状态的购买物品数量
     public List<UserGoods> getList(int userid,String flag,String search_name) {
         String sql = "select * from t_user_goods where flag=? and userid=?  ";
-        List<String> arr = new ArrayList();
+        List<String> arr = new ArrayList<>();
         arr.add(flag);
         arr.add(userid+"");
         if(search_name!=null && !search_name.equals("")){
@@ -142,13 +142,17 @@ public class UserGoodsDao {
     //王春伟添加的方法
     //查询出所有的订单号
     public List<UserGoods> getCodeByUserid(Integer userid,String search_name) {
-        String sql = "select code From t_user_goods where flag!=9 and userid=? and code like ? or postmobile like ? or postname like ? group by code";
-        return baseDao.query(sql,UserGoods.class,new Object[]{userid,"%"+search_name+"%","%"+search_name+"%","%"+search_name+"%"});
+        String sql = "select code From t_user_goods where flag!=9 and userid=? and code like ? or postmobile like ? " +
+                "or postname like ? group by code";
+        return baseDao.query(sql,UserGoods.class,new Object[]{userid,"%"+search_name+"%","%"+search_name+"%",
+                "%"+search_name+"%"});
     }
     //查询出所有的订单号
     public List<UserGoods> getCodeByUseridByFlag(Integer userid,String flag,String search_name) {
-        String sql = "select code From t_user_goods where flag=? and userid=? and code like ? or postmobile like ? or postname like ? group by code";
-        return baseDao.query(sql,UserGoods.class,new Object[]{flag,userid,"%"+search_name+"%","%"+search_name+"%","%"+search_name+"%"});
+        String sql = "select code From t_user_goods where flag=? and userid=? and code like ? " +
+                "or postmobile like ? or postname like ? group by code";
+        return baseDao.query(sql,UserGoods.class,new Object[]{flag,userid,"%"+search_name+
+                "%","%"+search_name+"%","%"+search_name+"%"});
     }
 
     //根据订单号查询订单

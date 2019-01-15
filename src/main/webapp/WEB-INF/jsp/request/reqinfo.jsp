@@ -32,7 +32,7 @@
             </div>
 
             <div class="qr-code-box">
-                <img class="qr-code" src="${ctx}${req.imgpath}"/>
+                <img class="qr-code" src="${ctx}/${file}"/>
                 <div class="txt">扫一扫上面的二维码，即可申请代理。</div>
             </div>
             <div class="invite-btn-box">
