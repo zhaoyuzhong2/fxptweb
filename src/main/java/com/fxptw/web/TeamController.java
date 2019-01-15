@@ -85,16 +85,32 @@ public class TeamController {
     public String buy(Model model,HttpServletRequest request) {
         User emp1 = (User) request.getSession().getAttribute("user");
         List<User> xjusers = userDao.getAllBuyXjs(emp1.getId());//所有进货 的下级
+
+		List<User> xjusers2 = new ArrayList<>();
+		for (User u : xjusers){
+			//System.out.println(u.getName()+"        "+userDao.getAllBuyXjnum(u.getId()));
+			u.setXjnum(userDao.getDownBuyUsers(u.getId()).size());
+			u.setCount(userDao.getAllBuyXjnum(u.getId()));
+			xjusers2.add(u);
+		}
+
         int xjnum = xjusers.size();
 
-        List<User> zsusers = userDao.getDownBuyUsers(emp1.getId());
+        List<User> zsusers = userDao.getDownBuyUsers(emp1.getId());//直属的下级
+		List<User> zsusers2 = new ArrayList<>();
+		for (User u : zsusers){
+
+			u.setXjnum(userDao.getDownBuyUsers(u.getId()).size());
+			u.setCount(userDao.getAllBuyXjnum(u.getId()));
+			zsusers2.add(u);
+		}
+
         int zsnum = zsusers.size();
 
-
         model.addAttribute("xjnum",xjnum);
-        model.addAttribute("xjusers",xjusers);
+        model.addAttribute("xjusers",xjusers2);
         model.addAttribute("zsnum",zsnum);
-        model.addAttribute("zsusers",zsusers);
+        model.addAttribute("zsusers",zsusers2);
 
         return "team/buy";
     }
