@@ -39,36 +39,79 @@
             </div>
             <div class="tabs">
                 <div class="tab tab-active" id="tab-1">
+                    <c:choose>
+                        <c:when test="${zsnum==0}">
+                            <div class="null-tip" style="display: none;">
+                                <img src="${ctx}/img/null.png" class="img"/>
+                                <div class="info">没有内容可供显示哦</div>
+                            </div>
+                        </c:when>
+                        <c:otherwise>
+                            <ul class="c-mem-list">
+                                <c:forEach items="${zsusers}" var="u">
+                                    <li>
+                                        <a href="#" class="inner">
+                                            <div class="left">
+                                                <img class="head" src="${u.headpath}"/>
+                                                <div>
+                                                    <div class="name">${u.name}</div>
+                                                    <div class="tag">${u.rolename}</div>
+                                                </div>
+                                            </div>
+                                            <div class="right">
+                                                <div>
+                                                    <div class="top"><span class="txt">直接:</span><span class="num">${u.xjnum}</span></div>
+                                                    <div><span class="txt">团队:</span><span class="num">${u.count}</span></div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </c:forEach>
+                            </ul>
 
+                        </c:otherwise>
+                    </c:choose>
                 </div>
 
                 <div class="tab" id="tab-2">
+                    <c:choose>
+                    <c:when test="${xjnum==0}">
+                        <div class="null-tip" style="display: none;">
+                            <img src="${ctx}/img/null.png" class="img"/>
+                            <div class="info">没有内容可供显示哦</div>
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+                        <ul class="c-mem-list">
+                            <c:forEach items="${xjusers}" var="u">
+                                <li>
+                                    <a href="#" class="inner">
+                                        <div class="left">
+                                            <img class="head" src="${u.headpath}"/>
+                                            <div>
+                                                <div class="name">${u.name}</div>
+                                                <div class="tag">${u.rolename}</div>
+                                            </div>
+                                        </div>
+                                        <div class="right">
+                                            <div>
+                                                <div class="top"><span class="txt">直接:</span><span class="num">${u.xjnum}</span></div>
+                                                <div><span class="txt">团队:</span><span class="num">${u.count}</span></div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </c:forEach>
+                        </ul>
 
-                    <div class="null-tip" style="display: none;">
-                        <img src="../../img/null.png" class="img"/>
-                        <div class="info">没有内容可供显示哦</div>
-                    </div>
+                    </c:otherwise>
+                    </c:choose>
 
-                    <ul class="c-mem-list">
-                        <li>
-                            <a href="#" class="inner">
-                                <div class="left">
-                                    <img class="head" src="../../img/index_head.png"/>
-                                    <div>
-                                        <div class="name">于洪伟</div>
-                                        <div class="tag">唤醒联创</div>
-                                    </div>
-                                </div>
-                                <div class="right">
-                                    <div>
-                                        <div class="top"><span class="txt">直接:</span><span class="num">11</span></div>
-                                        <div><span class="txt">团队:</span><span class="num">11</span></div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
                 </div>
+
+
+
+
 
                 <div class="tab" id="tab-3">
                     <ul class="higher-list">
