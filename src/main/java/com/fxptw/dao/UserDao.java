@@ -17,7 +17,6 @@ public class UserDao {
     @Autowired
     BaseDao baseDao;
     public int total = 0;
-    public int total2 = 0;
 
     //登录系统
     public User login(String mobile, String pwd){
@@ -31,13 +30,12 @@ public class UserDao {
 
     }
 
-
     //获取下级销售情况
     public List<User> getDownUserBySail(int userid){
-        String sql = "select a.*,(select sum(buynum) as sailnum from t_user_goods where userid=a.id and flag in ('2','3')) from t_user a where a.pid=?";
+        String sql = "select a.*,(select sum(buynum) as sailnum from t_user_goods where userid=a.id " +
+                "and flag in ('2','3')) from t_user a where a.pid=?";
         return baseDao.query(sql,User.class,new Object[]{userid});
     }
-
 
     //获取下级列表
     public List<User> getDownUser(int userid){
@@ -45,13 +43,12 @@ public class UserDao {
         return baseDao.query(sql,User.class,new Object[]{userid});
     }
 
-
     //获取某个角色的下级列表
     public List<User> getDownUserRole(int userid,int roleid){
-        String sql = "select a.*,(select count(*) from t_user where pid=a.id) as xjnum from t_user a where a.pid=? and a.roleid=?";
+        String sql = "select a.*,(select count(*) from t_user where pid=a.id) as xjnum from t_user a " +
+                "where a.pid=? and a.roleid=?";
         return baseDao.query(sql,User.class,new Object[]{userid,roleid});
     }
-
 
     //获取某个用户的直属下级列表
     public List<User> getDownUsers(int userid){
@@ -59,19 +56,18 @@ public class UserDao {
         return baseDao.query(sql,User.class,new Object[]{userid});
     }
 
-
     public List<User> getDownBuyUsers(int userid){
-        String sql = "SELECT a.*,c.name as rolename FROM t_user a LEFT JOIN t_user_goods b ON a.id = b.userid left join t_role c on a.roleid=c.id WHERE b.flag IN ('2','3') and a.pid=? GROUP BY a.id";
+        String sql = "SELECT a.*,c.name as rolename FROM t_user a LEFT JOIN t_user_goods b ON a.id = b.userid " +
+                "left join t_role c on a.roleid=c.id WHERE b.flag IN ('2','3') and a.pid=? GROUP BY a.id";
         return baseDao.query(sql,User.class,new Object[]{userid});
     }
 
-
     //获取某个用户的直属下级某个状态的列表
     public List<User> getDownUsersByFlag(int userid,String flag){
-        String sql = "select a.*,b.name as rolename,c.mobile as pmobile,c.name as pname from t_user a left join t_role b on a.roleid=b.id left join t_user c on a.pid=c.id where a.pid=? and a.flag=?";
+        String sql = "select a.*,b.name as rolename,c.mobile as pmobile,c.name as pname from t_user a " +
+                "left join t_role b on a.roleid=b.id left join t_user c on a.pid=c.id where a.pid=? and a.flag=?";
         return baseDao.query(sql,User.class,new Object[]{userid,flag});
     }
-
 
     //获取上级信息
     public User getUpUser(int userid){
@@ -84,8 +80,6 @@ public class UserDao {
         }
     }
 
-
-
     //获取某个用户下所有直属子用户的个数
     public int getXjnum(int userid){
         String sql = "select IFNULL(count(*),0) as xjnum from t_user where pid=?";
@@ -93,40 +87,24 @@ public class UserDao {
 
     }
 
-
-    //获取下级销售情况
-    public int getBuyXjnum(int userid){
-        String sql = "select IFNULL(count(*),0) as xjnum from t_user where id in(select userid from t_user_goods where flag in('2','3')) and pid=?";
-        return baseDao.queryForInt(sql,new Object[]{userid});
-    }
-
-
-
     //获取某个用户下所有子用户的个数
     public int getAllXjnum(int userid){
         List<User> users = getDownUsers(userid);
         for(User user:users){
             int id = user.getId();
-            total2 = total2 + getXjnum(id);
+            total = total + getXjnum(id);
             getAllXjnum(id);
         }
-
-        return total2;
-
+        return total;
     }
-
-
-
 
     //获取某个用户下所有进货子用户的个数
     public int getAllBuyXjnum(int userid){
         List<User> users = getDownBuyUsers(userid);
         for(User user:users){
             int id = user.getId();
-
-            total = total + getBuyXjnum(id);
-            //System.out.println("id:"+id+"       total:"+total);
-            getAllBuyXjnum(id);
+            total = total + getXjnum(id);
+            getAllXjnum(id);
         }
 
         return total;
@@ -141,10 +119,7 @@ public class UserDao {
             return user;
         }else{
             return getTopUser(user.getId());
-
         }
-
-
     }
 
 
