@@ -27,22 +27,21 @@
                 <div class="head-icon">
                     <img src="${ctx}/img/index_head.png" width="100%" height="100%"/>
                 </div>
-                <div class="user-name">陈玲玲</div>
+                <div class="user-name">${user.name}</div>
                 <div class="tag-box">
                     <div class="tag">
                         <i class="icon"></i>
-                        <span class="txt">唤醒联创</span>
+                        <span class="txt">${user.rolename}</span>
                     </div>
                 </div>
                 <div class="user-info">
-                    <span class="tel">18243680088</span>
-                    <a href="#" class="info-edit">编辑个人资料</a>
+                    <span class="tel">${user.mobile}</span>
                 </div>
             </header>
 
             <ul class="list-box">
                 <li>
-                    <a href="#">
+                    <a href="${ctx}/my/txye">
                         <div class="left">
                             <i class="icon my-icon1"></i>
                             <div>
@@ -51,7 +50,7 @@
                             </div>
                         </div>
                         <div class="right">
-                            <div class="txt">可提现:<span>0.00元</span></div>
+                            <div class="txt">可提现:<span>${byshouru}元</span></div>
                             <div class="to-icon"></div>
                         </div>
                     </a>
@@ -64,11 +63,11 @@
                         <div class="left">
                             <i class="icon my-icon2"></i>
                             <div>
-                                <div class="name">贷款账户</div>
+                                <div class="name">货款账户</div>
                             </div>
                         </div>
                         <div class="right">
-                            <div class="txt">贷款余额:<span>0.00元</span></div>
+                            <div class="txt">货款余额:<span>0.00元</span></div>
                             <div class="to-icon"></div>
                         </div>
                     </a>
@@ -177,8 +176,8 @@
 </div>
 
 
-<script src="../../js/framework7.min.js"></script>
-<script src="../../js/my-app.js"></script>
+<script src="${ctx}/js/framework7.min.js"></script>
+<script src="${ctx}/js/my-app.js"></script>
 <script>
     /*点击联系总部*/
     $$('.open-vertical').on('click', function () {
