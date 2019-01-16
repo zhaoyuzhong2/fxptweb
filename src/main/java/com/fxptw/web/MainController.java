@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -102,11 +103,22 @@ public class MainController {
 			session.setAttribute("user", user);
 
 			model.addAttribute("tyeji","0.00");
-			model.addAttribute("tshouru","0.00");
+			double tshouru = userDao.getShouru(user.getId(),"");
+			model.addAttribute("tshouru",tshouru);
 			model.addAttribute("huokuan","0.00");
 			model.addAttribute("yeji","0.00");
-			model.addAttribute("shouru","0.00");
-			model.addAttribute("money",user.getMoney());
+			SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM");
+			String yearm = sdf.format(new Date());
+			double byshouru = userDao.getByShouru(user.getId(),yearm);
+			model.addAttribute("shouru",byshouru);
+			model.addAttribute("money",byshouru);
+
+//			model.addAttribute("tyeji","0.00");
+//			model.addAttribute("tshouru","0.00");
+//			model.addAttribute("huokuan","0.00");
+//			model.addAttribute("yeji","0.00");
+//			model.addAttribute("shouru","0.00");
+//			model.addAttribute("money",user.getMoney());
 
             return "main/index";
         }
@@ -122,12 +134,23 @@ public class MainController {
 		}else {
 			User user = (User) session.getAttribute("user");
 
-			model.addAttribute("tyeji", "0.00");
-			model.addAttribute("tshouru", "0.00");
-			model.addAttribute("huokuan", "0.00");
-			model.addAttribute("yeji", "0.00");
-			model.addAttribute("shouru", "0.00");
-			model.addAttribute("money", user.getMoney());
+			model.addAttribute("tyeji","0.00");
+			double tshouru = userDao.getShouru(user.getId(),"");
+			model.addAttribute("tshouru",tshouru);
+			model.addAttribute("huokuan","0.00");
+			model.addAttribute("yeji","0.00");
+			SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM");
+			String yearm = sdf.format(new Date());
+			double byshouru = userDao.getByShouru(user.getId(),yearm);
+			model.addAttribute("shouru",byshouru);
+			model.addAttribute("money",byshouru);
+
+//			model.addAttribute("tyeji", "0.00");
+//			model.addAttribute("tshouru", "0.00");
+//			model.addAttribute("huokuan", "0.00");
+//			model.addAttribute("yeji", "0.00");
+//			model.addAttribute("shouru", "0.00");
+//			model.addAttribute("money", user.getMoney());
 
 			return "main/index";
 		}
@@ -191,13 +214,24 @@ public class MainController {
             user.setId(id);
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
+			model.addAttribute("tyeji","0.00");
+			double tshouru = userDao.getShouru(user.getId(),"");
+			model.addAttribute("tshouru",tshouru);
+			model.addAttribute("huokuan","0.00");
+			model.addAttribute("yeji","0.00");
+			SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM");
+			String yearm = sdf.format(new Date());
+			double byshouru = userDao.getByShouru(user.getId(),yearm);
+			model.addAttribute("shouru",byshouru);
+			model.addAttribute("money",byshouru);
 
-            model.addAttribute("tyeji","0.00");
-            model.addAttribute("tshouru","0.00");
-            model.addAttribute("huokuan","0.00");
-            model.addAttribute("yeji","0.00");
-            model.addAttribute("shouru","0.00");
-            model.addAttribute("money",user.getMoney());
+
+//            model.addAttribute("tyeji","0.00");
+//            model.addAttribute("tshouru","0.00");
+//            model.addAttribute("huokuan","0.00");
+//            model.addAttribute("yeji","0.00");
+//            model.addAttribute("shouru","0.00");
+//            model.addAttribute("money",user.getMoney());
 
             return "main/index";
         }else{
