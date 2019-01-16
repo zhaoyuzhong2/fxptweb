@@ -55,7 +55,7 @@ public class WeCharQuartz {
             }
             //返回的参数是json格式
             JSONObject accessTokenJson = JSONObject.parseObject(openidStringBuffer.toString());
-            //System.out.println(accessTokenJson);
+            System.out.println(accessTokenJson);
             accessToken = accessTokenJson.getString("access_token");
         }catch(Exception e){
             //连接异常，请求异常，或者json返回值异常均需要处理
