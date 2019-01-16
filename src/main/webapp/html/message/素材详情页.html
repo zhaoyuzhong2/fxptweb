@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+    <title>中秋</title>
+    <link rel="stylesheet" href="../../css/framework7.min.css">
+    <link rel="stylesheet" href="../../css/font.css">
+    <link rel="stylesheet" href="../../css/public.css">
+</head>
+<body class="page-material-details">
+<div id="app">
+    <div class="page">
+        <div class="page-content" id="vueWrap">
+            <div class="display-flex justify-content-space-between align-items-center top-info">
+                <div>{{date}}</div>
+                <div>共 {{imgNum}} 份</div>
+            </div>
+
+            <div class="imgs-box">
+                <img v-for="(item,index) in imgsrcs" v-bind:src="item.imgsrc" class="material" @click="popMaterial(item,index)"/>
+            </div>
+
+            <div v-if="isPop" class="pop-material" v-bind:style="{opacity: opacityNum}">
+                <img v-bind:src="popSrc" class="material"/>
+                <a href="#" class="iconfont icon-cancel" @click="delPopMaterial()"></a>
+                <div class="page-number">{{popCurrentNum}}/{{imgNum}} </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<a href="javascript:history.back(-1);" class="goback" id="goBack"></a>
+
+
+<script src="../../js/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#vueWrap',
+        data: {
+            date: '2018-09-16 09:17:20',
+            imgsrcs: [
+                    {imgsrc:'../../img/material1.jpg'},
+                    {imgsrc:'../../img/material2.jpg'},
+                    {imgsrc:'../../img/material3.jpg'},
+            ],
+            isPop: false,
+            popSrc: '',
+            popCurrentNum: 1,
+            opacityNum: 0,
+        },
+        computed: {
+            imgNum: function () {
+                return this.imgsrcs.length;
+            }
+        },
+        methods: {
+            popMaterial: function (item, index) {
+                this.isPop = true;
+                this.popSrc = item.imgsrc;
+                this.popCurrentNum = index+1;
+                this.opacityNum = 1;
+            },
+            delPopMaterial: function () {
+                this.isPop = false;
+            }
+        }
+    });
+</script>
+<script src="../../js/framework7.min.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/my-app.js"></script>
+<script src="../../js/public.js"></script>
+<script>
+
+</script>
+</body>
+</html>
