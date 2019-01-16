@@ -6,11 +6,14 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.Map;
+import java.util.logging.Logger;
 
 /**
  * 获取请求参数
  */
 public class HttpGetUtil {
+
+
 
     public static String httpRequestToString(String url,
                                              Map<String,String> params) {
