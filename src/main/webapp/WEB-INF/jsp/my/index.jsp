@@ -92,7 +92,7 @@
 
             <ul class="list-box">
                 <li>
-                    <a href="#">
+                    <a href="${ctx}/my/sztj">
                         <div class="left">
                             <i class="icon my-icon4"></i>
                             <div>
@@ -105,7 +105,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="${ctx}/my/spchtj">
                         <div class="left">
                             <i class="icon my-icon5"></i>
                             <div>

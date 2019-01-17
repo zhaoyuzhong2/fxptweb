@@ -48,8 +48,8 @@
 
 <a href="javascript:history.back(-1);" class="goback" id="goBack"></a>
 
-<script src="../../js/framework7.min.js"></script>
-<script src="../../js/jquery.min.js"></script>
-<script src="../../js/my-app.js"></script>
+<script src="${ctx}/js/framework7.min.js"></script>
+<script src="${ctx}/js/jquery.min.js"></script>
+<script src="${ctx}/js/my-app.js"></script>
 </body>
 </html>
