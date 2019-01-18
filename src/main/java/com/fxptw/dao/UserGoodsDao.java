@@ -185,7 +185,7 @@ public class UserGoodsDao {
         return total;
     }
 
-    private String usersByIds(List<User> users){
+    public String usersByIds(List<User> users){
         if(users == null)
             return null;
         StringBuffer ids = new StringBuffer();
