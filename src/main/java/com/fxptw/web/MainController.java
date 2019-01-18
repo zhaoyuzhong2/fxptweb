@@ -1,6 +1,7 @@
 package com.fxptw.web;
 
 
+import com.alibaba.fastjson.JSONObject;
 import com.fxptw.dao.RequestDao;
 import com.fxptw.dao.RoleDao;
 import com.fxptw.dao.UserDao;
@@ -9,6 +10,7 @@ import com.fxptw.dto.Request;
 import com.fxptw.dto.Role;
 import com.fxptw.dto.User;
 import com.fxptw.util.ParamSettings;
+import com.fxptw.wechat.HttpGetUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,10 +18,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping(value = "main")
@@ -84,10 +90,24 @@ public class MainController {
 
 	//登录功能
 	@RequestMapping(value = "/tologin")
-	public String tologin(){
+	public String tologin(HttpServletRequest request, HttpServletResponse response)
+			throws UnsupportedEncodingException {
+		response.setContentType("text/html");
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		String code = request.getParameter("code");//获取code
+		Map<String, String> params = new HashMap<>();
+		params.put("secret", paramSettings.getAppSecret());
+		params.put("appid", paramSettings.getAppId());
+		params.put("grant_type", "authorization_code");
+		params.put("code", code);
+		String result = HttpGetUtil.httpRequestToString(
+				"https://api.weixin.qq.com/sns/oauth2/access_token", params);
+		JSONObject jsonObject = JSONObject.parseObject(result);
+		String openid = jsonObject.get("openid").toString();
 
+		System.out.println("得到的openid为:"+openid);
 		return "login/login";
-
 	}
 
 
@@ -95,6 +115,7 @@ public class MainController {
 	//登录功能
     @RequestMapping(value = "/login")
     public String login(String mobile,String pwd,HttpServletRequest request,Model model){
+
         User user = userDao.login(mobile,pwd);
         if(user==null){
             return "login/login";
@@ -237,9 +258,5 @@ public class MainController {
         }else{
             return "main/regError";
         }
-
-
 	}
-
-	
 }

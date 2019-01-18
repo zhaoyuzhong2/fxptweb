@@ -51,4 +51,12 @@ public class StockDao {
 
 
 
+    //查询某个人所有的出货量或者购买量
+    public int getTotal(int userid,String flag) {
+        String sql = "SELECT IFNULL(SUM(buynum),0) AS num FROM t_stock WHERE userid=? and flag=? ";
+        return baseDao.queryForInt(sql,new Object[]{userid,flag});
+    }
+
+
+
 }
