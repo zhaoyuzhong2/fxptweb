@@ -43,7 +43,7 @@ public class UserController {
 	@ResponseBody
 	@RequestMapping(value = "/test")
 	public String test(int id){
-		int total = userDao.getAllXjnum(id);
+		int total = userDao.getAllXjnum2(id,0);
 		int buy = userDao.getAllBuyXjnum(id);
 		return "所有子用户："+total+"    购买产品："+buy;
 	}
