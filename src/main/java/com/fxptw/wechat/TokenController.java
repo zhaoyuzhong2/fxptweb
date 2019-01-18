@@ -20,7 +20,7 @@ import java.util.Enumeration;
 @RequestMapping(value = "token")
 public class TokenController {
 
-	private static String token = "zhaoyuzhong";
+	private static String token = "fxptweb";
 	//进入邀请关系网
 	@RequestMapping(value = "/index")
 	public void request(HttpServletRequest request, HttpServletResponse response) throws Exception {
