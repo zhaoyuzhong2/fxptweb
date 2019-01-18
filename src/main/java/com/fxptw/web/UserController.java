@@ -40,6 +40,14 @@ public class UserController {
 	@Autowired
 	VericodeDao vericodeDao;
 
+	@ResponseBody
+	@RequestMapping(value = "/test")
+	public String test(int id){
+		int total = userDao.getAllXjnum(id);
+		int buy = userDao.getAllBuyXjnum(id);
+		return "所有子用户："+total+"    购买产品："+buy;
+	}
+
 
 	@RequestMapping(value = "/request")
 	public String request(int id,String result,Model model){
