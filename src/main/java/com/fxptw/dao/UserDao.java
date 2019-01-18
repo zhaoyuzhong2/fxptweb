@@ -98,6 +98,20 @@ public class UserDao {
         return total;
     }
 
+
+
+    //获取某个用户下所有子用户的个数
+    public int getAllXjnum2(int userid,int tt){
+        List<User> users = getDownUsers(userid);
+        System.out.println(tt+"      users:"+users.size());
+        for(User user:users){
+            int id = user.getId();
+            tt = tt + getXjnum(id);
+            getAllXjnum2(id,tt);
+        }
+        return tt;
+    }
+
     //获取某个用户下所有进货子用户的个数
     public int getAllBuyXjnum(int userid){
         List<User> users = getDownBuyUsers(userid);
