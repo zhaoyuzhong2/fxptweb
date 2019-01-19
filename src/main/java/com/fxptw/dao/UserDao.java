@@ -32,6 +32,17 @@ public class UserDao {
 
     }
 
+    //获取微信登录人员信息
+    public User login(String openId){
+        final String sql = "select * from t_user where openid='"+openId+"'";
+        List<User> emps = baseDao.query(sql,User.class,new Object[]{});
+        if(emps.size()>0){
+            return emps.get(0);
+        }else {
+            return null;
+        }
+    }
+
     //获取下级销售情况
     public List<User> getDownUserBySail(int userid){
         String sql = "select a.*,(select sum(buynum) as sailnum from t_user_goods where userid=a.id " +
@@ -242,11 +253,20 @@ public class UserDao {
 
     public int insUser(User user){
 
-        String sql = "insert into t_user(name,roleid,pid,mobile,chatno,sex,pwd,birthday,idcard,area,cdate,flag) " +
-                "values(:name,:roleid,:pid,:mobile,:chatno,:sex,:pwd,:birthday,:idcard,:area,now(),'0')";
+        String sql = "insert into t_user(name,roleid,pid,mobile,chatno,sex,pwd,birthday,idcard,area,cdate,flag, openid,headpath) " +
+                "values(:name,:roleid,:pid,:mobile,:chatno,:sex,:pwd,:birthday,:idcard,:area,now(),'0',:openid, :headpath)";
         return baseDao.insert(sql,user);
     }
 
+    /**
+     * 修改用户基础信息
+     * @param user 用户信息
+     * @return 更改数量
+     */
+    public int updUser(User user){
+        String sql = "UPDATE t_user SET openid=:openid, headpath=:headpath WHERE mobile=:mobile";
+        return baseDao.update(sql,user);
+    }
 
     public double getShouru(int userid,String flag){
         String sql = "select IFNULL(sum(totalp),0) from t_user_income where userid=? ";
