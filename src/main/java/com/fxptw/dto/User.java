@@ -23,6 +23,7 @@ public class User extends BaseDTO {
     private String areaname;
     private String flag;
     private String rolename;
+    private String openid;
     private int sailnum;
     private int xjnum;
     private double money;
@@ -219,5 +220,13 @@ public class User extends BaseDTO {
 
     public void setRolename(String rolename) {
         this.rolename = rolename;
+    }
+
+    public String getOpenid() {
+        return openid;
+    }
+
+    public void setOpenid(String openid) {
+        this.openid = openid;
     }
 }
