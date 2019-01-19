@@ -26,6 +26,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.fxptw.task.WeCharQuartz;
+import org.springframework.web.client.RestTemplate;
+
 
 @Controller
 @RequestMapping(value = "main")
@@ -44,6 +47,9 @@ public class MainController {
 
 	@Autowired
 	VericodeDao vericodeDao;
+
+	@Autowired
+	RestTemplate restTemplate;
 
 
 	@RequestMapping(value = "/main")
@@ -105,8 +111,10 @@ public class MainController {
 				"https://api.weixin.qq.com/sns/oauth2/access_token", params);
 		JSONObject jsonObject = JSONObject.parseObject(result);
 		String openid = jsonObject.get("openid").toString();
-
-		System.out.println("得到的openid为:"+openid);
+		String url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token="+WeCharQuartz.getAccessToken()
+				+"&openid="+openid+"&lang=zh_CN";
+		Map user = restTemplate.getForEntity(url,Map.class,new HashMap<>()).getBody();
+		System.out.println("得到的openid为:"+openid+"\tuser:"+user);
 		return "login/login";
 	}
 
