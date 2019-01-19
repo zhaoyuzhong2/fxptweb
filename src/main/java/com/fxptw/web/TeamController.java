@@ -27,9 +27,12 @@ public class TeamController {
 		List<User> r1s = new ArrayList<>();
 		List<User> r2s = new ArrayList<>();
 		List<User> r3s = new ArrayList<>();
+		List<User> allusers = userDao.getAllUsers();
+
 		for (User u : myReq){
 			int zs = userDao.getXjnum(u.getId());//我直接邀请的人数
-			int all = userDao.getAllXjnum(u.getId());//团队所有子节点用户之和
+			//int all = userDao.getAllXjnum(u.getId());//团队所有子节点用户之和
+			int all = userDao.treeMenuList(allusers,u.getId()).size();//团队所有子节点用户之和
 			int roleid = u.getRoleid();
 			u.setXjnum(zs);
 			u.setCount(all);
@@ -43,11 +46,11 @@ public class TeamController {
 		}
 
 
-		List<User> allxjs = userDao.getAllXjs(emp1.getId());//获取所有子节点用户
+		List<User> allxjs = userDao.treeMenuList(userDao.getAllUsers(),emp1.getId());//获取所有子节点用户
 		List<User> allxjs2 = new ArrayList<>();
 		for (User u : allxjs){
 			int zs = userDao.getXjnum(u.getId());//我直接邀请的人数
-			int all = userDao.getAllXjnum(u.getId());//团队所有子节点用户之和
+			int all = userDao.treeMenuList(allusers,u.getId()).size();//团队所有子节点用户之和
 			int roleid = u.getRoleid();
 			u.setXjnum(zs);
 			u.setCount(all);
@@ -84,13 +87,15 @@ public class TeamController {
     @RequestMapping(value = "/buy")
     public String buy(Model model,HttpServletRequest request) {
         User emp1 = (User) request.getSession().getAttribute("user");
-        List<User> xjusers = userDao.getAllBuyXjs(emp1.getId());//所有进货 的下级
+		List<User> allusers = userDao.getAllUsers();
+
+        List<User> xjusers = userDao.treeMenuList1(allusers,emp1.getId());//所有进货 的下级
 
 		List<User> xjusers2 = new ArrayList<>();
 		for (User u : xjusers){
 			//System.out.println(u.getName()+"        "+userDao.getAllBuyXjnum(u.getId()));
-			u.setXjnum(userDao.getDownBuyUsers(u.getId()).size());
-			u.setCount(userDao.getAllBuyXjnum(u.getId()));
+			u.setXjnum(userDao.getDownBuyUsers(u.getId()).size());//所有卖货的直属下级人数
+			u.setCount(userDao.treeMenuList1(allusers,u.getId()).size());//所有卖货的下级团队人数
 			xjusers2.add(u);
 		}
 
@@ -100,8 +105,8 @@ public class TeamController {
 		List<User> zsusers2 = new ArrayList<>();
 		for (User u : zsusers){
 
-			u.setXjnum(userDao.getDownBuyUsers(u.getId()).size());
-			u.setCount(userDao.getAllBuyXjnum(u.getId()));
+			u.setXjnum(userDao.getDownBuyUsers(u.getId()).size());//所有卖货的直属下级人数
+			u.setCount(userDao.treeMenuList1(allusers,u.getId()).size());//所有卖货的下级团队人数
 			zsusers2.add(u);
 		}
 
