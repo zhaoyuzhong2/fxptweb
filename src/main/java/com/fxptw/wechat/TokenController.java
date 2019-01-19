@@ -37,15 +37,5 @@ public class TokenController {
 
 		out.close();
 		out = null;
-
-
 	}
-
-
-
-
-
-
-
-
 }
