@@ -25,6 +25,13 @@ public class RoleDao {
     }
 
 
+    //查询可升级的角色信息
+    public List<Role> getUpRoles(int roleid){
+        String sql = "select * from t_role where id>? order by id asc";
+        return baseDao.query(sql,Role.class,new Object[]{roleid});
+    }
+
+
 
     //获取邀请所属的角色列表
     public List<Role> getRolesByReq(String roles){
