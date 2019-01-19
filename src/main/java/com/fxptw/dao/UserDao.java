@@ -17,6 +17,8 @@ public class UserDao {
     @Autowired
     BaseDao baseDao;
     public int total = 0;
+    List<User> childMenu=new ArrayList<User>();
+    List<User> childMenu1=new ArrayList<User>();
 
     //登录系统
     public User login(String mobile, String pwd){
@@ -48,6 +50,31 @@ public class UserDao {
         String sql = "select a.*,(select count(*) from t_user where pid=a.id) as xjnum from t_user a " +
                 "where a.pid=? and a.roleid=?";
         return baseDao.query(sql,User.class,new Object[]{userid,roleid});
+    }
+
+
+    //获取所有用户列表
+    public List<User> getAllUsers(){
+        String sql = "select * from t_user";
+
+        return baseDao.query(sql,User.class,new Object[]{});
+    }
+
+
+    //查询某个用户是否购买过商品
+    public int isBuyExist(int userid){
+        String sql = "select count(*) from t_user_goods where userid=? and flag in('2','3')";
+
+        return baseDao.queryForInt(sql,new Object[]{userid});
+    }
+
+
+
+    //获取所有购买商品用户列表
+    public List<User> getAllBuyUsers(){
+        String sql = "select * from t_user where id in(select distinct userid from t_user_goods where flag='2' or flag='3')";
+
+        return baseDao.query(sql,User.class,new Object[]{});
     }
 
     //获取某个用户的直属下级列表
@@ -97,6 +124,39 @@ public class UserDao {
         }
         return total;
     }
+
+
+    //获取某个用户所有的子用户，可用
+    public List<User> treeMenuList( List<User> menuList, int pid){
+        for(User mu: menuList){
+            //遍历出父id等于参数的id，add进子节点集合
+            if(Integer.valueOf(mu.getPid())==pid){
+                //递归遍历下一级
+                treeMenuList(menuList,Integer.valueOf(mu.getId()));
+                childMenu.add(mu);
+            }
+        }
+        return childMenu;
+    }
+
+
+    //获取某个用户所有购买商品的子用户
+    public List<User> treeMenuList1( List<User> menuList, int pid){
+        for(User mu: menuList){
+            //遍历出父id等于参数的id，add进子节点集合
+            if(Integer.valueOf(mu.getPid())==pid){
+                //递归遍历下一级
+                if(isBuyExist(mu.getId())>0) {
+
+                    childMenu1.add(mu);
+                }
+                treeMenuList1(menuList, Integer.valueOf(mu.getId()));
+            }
+        }
+        return childMenu1;
+    }
+
+
 
     //获取某个用户下所有进货子用户的个数
     public int getAllBuyXjnum(int userid){

@@ -17,10 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping(value = "user")
@@ -39,6 +36,15 @@ public class UserController {
 
 	@Autowired
 	VericodeDao vericodeDao;
+
+	@ResponseBody
+	@RequestMapping(value = "/test")
+	public String test(int id){
+
+		int total = userDao.treeMenuList(userDao.getAllUsers(),id).size();
+		int buy = userDao.treeMenuList1(userDao.getAllUsers(),id).size();;
+		return "所有子用户："+total+"    购买产品："+buy;
+	}
 
 
 	@RequestMapping(value = "/request")

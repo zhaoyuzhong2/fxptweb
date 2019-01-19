@@ -72,7 +72,7 @@
         </a>
     </li>
     <li>
-        <a href="./audit_agent/audit_agent.html">
+        <a href="${ctx}/audit/index">
             <i class="icon icon2"></i>
             <span>审核代理</span>
         </a>
@@ -108,7 +108,7 @@
         </a>
     </li>
     <li>
-        <a href="#">
+        <a href="${ctx}/upgrade/index">
             <i class="icon icon8"></i>
             <span>升级处理</span>
         </a>

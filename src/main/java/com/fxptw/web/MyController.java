@@ -1,8 +1,11 @@
 package com.fxptw.web;
 
 
+import com.fxptw.dao.StockDao;
 import com.fxptw.dao.UserDao;
+import com.fxptw.dao.UserGoodsDao;
 import com.fxptw.dto.User;
+import com.fxptw.dto.UserGoods;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +22,10 @@ import java.util.List;
 public class MyController {
 	@Autowired
 	UserDao userDao;
+    @Autowired
+    UserGoodsDao userGoodsDao;
+    @Autowired
+    StockDao stockDao;
 
 
 	//进入  首页    我
@@ -58,6 +65,28 @@ public class MyController {
 
 		return "my/szmx";
 	}
+
+
+
+    @RequestMapping(value = "/sztj")
+    public String sztj(Model model,HttpServletRequest request) {
+
+        return "my/sztj";
+    }
+
+
+    @RequestMapping(value = "/spchtj")
+    public String spchtj(Model model,HttpServletRequest request) {
+        User emp1 = (User) request.getSession().getAttribute("user");
+        SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM");
+        String yearm = sdf.format(new Date());
+		int stock = stockDao.getTotal(emp1.getId(),"4");
+		int ugs = userGoodsDao.getShopingList(emp1.getId(),"3").size();
+
+        model.addAttribute("yearm",yearm);
+		model.addAttribute("total",stock+ugs);
+        return "my/spchtj";
+    }
 
 
 
