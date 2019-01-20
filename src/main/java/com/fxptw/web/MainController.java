@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.Map;
 import com.fxptw.task.WeCharQuartz;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 
 
 @Controller
@@ -122,10 +123,17 @@ public class MainController {
 	}
 
 	private String getWelcome(HttpServletRequest request, Model model, User user){
-		if(user == null)
+		HttpSession session = request.getSession();
+		if(user == null) {
+			Map uu = (Map) session.getAttribute("weCharUser");
+			String openid = (String)session.getAttribute("openId");
+			String headimgurl = (String) uu.get("headimgurl");
+			System.out.println("headimgurl:"+headimgurl);
+			model.addAttribute("headimgurl",headimgurl);
+			model.addAttribute("openid",openid);
 			return "login/login";
-		else{
-			HttpSession session = request.getSession();
+		}else{
+
 			session.setAttribute("user", user);
 			model.addAttribute("tyeji","0.00");
 			double tshouru = userDao.getShouru(user.getId(),"");
