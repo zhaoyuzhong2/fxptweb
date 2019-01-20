@@ -81,6 +81,7 @@ public class RequestController {
 		model.addAttribute("req",req);
 		model.addAttribute("rolename",user.getRolename());
 		model.addAttribute("file",filename);
+		model.addAttribute("headpath",user.getHeadpath());
 
 		return "request/reqinfo";
 	}
