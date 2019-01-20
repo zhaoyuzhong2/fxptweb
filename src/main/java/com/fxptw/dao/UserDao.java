@@ -34,7 +34,7 @@ public class UserDao {
 
     //获取微信登录人员信息
     public User login(String openId){
-        final String sql = "select * from t_user where openid='"+openId+"'";
+        final String sql = "select a.*,b.name as rolename from t_user a left join t_role b on a.roleid=b.id where a.openid='"+openId+"'";
         List<User> emps = baseDao.query(sql,User.class,new Object[]{});
         if(emps.size()>0){
             return emps.get(0);
