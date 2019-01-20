@@ -115,6 +115,7 @@ public class UserController {
 			double byshouru = userDao.getByShouru(user.getId(),yearm);
 			model.addAttribute("shouru",byshouru);
 			model.addAttribute("money",byshouru);
+			model.addAttribute("emp",user);
 
             return "main/index";
         }
