@@ -32,8 +32,8 @@
             </form>
             <div class="toolbar tabbar tabbar-custom">
                 <div class="toolbar-inner">
-                    <a href="#tab-1" class="tab-link tab-link-active">进货下级(${zsnum})</a>
-                    <a href="#tab-2" class="tab-link">下级团队(${xjnum})</a>
+                    <a href="#tab-1" class="tab-link tab-link-active">进货下级<!--(${zsnum})--></a>
+                    <a href="#tab-2" class="tab-link">下级团队<!--(${xjnum})--></a>
                     <a href="#tab-3" class="tab-link">进货上级</a>
                 </div>
             </div>
@@ -59,10 +59,10 @@
                                                 </div>
                                             </div>
                                             <div class="right">
-                                                <div>
-                                                    <div class="top"><span class="txt">直接:</span><span class="num">${u.xjnum}</span></div>
-                                                    <div><span class="txt">团队:</span><span class="num">${u.count}</span></div>
-                                                </div>
+                                                <%--<div>--%>
+                                                    <%--<div class="top"><span class="txt">直接:</span><span class="num">${u.xjnum}</span></div>--%>
+                                                    <%--<div><span class="txt">团队:</span><span class="num">${u.count}</span></div>--%>
+                                                <%--</div>--%>
                                             </div>
                                         </a>
                                     </li>
@@ -94,10 +94,10 @@
                                             </div>
                                         </div>
                                         <div class="right">
-                                            <div>
-                                                <div class="top"><span class="txt">直接:</span><span class="num">${u.xjnum}</span></div>
-                                                <div><span class="txt">团队:</span><span class="num">${u.count}</span></div>
-                                            </div>
+                                            <%--<div>--%>
+                                                <%--<div class="top"><span class="txt">直接:</span><span class="num">${u.xjnum}</span></div>--%>
+                                                <%--<div><span class="txt">团队:</span><span class="num">${u.count}</span></div>--%>
+                                            <%--</div>--%>
                                         </div>
                                     </a>
                                 </li>
