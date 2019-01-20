@@ -28,7 +28,7 @@ public class WeCharController {
     //初始化执行首页绑定处理
     private String beforUrl =
             "https://open.weixin.qq.com/connect/oauth2/authorize?appid=AppId"
-                    +"&redirect_uri=REDIRECT_URI&response_type=code&scope=SCOPE&state=STATE#wechat_redirect";
+                    +"&redirect_uri=REDIRECT_URI&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
 
     //获取用户唯一标识
     private String accessTokenByOpenId =
