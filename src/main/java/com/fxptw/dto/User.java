@@ -1,5 +1,7 @@
 package com.fxptw.dto;
 
+import java.util.Date;
+
 /**
  * Created by james on 2018/12/14.
  */
@@ -29,6 +31,15 @@ public class User extends BaseDTO {
     private double money;
     private String pmobile;
     private String pname;
+    private Date cdate;
+
+    public Date getCdate() {
+        return cdate;
+    }
+
+    public void setCdate(Date cdate) {
+        this.cdate = cdate;
+    }
 
     public String getPmobile() {
         return pmobile;
