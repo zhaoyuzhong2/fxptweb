@@ -90,15 +90,20 @@ public class UserController {
 
 
     @PostMapping(value = "/login")
-    public String login(String mobile,String pwd, HttpServletRequest request, Model model){
+    public String login(String mobile,String pwd,String openid,String headimgurl, HttpServletRequest request, Model model){
 		User user = userDao.login(mobile,pwd);
         if(user==null){
 			model.addAttribute("error","用户名和密码输入错误！");
+			model.addAttribute("headimgurl",headimgurl);
+			model.addAttribute("openid",openid);
             return "login/login";
 
         }else{
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user);
+			user.setOpenid(openid);
+			user.setHeadpath(headimgurl);
+			userDao.updUser(user);//更改openid和headpath
 
 			model.addAttribute("tyeji","0.00");
 			double tshouru = userDao.getShouru(user.getId(),"");
