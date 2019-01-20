@@ -9,10 +9,7 @@
 <%@ page import="com.fxptw.dto.User" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
-<%
-    User emp = (User)request.getSession().getAttribute("user");
 
-%>
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -27,7 +24,16 @@
 </head>
 <body class="index-page">
 <header class="index-header">
-    <div class="head"><img src="${ctx}/img/index_head.png"/></div>
+    <div class="head">
+        <c:choose>
+        <c:when test="${emp.headpath!=null}">
+            <img src="${emp.headpath}"/>
+        </c:when>
+        <c:otherwise>
+            <img src="${ctx}/img/index_head.png"/>
+        </c:otherwise>
+        </c:choose>
+    </div>
     <div class="info">
         <div class="name">${emp.name}</div>
         <div class="tag">
@@ -170,7 +176,7 @@
         <i class="icon icon2"></i>
         <span class="text">消息</span>
     </a>
-    <a href="./my/my.html">
+    <a href="${ctx}/my/index">
         <i class="icon icon3"></i>
         <span class="text">我</span>
     </a>
