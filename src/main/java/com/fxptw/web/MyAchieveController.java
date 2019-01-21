@@ -63,7 +63,7 @@ public class MyAchieveController {
         List<User> users = new ArrayList<>(1);
         users.add(emp1);
         String userIds = userGoodsDao.usersByIds(users);
-        BigDecimal money = userInComeDao.sumMoney(yearMonth, userIds);
+        double money = userInComeDao.getMoneyByUseridYearm(userId,yearMonth);
         request.setAttribute("MyMoney", money);
         System.out.println("Moeny:"+money);
         return "MyAchievements/SalesPerEmployee";
