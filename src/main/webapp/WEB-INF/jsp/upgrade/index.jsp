@@ -47,7 +47,7 @@
                     </ul>
                 </div>
                 <c:choose>
-                <c:when test="${roleid=3}">
+                <c:when test="${roleid==3}">
                 <div class="highest-level" style="display: none;"><!--当前为最高等级时显示内容-->
                     <img src="${ctx}/img/highest_level.png"/>
                     <div class="txt">当前已是最高等级了</div>
