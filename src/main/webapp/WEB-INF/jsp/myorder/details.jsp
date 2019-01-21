@@ -27,7 +27,8 @@
     <div class="page">
         <div class="page-content">
             <div class="banner-box">
-                <div class="banner display-flex align-items-center">交易完成</div>
+                <div class="banner display-flex align-items-center">收货人:${userGoods.postname} &nbsp ${userGoods.postmobile} </div>
+                <div class="banner display-flex align-items-center">收货人地址:${userGoods.postadd} </div>
             </div>
 
             <div class="list list-icon">
@@ -45,19 +46,36 @@
             </div>
 
             <div class="display-flex justify-content-space-between product-show">
-                <div class="display-flex">
-                    <img class="product-img" src="../../img/product1.png"/>
-                    <div class="product-name">唤醒记忆减脂餐</div>
-                </div>
-                <div class="right display-flex justify-content-space-between text-align-right">
-                    <div class="price">¥180</div>
-                    <div class="num">X80</div>
-                </div>
+                <c:choose>
+                    <c:when test="${list.size()==0}">
+                        <div class="info">没有商品可供显示哦</div>
+                    </c:when>
+                    <c:otherwise>
+
+                            <c:forEach items="${list}" var="usergood">
+                                <div class="display-flex">
+                                <c:choose>
+                                    <c:when test="${usergood.imgfile}==null">
+                                        <img src="${ctx}/img/ala.jpg" width="70" height="70" class="product-img"/>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <img src="${ctx}${usergood.imgfile}" width="70" height="70" class="product-img"/>
+                                    </c:otherwise>
+                                </c:choose>
+                                <div class="product-name">${usergood.goodname}</div>
+                                </div>
+                                <div class="right display-flex justify-content-space-between text-align-right">
+                                    <div class="price">¥${usergood.buyprice}</div>
+                                    <div class="num">X{usergood.buynum}</div>
+                                </div>
+                            </c:forEach>
+                    </c:otherwise>
+                </c:choose>
             </div>
 
             <ul class="proinfo-list">
                 <li>
-                    <div><span>买家留言:</span><span class="message-con">无</span></div>
+                    <div><span>买家留言:${userGoods.message}</span><span class="message-con">无</span></div>
                 </li>
                 <li>
                     <div>支付方式</div>
@@ -65,24 +83,24 @@
                 </li>
                 <li>
                     <div>商品总价</div>
-                    <div class="pay-method">¥14400.00</div>
+                    <div class="pay-method">¥1${totalprice}</div>
                 </li>
                 <li>
                     <div></div>
-                    <div class="pay-method"><span>合计:</span><span class="price">¥14400.00</span></div>
+                    <div class="pay-method"><span>合计:${totalprice}</span><span class="price">¥14400.00</span></div>
                 </li>
             </ul>
 
             <ul class="trade-detail">
-                <li>订单编号：2018042709425027823</li>
-                <li>下单时间：2018-04-27 09:42:52</li>
-                <li>付款时间：2018-04-27 09:43:02</li>
-                <li>发货时间：2018-04-27 09:43:39</li>
-                <li>成交时间：2018-04-27 09:43:38</li>
+                <li>订单编号：${code}</li>
+                <li>下单时间：${userGoods.cdate}</li>
+                <li>付款时间:${userGoods.qrdate}</li>
+                <li>发货时间：${userGoods.fhdate}</li>
+                <li>成交时间：${userGoods.qxdate}</li>
             </ul>
 
             <div class="bottom display-flex justify-content-flex-end">
-                <a class="buy-btn" href="#">再次购买</a>
+                <a href="${ctx}/ug/wantToBy" class="buy-btn">再次购买</a>
             </div>
 
             <a href="javascript:history.back(-1);" class="goback" id="goBack"></a>
@@ -93,9 +111,9 @@
 
 
 
-<script src="../../js/framework7.min.js"></script>
-<script src="../../js/jquery.min.js"></script>
-<script src="../../js/my-app.js"></script>
+<script src="${ctx}/js/framework7.min.js"></script>
+<script src="${ctx}/js/jquery.min.js"></script>
+<script src="${ctx}/js/my-app.js"></script>
 
 
 <script type="text/javascript">
