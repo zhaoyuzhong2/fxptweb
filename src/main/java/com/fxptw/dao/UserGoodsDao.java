@@ -142,26 +142,32 @@ public class UserGoodsDao {
     //王春伟添加的方法
     //查询出所有的订单号
     public List<UserGoods> getCodeByUserid(Integer userid,String search_name) {
-        String sql = "select code From t_user_goods where flag!=9 and userid=? and code like ? or postmobile like ? " +
-                "or postname like ? group by code";
-        return baseDao.query(sql,UserGoods.class,new Object[]{userid,"%"+search_name+"%","%"+search_name+"%",
-                "%"+search_name+"%"});
+        String sql = "select code From t_user_goods where flag!=9 and userid=? and (code like ? or postmobile like ? or postname like ?) group by code";
+        return baseDao.query(sql,UserGoods.class,new Object[]{userid,"%"+search_name+"%","%"+search_name+"%","%"+search_name+"%"});
     }
     //查询出所有的订单号
     public List<UserGoods> getCodeByUseridByFlag(Integer userid,String flag,String search_name) {
-        String sql = "select code From t_user_goods where flag=? and userid=? and code like ? " +
-                "or postmobile like ? or postname like ? group by code";
-        return baseDao.query(sql,UserGoods.class,new Object[]{flag,userid,"%"+search_name+
-                "%","%"+search_name+"%","%"+search_name+"%"});
+        String sql = "select code From t_user_goods where flag=? and (userid=? and code like ? or postmobile like ? or postname like ?) group by code";
+        return baseDao.query(sql,UserGoods.class,new Object[]{flag,userid,"%"+search_name+"%","%"+search_name+"%","%"+search_name+"%"});
     }
 
     //根据订单号查询订单
     public List<UserGoods> selectGoodsByCode(String code) {
-        String sql="SELECT * FROM t_user_goods \n" +
-                "WHERE flag!=9 \n" +
-                "AND code=?\n";
+        String sql="SELECT tug.*,tgf.imgfile FROM t_user_goods  tug LEFT JOIN t_goods_file tgf ON tug.goodid=tgf.goodid" ;
+        sql = sql +  " WHERE tug.flag!='9'  AND tug.code=? ";
         return baseDao.query(sql,UserGoods.class,new Object[]{code});
     }
+    //根据订单号查询订单
+    public List<UserGoods> selectGoodsByCodeAndFlag(String flag,String code) {
+        String sql="SELECT tug.*,tgf.imgfile FROM t_user_goods  tug\n" +
+                "LEFT JOIN t_goods_file tgf ON tug.goodid=tgf.goodid\n" +
+                "WHERE tug.flag=? \n" +
+                "AND tug.code=?";
+        return baseDao.query(sql,UserGoods.class,new Object[]{flag,code});
+    }
+
+
+
 
     //获取订货数量（是传入人数类型而定）
     public Integer queryUsersByGoodsNum(List<User> users){
