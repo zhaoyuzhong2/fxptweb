@@ -127,7 +127,7 @@
             </a>
         </div>
     </div>
-    <div class="bottom">01月个人业绩：&nbsp;0.00元</div>
+    <div class="bottom">01月个人业绩：&nbsp;${MyMoney}元</div>
 </div>
 
 
