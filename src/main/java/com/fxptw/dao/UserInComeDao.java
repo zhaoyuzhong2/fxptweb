@@ -72,10 +72,28 @@ public class UserInComeDao {
                 "FROM\n" +
                 "\tt_user_income ic\n" +
                 "WHERE 1 =1 \n";
-                if(!StringUtils.isEmpty(yearMonth)) {
-                    sql += "\t AND ic.yearm = '" + yearMonth + "'\n";
-                }
-                sql += " AND ic.userid  IN ("+userIds+")";
+        if(!StringUtils.isEmpty(yearMonth)) {
+            sql += "\t AND ic.yearm = '" + yearMonth + "'\n";
+        }
+        sql += " AND ic.userid  IN ("+userIds+")";
         return baseDao.queryForObject(sql,BigDecimal.class,null);
     }
+
+
+    //获得某个人总收入
+    public BigDecimal getMoneyByUserid(String userid){
+        String sql = "SELECT SUM(money) AS TotalMoney FROM t_user_income WHERE userid=?";
+
+        return baseDao.queryForObject(sql,BigDecimal.class,new Object[]{userid});
+    }
+
+
+    //获得某个人总奖励
+    public BigDecimal getRewardByUserid(String userid){
+        String sql = "SELECT SUM(reward) AS TotalMoney FROM t_user_income WHERE userid=?";
+
+        return baseDao.queryForObject(sql,BigDecimal.class,new Object[]{userid});
+    }
+
+
 }
