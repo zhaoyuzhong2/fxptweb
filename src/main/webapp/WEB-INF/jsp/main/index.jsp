@@ -57,13 +57,13 @@
         </a>
     </li>
     <li>
-        <a href="./my_order/my_purchase_orders_list.html">
+        <a href="${ctx}/myorder/getList">
             <i class="icon icon3"></i>
             <span class="name">我的订单</span>
         </a>
     </li>
     <li>
-        <a href="./cloud_storage/cloud_storage.html">
+        <a href="${ctx}/cloud/cloudstorage">
             <i class="icon icon4"></i>
             <span class="name">云仓库</span>
         </a>
