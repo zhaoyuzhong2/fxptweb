@@ -1,5 +1,7 @@
 package com.fxptw.dto;
 
+import java.util.Date;
+
 /**
  * Created by james on 2018/12/14.
  */
@@ -23,9 +25,37 @@ public class User extends BaseDTO {
     private String areaname;
     private String flag;
     private String rolename;
+    private String openid;
     private int sailnum;
     private int xjnum;
     private double money;
+    private String pmobile;
+    private String pname;
+    private Date cdate;
+
+    public Date getCdate() {
+        return cdate;
+    }
+
+    public void setCdate(Date cdate) {
+        this.cdate = cdate;
+    }
+
+    public String getPmobile() {
+        return pmobile;
+    }
+
+    public void setPmobile(String pmobile) {
+        this.pmobile = pmobile;
+    }
+
+    public String getPname() {
+        return pname;
+    }
+
+    public void setPname(String pname) {
+        this.pname = pname;
+    }
 
     public double getMoney() {
         return money;
@@ -201,5 +231,13 @@ public class User extends BaseDTO {
 
     public void setRolename(String rolename) {
         this.rolename = rolename;
+    }
+
+    public String getOpenid() {
+        return openid;
+    }
+
+    public void setOpenid(String openid) {
+        this.openid = openid;
     }
 }

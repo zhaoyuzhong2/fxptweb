@@ -34,6 +34,14 @@ public class RequestDao {
 
 
 
+    //添加邀请
+    public int addRequest(Request ug) {
+        String sql = "insert into t_request(userid,username,mobile,roleid,roles,imgpath,cdate) values(:userid,:username,:mobile,:roleid,:roles,:imgpath,now())";
+        return baseDao.insert(sql,ug);
+    }
+
+
+
 
 
 }

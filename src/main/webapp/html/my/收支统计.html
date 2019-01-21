@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+    <title>收支统计</title>
+    <link rel="stylesheet" href="../../css/framework7.min.css">
+    <link rel="stylesheet" href="../../css/font.css">
+    <link rel="stylesheet" href="../../css/public.css">
+</head>
+<body class="page-budget-statis">
+<div id="app">
+    <div class="panel panel-right panel-cover panel-filter" id="panelFilter">
+        <div class="title">账单类型</div>
+        <div class="radio-btnbox">
+            <label class="radio radio-btn"><input type="radio" name="bill" v-model="billCheck" value="all"><span class="txt">全部</span></label>
+            <label class="radio radio-btn"><input type="radio" name="bill" v-model="billCheck" value="income"><span class="txt">收入</span></label>
+            <label class="radio radio-btn"><input type="radio" name="bill" v-model="billCheck" value="expend"><span class="txt">支出</span></label>
+        </div>
+        <div class="title">业务类型</div>
+        <div class="radio-btnbox">
+            <label class="radio radio-btn"><input type="radio" name="service" v-model="serviceCheck" value="all"><span class="txt">全部</span></label>
+            <label class="radio radio-btn"><input type="radio" name="service" v-model="serviceCheck" value="orders"><span class="txt">订单</span></label>
+            <label class="radio radio-btn"><input type="radio" name="service" v-model="serviceCheck" value="reward"><span class="txt">奖励</span></label>
+            <label class="radio radio-btn"><input type="radio" name="service" v-model="serviceCheck" value="adjust"><span class="txt">总部调整</span></label>
+        </div>
+
+        <div class="opebtns-box">
+            <p class="segmented segmented-raised segmented-round opebtns">
+                <button class="button button-round button-small btn-reset" @click="resetPanel()">重置</button>
+                <button class="button button-round button-small btn-sure panel-close" @click="getRadioCheck()">确定</button>
+            </p>
+        </div>
+    </div>
+
+    <div class="view view-main">
+        <div class="page">
+            <div class="page-content">
+                <div class="top-info display-flex align-items-center">
+                    <div class="money">总收入: &nbsp;&nbsp;0.00</div>
+                    <div class="money">总支出: &nbsp;&nbsp;0.00</div>
+                </div>
+
+                <div class="toolbox display-flex justify-content-space-between align-items-center">
+                    <div class="display-flex align-items-center">
+                        <div id="date">2018-12</div>
+                        <a href="#" class="iconfont icon-calendar" id="picker-date"></a>
+                        <a href="#" class="iconfont icon-question" onclick="helpTip()"></a>
+                    </div>
+                    <a href="#" class="display-flex align-items-center filter-btn panel-open" data-panel="right">
+                        <div>分类筛选</div>
+                        <i class="iconfont icon-shaixuan"></i>
+                    </a>
+                </div>
+
+                <div>
+                    <div class="null-tip">
+                        <img src="../../img/null.png" class="img"/>
+                        <div class="info">没有内容可供显示</div>
+                    </div>
+                </div>
+
+                <a href="javascript:history.back(-1);" class="goback" id="goBack"></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="../../js/vue.js"></script>
+<script>
+    /* 点击重置筛选面板，点击确定筛选*/
+    new Vue({
+        el: '#panelFilter',
+        data: {
+            billCheck:'all',
+            serviceCheck: 'all',
+        },
+        methods: {
+            resetPanel: function (){
+                this.billCheck = 'all';
+                this.serviceCheck = 'all';
+            },
+            getRadioCheck: function (){ // 点击获取被选中的radio
+                console.log(this.billCheck,this.serviceCheck);
+            }
+        }
+    });
+</script>
+<script src="../../js/framework7.min.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/my-app.js"></script>
+<script src="../../js/public.js"></script>
+<script>
+    var mainView = app.views.create('.view-main',{});
+
+
+    /* 日期选择 */
+    var pickerDevice = app.picker.create({
+        inputEl: '#picker-date',
+        renderToolbar: function () {
+            return '<div class="toolbar">' +
+                    '<div class="toolbar-inner">' +
+                    '<div class="left">' +
+                    '<a href="#" class="link toolbar-cancel-link">取消</a>' +
+                    '</div>' +
+                    '<div class="title"></div>'+
+                    '<div class="right">' +
+                    '<a href="#" class="link popover-close sure-btn">确定</a>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>';
+        },
+        cssClass: 'c-custom-picker',
+        openIn: 'sheet',
+        cols: [
+            {
+                textAlign: 'center',
+                values: ['2016', '2017', '2018'],
+                displayValues: ['2016年', '2017年', '2018年'],
+            },
+            {
+                textAlign: 'center',
+                values: ['10', '11', '12'],
+                displayValues: ['10月', '11月', '12月'],
+            }
+        ],
+        on: {
+            open: function (picker) {
+                $(picker.$el[0]).before('<div class="sheet-backdrop" style="z-index: 12500;"></div>');
+                picker.$el.prev().addClass('backdrop-in');
+
+                picker.$el.find('.toolbar-cancel-link').on('click', function () {
+                    picker.close();
+                });
+                picker.$el.find('.sure-btn').on('click', function () {
+                    $('#date').html(picker.getValue().join('-'));
+                    picker.close();
+                });
+            },
+            close: function (picker) {
+                picker.$el.prev().remove();
+            }
+            /*opened: function (picker) {
+             $(picker.$el[0]).before('<div class="sheet-backdrop"></div>');
+             picker.$el.prev().addClass('backdrop-in');
+             }*/
+        }
+    });
+
+
+    /* 帮助弹窗 */
+    function helpTip() {
+        app.dialog.create({
+            title: '收支统计说明',
+            text: '',
+            cssClass: 'c-custom-dialog',
+            content: '<div class="info">统计代理通过订单、奖励、总部手动调整获得的已结算收入和支出，包括线下打款。</div>',
+            buttons: [
+                {
+                    text: '知道了',
+                    cssClass: 'btn-confirm',
+                },
+            ],
+
+            verticalButtons: false,
+        }).open();
+    }
+
+
+    /* 筛选面板 */
+    var panelRight = app.panel.right;
+    panelRight.on('open', function () {
+        //console.log('Panel right: open');
+    });
+    panelRight.on('opened', function () {
+        //console.log('Panel right: opened');
+    });
+
+    app.on('panelClose', function (panel) {
+        //console.log('Panel ' + panel.side + ': close');
+    });
+    app.on('panelClosed', function (panel) {
+        //console.log('Panel ' + panel.side + ': closed');
+    });
+
+</script>
+</body>
+</html>

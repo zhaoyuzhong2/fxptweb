@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+    <title>升级列表</title>
+    <link rel="stylesheet" href="../../css/framework7.min.css">
+    <link rel="stylesheet" href="../../css/font.css">
+    <link rel="stylesheet" href="../../css/public.css">
+</head>
+<body class="page-goup-list">
+<div id="app">
+    <div class="page">
+        <div class="toolbar tabbar tabbar-custom">
+            <div class="toolbar-inner">
+                <a href="#tab-1" class="tab-link tab-link-active">我要升级</a>
+                <a href="#tab-2" class="tab-link">下级升级(0)</a>
+            </div>
+        </div>
+        <div class="tabs">
+
+            <div class="page-content tab tab-active" id="tab-1">
+
+                <div class="list top-btn">
+                    <ul>
+                        <li>
+                            <a href="#" class="item-link item-content external">
+                                <div class="item-media"><i class="iconfont icon-dengji"></i></div>
+                                <div class="item-inner">
+                                    <div class="item-title">
+                                        <div class="item-header">当前代理等级</div>
+                                        唤醒大区
+                                    </div>
+                                    <div class="item-after">升级记录</div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="highest-level" style="display: none;"><!--当前为最高等级时显示内容-->
+                    <img src="../../img/highest_level.png"/>
+                    <div class="txt">当前已是最高等级了</div>
+                </div>
+
+                <ul class="goup-condition-list">
+                    <li>
+                        <div class="title display-flex align-items-center">
+                            <div class="name">可升级代理等级:</div>
+                            <div class="tag">唤醒联创</div>
+                        </div>
+                        <ul class="goup-info">
+                            <li class="display-flex align-items-center">
+                                <div class="step">升级条件一</div>
+                                <div class="tip">满足升级条件后可以申请升级</div>
+                            </li>
+                            <li>
+                                <div>1.一次性 补货9000.00元；</div>
+                                <div class="red-tip">申请升级后需要完成一次性补货才能升级成功</div>
+                            </li>
+                            <li class="display-flex align-items-center justify-content-flex-end">
+                                <div class="tip">当前可以发起升级</div>
+                                <a href="#" class="goup-btn" onclick="goupTip()">我要升级</a>
+                            </li>
+                            <div class="cornermark">已达标</div>
+                        </ul>
+                    </li>
+                    <li>
+                        <div class="title display-flex align-items-center">
+                            <div class="name">可升级代理等级:</div>
+                            <div class="tag">唤醒总代</div>
+                        </div>
+                        <ul class="goup-info">
+                            <li class="display-flex align-items-center">
+                                <div class="step">升级条件一</div>
+                                <div class="tip">满足升级条件后可以申请升级</div>
+                            </li>
+                            <li>
+                                <div>1.一次性 补货0.00元；</div>
+                                <div class="red-tip">申请升级后需要完成一次性补货才能升级成功</div>
+                            </li>
+                            <li class="display-flex align-items-center justify-content-flex-end">
+                                <div class="tip">当前可以发起升级</div>
+                                <a href="#" class="goup-btn" onclick="goupTip()">我要升级</a>
+                            </li>
+                            <div class="cornermark">已达标</div>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+
+            <div class="page-content tab" id="tab-2">
+                <div class="list c-list-link">
+                    <ul>
+                        <li>
+                            <a href="#" class="item-link item-content">
+                                <div class="item-inner">
+                                    <div class="item-title">当前处理中升级申请:<span class="num">0</span></div>
+                                    <div class="item-after">下级升级记录</div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<a href="javascript:history.back(-1);" class="goback" id="goBack"></a>
+
+<script src="../../js/framework7.min.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/my-app.js"></script>
+<script>
+    /* 帮助弹窗 */
+    function goupTip() {
+        app.dialog.create({
+            title: '升级提示',
+            text: '',
+            cssClass: 'c-custom-dialog',
+            content: '<div class="info">您申请升级的代理需先完善资料因为您升级的代理等级等于或超过当前上级代理，升级后，将不再是当前代理的下级。是否确认发起升级？</div>',
+            buttons: [
+                {
+                    text: '取消',
+                },
+                {
+                    text: '确定',
+                    cssClass: 'btn-confirm',
+                    onClick: function (e){
+
+                    }
+                }
+            ],
+
+            verticalButtons: false,
+        }).open();
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+    <title>支出记录</title>
+    <link rel="stylesheet" href="../../css/framework7.min.css">
+    <link rel="stylesheet" href="../../css/font.css">
+    <link rel="stylesheet" href="../../css/public.css">
+</head>
+<body class="page-extract-record">
+<div id="app">
+    <div class="page">
+        <div class="page-content">
+            <div class="c-top-banner">
+                <div class="wave-box">
+                    <div class="waves1">
+                        <img src="../../img/wave1.png" class="wave">
+                        <img src="../../img/wave1.png" class="wave">
+                        <img src="../../img/wave1.png" class="wave">
+                        <img src="../../img/wave1.png" class="wave">
+                    </div>
+                    <div class="waves2">
+                        <img src="../../img/wave2.png" class="wave">
+                        <img src="../../img/wave2.png" class="wave">
+                        <img src="../../img/wave2.png" class="wave">
+                        <img src="../../img/wave2.png" class="wave">
+                    </div>
+                    <div class="waves3">
+                        <img src="../../img/wave3.png" class="wave">
+                        <img src="../../img/wave3.png" class="wave">
+                        <img src="../../img/wave3.png" class="wave">
+                        <img src="../../img/wave3.png" class="wave">
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="info" style="color: #fff;">支出中(元)</div>
+                    <div class="money">0</div>
+                    <div class="info">(含提款审核和销账确认中的金额)</div>
+                </div>
+            </div>
+
+            <div class="toolbar tabbar tabbar-custom">
+                <div class="toolbar-inner">
+                    <!-- Links have "tab-link" class instead of just "link" to switch tabs -->
+                    <a href="#tab-1" class="tab-link tab-link-active">全部</a>
+                    <a href="#tab-2" class="tab-link">提款审核</a>
+                    <a href="#tab-3" class="tab-link">确认中</a>
+                    <a href="#tab-4" class="tab-link">已支出</a>
+                </div>
+            </div>
+            <div class="tabs">
+
+                <div class="tab tab-active" id="tab-1">
+                    <div class="null-tip">
+                        <img src="../../img/null.png" class="img"/>
+                        <div class="info">没有内容可供显示</div>
+                    </div>
+                </div>
+
+                <div class="tab" id="tab-2">
+                    <div class="null-tip">
+                        <img src="../../img/null.png" class="img"/>
+                        <div class="info">没有内容可供显示哦</div>
+                    </div>
+                </div>
+
+                <div class="tab" id="tab-3">
+                    <div class="null-tip">
+                        <img src="../../img/null.png" class="img"/>
+                        <div class="info">没有内容可供显示</div>
+                    </div>
+                </div>
+
+                <div class="tab" id="tab-4">
+                    <div class="null-tip">
+                        <img src="../../img/null.png" class="img"/>
+                        <div class="info">没有内容可供显示哦</div>
+                    </div>
+                </div>
+            </div>
+
+            <a href="javascript:history.back(-1);" class="goback" id="goBack"></a>
+        </div>
+    </div>
+</div>
+
+
+<script src="../../js/framework7.min.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/my-app.js"></script>
+<script src="../../js/public.js"></script>
+</body>
+</html>

@@ -56,7 +56,7 @@
                             <div class="num clearfix">
                                 <div class="right">
                                         <%--<i class="sub-btn" id="jian${g.id}" onclick="changenum(${g.id},-1)">-</i>--%>
-                                    <input class="val" type="text" id="num${g.id}" value="${g.count}" />
+                                    <input class="val" type="text" id="num${g.id}" value="0" />
                                         <%--<i class="add-btn" id="jia${g.id}"  onclick="changenum(${g.id},1)">＋</i>--%>
                                 </div>
                             </div>

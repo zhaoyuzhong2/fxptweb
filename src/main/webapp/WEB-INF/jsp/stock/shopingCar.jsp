@@ -70,7 +70,7 @@
         });
 
 
-        Showbo.Msg.confirm('确定要结算进货车吗？',function (btn) {
+        Showbo.Msg.confirm('确定要结算库存进货车吗？',function (btn) {
             if(btn=='yes'){
                 $.post("${ctx}/ug/jsShopingCar",{result:result},function (d) {
                     if(d=="ajaxfail"){

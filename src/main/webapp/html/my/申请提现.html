@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+    <title>申请提现</title>
+    <link rel="stylesheet" href="../../css/framework7.min.css">
+    <link rel="stylesheet" href="../../css/font.css">
+    <link rel="stylesheet" href="../../css/public.css">
+</head>
+<body class="page-application-cash">
+<div id="app">
+    <div class="page">
+        <div class="page-content">
+            <div class="wrapper">
+                <div class="cash-mount">
+                    <div class="top">
+                        <div class="name">提现金额</div>
+                        <div class="display-flex align-items-center money-ipt">
+                            <div class="rmb">¥</div>
+                            <input class="money" type="text" placeholder="请输入提现金额"/>
+                        </div>
+                    </div>
+                    <div class="display-flex align-items-center bottom">
+                        <div>账户可提现金额0.00元</div>
+                        <a class="cash-btn" href="#">全部提取</a>
+                    </div>
+                </div>
+
+                <div class="cashway-list">
+                    <div class="title">提现到</div>
+                    <div class="list cashways" id="cashWays">
+                        <ul>
+                            <li>
+                                <label class="item-radio item-content">
+                                    <input type="radio" name="demo-radio" value="zhifubao" v-model="picked" />
+                                    <div class="item-media"><i class="iconfont icon-alipay"></i></div>
+                                    <div class="item-inner">
+                                        <div class="item-title">支付宝</div>
+                                    </div>
+                                    <i class="iconfont icon-past"></i>
+                                </label>
+                            </li>
+                            <li class="hide-li" v-if="picked == 'zhifubao'">
+                                <a href="#" class="item-link item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title">添加账号</div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <label class="item-radio item-content">
+                                    <input type="radio" name="demo-radio" value="yinhangka" v-model="picked"/>
+                                    <div class="item-media"><i class="iconfont icon-balance" style="background-color: #fb5871;"></i></div>
+                                    <div class="item-inner">
+                                        <div class="item-title">银行卡</div>
+                                    </div>
+                                    <i class="iconfont icon-past"></i>
+                                </label>
+                            </li>
+                            <li class="hide-li" v-if="picked == 'yinhangka'">
+                                <a href="#" class="item-link item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title">添加账号</div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <a href="#" class="col button button-big button-fill button-round c-block-btn external">确认提现</a>
+            </div>
+
+
+            <a href="javascript:history.back(-1);" class="goback" id="goBack"></a>
+        </div>
+    </div>
+</div>
+
+<script src="../../js/framework7.min.js"></script>
+<script src="../../js/vue.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/my-app.js"></script>
+<script src="../../js/public.js"></script>
+<script>
+    new Vue({
+        el: '#cashWays',
+        data: {
+            picked: 'zhifubao',
+        },
+    });
+</script>
+</body>
+</html>

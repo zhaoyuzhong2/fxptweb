@@ -17,10 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping(value = "user")
@@ -40,12 +37,21 @@ public class UserController {
 	@Autowired
 	VericodeDao vericodeDao;
 
+	@ResponseBody
+	@RequestMapping(value = "/test")
+	public String test(int id){
+
+		int total = userDao.treeMenuList(userDao.getAllUsers(),id).size();
+		int buy = userDao.treeMenuList1(userDao.getAllUsers(),id).size();;
+		return "所有子用户："+total+"    购买产品："+buy;
+	}
+
 
 	@RequestMapping(value = "/request")
-	public String request(int id,Model model){
+	public String request(int id,String result,Model model){
 		Request req = requestDao.getRequestById(id);
 		int requesttime = paramSettings.getRequesttime();//从配置文件获取邀请失效时间
-
+		System.out.println("requesttime:"+requesttime);
 		//判断此邀请是否已失效，失效跳转错误页面
 		long nd = 1000 * 24 * 60 * 60;
 		long nh = 1000 * 60 * 60;
@@ -57,13 +63,13 @@ public class UserController {
 		long hour = diff % nd / nh;
 		if(hour>requesttime){
 			//说明此邀请已失效
-			return "user/error";
+			return "login/error";
 		}else{
 			model.addAttribute("reqUserid",req.getUserid());
 			model.addAttribute("reqUsername",req.getUsername());
 			model.addAttribute("roles",req.getRoles());
 
-			return "user/reg1";
+			return "login/reg1";
 		}
 
 
@@ -84,15 +90,20 @@ public class UserController {
 
 
     @PostMapping(value = "/login")
-    public String login(String mobile,String pwd, HttpServletRequest request, Model model){
+    public String login(String mobile,String pwd,String openid,String headimgurl, HttpServletRequest request, Model model){
 		User user = userDao.login(mobile,pwd);
         if(user==null){
 			model.addAttribute("error","用户名和密码输入错误！");
+			model.addAttribute("headimgurl",headimgurl);
+			model.addAttribute("openid",openid);
             return "login/login";
 
         }else{
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user);
+			user.setOpenid(openid);
+			user.setHeadpath(headimgurl);
+			userDao.updUser(user);//更改openid和headpath
 
 			model.addAttribute("tyeji","0.00");
 			double tshouru = userDao.getShouru(user.getId(),"");
@@ -104,6 +115,7 @@ public class UserController {
 			double byshouru = userDao.getByShouru(user.getId(),yearm);
 			model.addAttribute("shouru",byshouru);
 			model.addAttribute("money",byshouru);
+			model.addAttribute("emp",user);
 
             return "main/index";
         }
@@ -127,11 +139,12 @@ public class UserController {
 	@RequestMapping(value = "/reg2")
 	public String reg2(String mobile,String reqUserid,String reqUsername,String roles,Model model){
 		List<Role> rs = roleDao.getRolesByReq(roles);
+
 		model.addAttribute("mobile",mobile);
 		model.addAttribute("reqUserid",reqUserid);
 		model.addAttribute("reqUsername",reqUsername);
 		model.addAttribute("rs",rs);
-		return "user/reg2";
+		return "login/reg2";
 	}
 
 
@@ -145,7 +158,7 @@ public class UserController {
 		model.addAttribute("reqUserid",reqUserid);
 		model.addAttribute("reqUsername",reqUsername);
 
-		return "user/reg3";
+		return "login/reg3";
 	}
 
 

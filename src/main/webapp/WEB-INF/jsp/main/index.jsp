@@ -9,10 +9,7 @@
 <%@ page import="com.fxptw.dto.User" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
-<%
-    User emp = (User)request.getSession().getAttribute("user");
 
-%>
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -27,7 +24,16 @@
 </head>
 <body class="index-page">
 <header class="index-header">
-    <div class="head"><img src="${ctx}/img/index_head.png"/></div>
+    <div class="head">
+        <c:choose>
+        <c:when test="${emp.headpath!=null}">
+            <img src="${emp.headpath}"/>
+        </c:when>
+        <c:otherwise>
+            <img src="${ctx}/img/index_head.png"/>
+        </c:otherwise>
+        </c:choose>
+    </div>
     <div class="info">
         <div class="name">${emp.name}</div>
         <div class="tag">
@@ -66,37 +72,37 @@
 
 <ul class="index-nav clearfix">
     <li>
-        <a href="#">
+        <a href="${ctx}/request/index">
             <i class="icon icon1"></i>
             <span>邀请代理</span>
         </a>
     </li>
     <li>
-        <a href="./audit_agent/audit_agent.html">
+        <a href="${ctx}/audit/index">
             <i class="icon icon2"></i>
             <span>审核代理</span>
         </a>
     </li>
     <li>
-        <a href="./reward/reward_home.html">
+        <a href="${ctx}/reward/index">
             <i class="icon icon3"></i>
             <span>奖励</span>
         </a>
     </li>
     <li>
-        <a href="./my_achievements/my_achievement.html">
+        <a href="${ctx}/myachievements/index">
             <i class="icon icon4"></i>
             <span>我的业绩</span>
         </a>
     </li>
     <li>
-        <a href="#">
+        <a href="${ctx}/team/buy">
             <i class="icon icon5"></i>
             <span>进货关系网</span>
         </a>
     </li>
     <li>
-        <a href="./invitation_networks/invitation_team.html">
+        <a href="${ctx}/team/request">
             <i class="icon icon6"></i>
             <span>邀请关系网</span>
         </a>
@@ -108,7 +114,7 @@
         </a>
     </li>
     <li>
-        <a href="#">
+        <a href="${ctx}/upgrade/index">
             <i class="icon icon8"></i>
             <span>升级处理</span>
         </a>
@@ -170,7 +176,7 @@
         <i class="icon icon2"></i>
         <span class="text">消息</span>
     </a>
-    <a href="./my/my.html">
+    <a href="${ctx}/my/index">
         <i class="icon icon3"></i>
         <span class="text">我</span>
     </a>

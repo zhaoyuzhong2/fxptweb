@@ -13,6 +13,20 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "param")
 public class ParamSettings {
     private int requesttime;
+    private String url;
+
+    private String appId;
+
+    private String appSecret;
+
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     public int getRequesttime() {
         return requesttime;
@@ -20,5 +34,21 @@ public class ParamSettings {
 
     public void setRequesttime(int requesttime) {
         this.requesttime = requesttime;
+    }
+
+    public String getAppId() {
+        return appId;
+    }
+
+    public void setAppId(String appId) {
+        this.appId = appId;
+    }
+
+    public String getAppSecret() {
+        return appSecret;
+    }
+
+    public void setAppSecret(String appSecret) {
+        this.appSecret = appSecret;
     }
 }

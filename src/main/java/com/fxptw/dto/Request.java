@@ -8,11 +8,20 @@ import java.util.Date;
 public class Request extends BaseDTO {
     private Integer id;
     private String username;
-    private String userid;
+    private Integer userid;
     private String mobile;
     private Integer roleid;
     private String roles;
     private Date cdate;
+    private String imgpath;
+
+    public String getImgpath() {
+        return imgpath;
+    }
+
+    public void setImgpath(String imgpath) {
+        this.imgpath = imgpath;
+    }
 
     public Integer getId() {
         return id;
@@ -30,11 +39,11 @@ public class Request extends BaseDTO {
         this.username = username;
     }
 
-    public String getUserid() {
+    public Integer getUserid() {
         return userid;
     }
 
-    public void setUserid(String userid) {
+    public void setUserid(Integer userid) {
         this.userid = userid;
     }
 

@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
-    <title>审核代理</title>
+    <title>审核列表</title>
+    <link rel="stylesheet" href="../../css/framework7.min.css">
     <link rel="stylesheet" href="../../css/public.css">
 </head>
 <body class="page-audit-agent">
@@ -28,10 +29,32 @@
     </div>
 </div>
 <div class="pagenav-content">
-    <div class="null-tip">
+    <!--<div class="null-tip">
         <img src="../../img/null.png" class="img"/>
         <div class="info">没有内容可供显示</div>
-    </div>
+    </div>-->
+    <ul class="already-agent-list">
+        <li>
+            <div class="top display-flex justify-content-space-between align-items-center">
+                <div class="left display-flex align-items-center">
+                    <div>代理:&nbsp;&nbsp;</div>
+                    <div>陈玲玲&nbsp;&nbsp;(13745093386)</div>
+                </div>
+                <div class="right">已代理</div>
+            </div>
+            <ul class="content">
+                <li class="display-flex justify-content-space-between align-items-center">
+                    <div>微信号:&nbsp;&nbsp;137456789</div>
+                    <div class="date">2018-12-20 13:33:05</div>
+                </li>
+                <li>身份证号:&nbsp;&nbsp;230764033729741077</li>
+                <li>邀请人:&nbsp;&nbsp;陈思彤 (17793847620)</li>
+                <li>申请等级:&nbsp;&nbsp;唤醒大区</li>
+                <li>首次进货成功，已成为<span class="red">“唤醒大区”</span>。</li>
+            </ul>
+        </li>
+    </ul>
+    <div class="loading-tip">已全部加载</div>
 </div>
 <div class="pagenav-content">
     <div class="null-tip">

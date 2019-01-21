@@ -9,7 +9,9 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
@@ -17,6 +19,7 @@ import org.springframework.web.filter.CorsFilter;
 import javax.sql.DataSource;
 
 @SpringBootApplication
+@EnableScheduling
 @EnableConfigurationProperties(ParamSettings.class)
 public class FxptwebApplication extends SpringBootServletInitializer {
 
@@ -65,6 +68,11 @@ public class FxptwebApplication extends SpringBootServletInitializer {
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		source.registerCorsConfiguration("/**", buildConfig()); // 4
 		return new CorsFilter(source);
+	}
+
+	@Bean
+	public RestTemplate restTemplate(){
+		return new RestTemplate();
 	}
 
 }

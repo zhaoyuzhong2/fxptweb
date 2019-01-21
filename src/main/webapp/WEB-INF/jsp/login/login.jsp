@@ -25,6 +25,8 @@
         <div class="page-content">
             <form name="form" id="form" action="${ctx}/user/login" method="post">
                 <input type="hidden" id="error" value="${error}"/>
+                <input type="hidden" id="headimgurl" name="headimgurl" value="${headimgurl}"/>
+                <input type="hidden" id="openid" name="openid" value="${openid}"/>
             <div class="c-login-banner">
                 <img class="logo" src="${ctx}/img/1.jpg"/>
                 <div class="title">聚益恒集团</div>
