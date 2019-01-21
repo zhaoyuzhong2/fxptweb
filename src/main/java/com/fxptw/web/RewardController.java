@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -37,6 +39,18 @@ public class RewardController {
 		}
 
 		return "reward/index";
+	}
+
+
+
+
+	@RequestMapping(value = "/month")
+	public String month(Model model) {
+		//System.out.println("我要进货...........");
+		SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM");
+		String yearm = sdf.format(new Date());
+		model.addAttribute("yearm",yearm);
+		return "reward/month";
 	}
 
 
