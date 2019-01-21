@@ -84,13 +84,13 @@
         </a>
     </li>
     <li>
-        <a href="./reward/reward_home.html">
+        <a href="${ctx}/reward/index">
             <i class="icon icon3"></i>
             <span>奖励</span>
         </a>
     </li>
     <li>
-        <a href="./my_achievements/my_achievement.html">
+        <a href="${ctx}/myachievements/index">
             <i class="icon icon4"></i>
             <span>我的业绩</span>
         </a>
