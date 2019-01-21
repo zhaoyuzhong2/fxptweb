@@ -108,7 +108,7 @@
         </a>
     </li>
     <li>
-        <a href="#">
+        <a href="${ctx}/cert/index">
             <i class="icon icon7"></i>
             <span>授权证书</span>
         </a>
