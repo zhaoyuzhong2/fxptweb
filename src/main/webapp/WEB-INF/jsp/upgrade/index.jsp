@@ -77,7 +77,7 @@
                                 <div class="cornermark">已达标</div>
                             </ul>
                         </li>
-
+                        </c:forEach>
                     </ul>
                 </c:otherwise>
                 </c:choose>
