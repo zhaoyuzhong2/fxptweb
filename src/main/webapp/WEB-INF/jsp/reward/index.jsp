@@ -50,7 +50,7 @@
             <div class="money">${totalReward}</div>
             <div class="bottom">带核算奖励0.00元</div>
         </div>
-        <a href="#" class="link external"><span class="txt">按月查询</span><i class="to-icon"></i></a>
+        <a href="${ctx}/reward/month" class="link external"><span class="txt">按月查询</span><i class="to-icon"></i></a>
     </div>
     <div id="pieChart" class="echart-box"></div>
 </div>
