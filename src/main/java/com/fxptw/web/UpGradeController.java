@@ -41,7 +41,7 @@ public class UpGradeController {
 
         model.addAttribute("roleid",roleid);
 		model.addAttribute("rs",rs);
-		model.addAttribute("user",emp1);
+		model.addAttribute("user",user);
 		return "upgrade/index";
 	}
 
