@@ -1,17 +1,21 @@
 package com.fxptw.dto;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.SimpleFormatter;
 
 /**
- * Created by james on 2018/10/16.
+ * Created by wcw on 2019/1/10.
  */
 public class UserGoods extends BaseDTO {
+    private static SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
     private int id;
     private int goodid;
     private double buyprice;
     private int userid;
     private int buynum;
     private Date cdate;
+    private String ccdate;
     private int cuser;
     private String goodname;
     private String username;
@@ -26,7 +30,13 @@ public class UserGoods extends BaseDTO {
     private double totalprice;
     private String flag;
     private String code;
-
+    private String imgfile;
+    private Date qrdate;
+    private Date fhdate;
+    private Date qxdate;
+    private String cqrdate;
+    private String cfhdate;
+    private String cqxdate;
     public int getId() {
         return id;
     }
@@ -185,5 +195,70 @@ public class UserGoods extends BaseDTO {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+
+    public String getImgfile() {
+        return imgfile;
+    }
+
+    public void setImgfile(String imgfile) {
+        this.imgfile = imgfile;
+    }
+
+    public String getCcdate() {
+        return ccdate;
+    }
+
+    public void setCcdate(String ccdate) {
+        this.ccdate = ccdate;
+    }
+
+    public Date getQrdate() {
+        return qrdate;
+    }
+
+    public void setQrdate(Date qrdate) {
+        this.qrdate = qrdate;
+    }
+
+    public Date getFhdate() {
+        return fhdate;
+    }
+
+    public void setFhdate(Date fhdate) {
+        this.fhdate = fhdate;
+    }
+
+    public Date getQxdate() {
+        return qxdate;
+    }
+
+    public void setQxdate(Date qxdate) {
+        this.qxdate = qxdate;
+    }
+
+    public String getCqrdate() {
+        return cqrdate;
+    }
+
+    public void setCqrdate(String cqrdate) {
+        this.cqrdate = cqrdate;
+    }
+
+    public String getCfhdate() {
+        return cfhdate;
+    }
+
+    public void setCfhdate(String cfhdate) {
+        this.cfhdate = cfhdate;
+    }
+
+    public String getCqxdate() {
+        return cqxdate;
+    }
+
+    public void setCqxdate(String cqxdate) {
+        this.cqxdate = cqxdate;
     }
 }
