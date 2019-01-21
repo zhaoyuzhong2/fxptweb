@@ -1,27 +1,36 @@
 package com.fxptw.dto;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
  * Created by Administrator on 2018/12/25/025.
  */
 public class Stock extends BaseDTO {
+
+    private static SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
     private Integer id;
     private Integer userid;
-    private Integer goodid;
     private String username;
+    private String mobile;
+    private Integer goodid;
+
     private String goodname;
     private String type;//0是购买，1是提取
-    private Integer buynum;//购买数量
+
     private double price;//商品单价
     private double buyprice;//购买总价
+    private Integer buynum;//购买数量
     private Date cdate;//购买或者提取时间
     private String postadd;
     private String postname;
     private String postmobile;
     private String message;
     private String flag;
-    private String mobile;
+
+    private String ccdate;
+    private Integer stock;
+    private String imgfile;
 
     public Integer getId() {
         return id;
@@ -39,20 +48,28 @@ public class Stock extends BaseDTO {
         this.userid = userid;
     }
 
-    public Integer getGoodid() {
-        return goodid;
-    }
-
-    public void setGoodid(Integer goodid) {
-        this.goodid = goodid;
-    }
-
     public String getUsername() {
         return username;
     }
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public Integer getGoodid() {
+        return goodid;
+    }
+
+    public void setGoodid(Integer goodid) {
+        this.goodid = goodid;
     }
 
     public String getGoodname() {
@@ -71,14 +88,6 @@ public class Stock extends BaseDTO {
         this.type = type;
     }
 
-    public Integer getBuynum() {
-        return buynum;
-    }
-
-    public void setBuynum(Integer buynum) {
-        this.buynum = buynum;
-    }
-
     public double getPrice() {
         return price;
     }
@@ -93,6 +102,14 @@ public class Stock extends BaseDTO {
 
     public void setBuyprice(double buyprice) {
         this.buyprice = buyprice;
+    }
+
+    public Integer getBuynum() {
+        return buynum;
+    }
+
+    public void setBuynum(Integer buynum) {
+        this.buynum = buynum;
     }
 
     public Date getCdate() {
@@ -143,11 +160,27 @@ public class Stock extends BaseDTO {
         this.flag = flag;
     }
 
-    public String getMobile() {
-        return mobile;
+    public String getCcdate() {
+        return ccdate;
     }
 
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
+    public void setCcdate(String ccdate) {
+        this.ccdate = ccdate;
+    }
+
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
+    }
+
+    public String getImgfile() {
+        return imgfile;
+    }
+
+    public void setImgfile(String imgfile) {
+        this.imgfile = imgfile;
     }
 }
