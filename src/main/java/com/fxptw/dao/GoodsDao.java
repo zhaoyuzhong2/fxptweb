@@ -20,7 +20,7 @@ public class GoodsDao {
 
     //获取商品列表
     public List<Goods> getList() {
-        String sql = "select * from t_goods where flag='0' order by cdate desc ";
+        String sql = "select a.*,(select imgfile from t_goods_file where goodid=a.id and flag='0' limit 1) as imgfile from t_goods a where a.flag='0' order by a.cdate desc ";
         return baseDao.query(sql,Goods.class,new Object[]{});
     }
 
