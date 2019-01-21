@@ -22,6 +22,16 @@ public class Goods extends BaseDTO {
     private Date cdate;
     private Integer cuser;
     private String flag;
+    private String imgfile;
+
+
+    public String getImgfile() {
+        return imgfile;
+    }
+
+    public void setImgfile(String imgfile) {
+        this.imgfile = imgfile;
+    }
 
     public Integer getId() {
         return id;
