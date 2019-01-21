@@ -48,8 +48,15 @@
         <h3 class="title">蛋圆饼干</h3>
         <ul class="list-detail">
             <c:forEach items="${gs}" var="g">
-            <li>
-                <img src="${ctx}/img/product1.png" width="70" height="70"/>
+
+                <c:choose>
+                    <c:when test="${g.imgfile==null}">
+                        <img src="${ctx}/img/product1.png" width="70" height="70"/>
+                    </c:when>
+                    <c:otherwise>
+                        <img src="${ctx}${g.imgfile}" width="70" height="70"/>
+                    </c:otherwise>
+                </c:choose>
                 <div class="product-detail">
                     <div class="name">${g.name}</div>
                     <div class="price"><span class="pri">¥${g.price}</span><span class="inventory">库存:&nbsp;&nbsp;${g.stock}</span></div>
