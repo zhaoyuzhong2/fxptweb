@@ -88,11 +88,27 @@ public class UserInComeDao {
     }
 
 
+    //获得某个人某个月收入
+    public BigDecimal getMoneyByUseridYearm(String userid,String yearm){
+        String sql = "SELECT SUM(money) AS TotalMoney FROM t_user_income WHERE userid=? and yearm=?";
+
+        return baseDao.queryForObject(sql,BigDecimal.class,new Object[]{userid,yearm});
+    }
+
+
     //获得某个人总奖励
     public BigDecimal getRewardByUserid(String userid){
         String sql = "SELECT SUM(reward) AS TotalMoney FROM t_user_income WHERE userid=?";
 
         return baseDao.queryForObject(sql,BigDecimal.class,new Object[]{userid});
+    }
+
+
+    //获得某个人某个月的奖励
+    public BigDecimal getRewardByUseridYearm(String userid,String yearm){
+        String sql = "SELECT SUM(reward) AS TotalMoney FROM t_user_income WHERE userid=? and yearm=?";
+
+        return baseDao.queryForObject(sql,BigDecimal.class,new Object[]{userid,yearm});
     }
 
 
