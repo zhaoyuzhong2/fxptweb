@@ -172,20 +172,25 @@ public class UserController {
 		int id = userDao.insUser(user);
         if(id>0) {
             Role role = roleDao.getRoleById(user.getRoleid());
-            String rolename = "";
             if(role!=null){
                 user.setRolename(role.getName());
             }
             user.setId(id);
-            HttpSession session = request.getSession();
-            session.setAttribute("user", user);
 
-            model.addAttribute("tyeji","0.00");
-            model.addAttribute("tshouru","0.00");
-            model.addAttribute("huokuan","0.00");
-            model.addAttribute("yeji","0.00");
-            model.addAttribute("shouru","0.00");
-            model.addAttribute("money","0.00");
+
+			HttpSession session = request.getSession();
+			session.setAttribute("user", user);
+
+
+			model.addAttribute("tyeji","0.00");
+			model.addAttribute("tshouru","0.00");
+			model.addAttribute("huokuan","0.00");
+			model.addAttribute("yeji","0.00");
+
+			model.addAttribute("shouru","0.00");
+			model.addAttribute("money","0.00");
+			model.addAttribute("emp",user);
+
 
             return "main/index";
         }else{
