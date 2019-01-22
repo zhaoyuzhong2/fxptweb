@@ -90,7 +90,7 @@
         </a>
     </li>
     <li>
-        <a href="${ctx}/myachievements/index">
+        <a href="${ctx}/myach/index">
             <i class="icon icon4"></i>
             <span>我的业绩</span>
         </a>
@@ -108,7 +108,7 @@
         </a>
     </li>
     <li>
-        <a href="#">
+        <a href="${ctx}/cert/index">
             <i class="icon icon7"></i>
             <span>授权证书</span>
         </a>

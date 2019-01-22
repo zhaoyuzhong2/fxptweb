@@ -68,6 +68,9 @@
                                                 <c:when test="${roleid == r.id}">
                                                     平级推荐
                                                 </c:when>
+                                                <c:when test="${roleid > r.id}">
+                                                    下级推荐
+                                                </c:when>
                                                 <c:otherwise>
                                                     跨级推荐
                                                 </c:otherwise>
