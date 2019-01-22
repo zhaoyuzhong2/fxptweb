@@ -29,24 +29,60 @@
         <div class="tabs">
 
             <div class="page-content tab tab-active" id="tab-1">
-                <div class="null-tip">
+                <%--<div class="null-tip">
                     <img src="${ctx}/img/null.png" class="img"/>
                     <div class="info">没有内容可供显示</div>
-                </div>
+                </div>--%>
+                <ul class="c-cproduct-list">
+                    <li class="display-flex justify-content-space-between align-items-center">
+                        <div class="display-flex">
+                            <img src="${ctx}/img/ala.jpg" width="70" height="70" class="product-img"/>
+                            <div class="pro">
+                                <div class="pro-name">胶原蛋白小分子钛饮</div>
+                                <div class="price">¥150.00</div>
+                            </div>
+                        </div>
+                        <div class="num">X50</div>
+                    </li>
+                </ul>
             </div>
 
             <div class="page-content tab" id="tab-2">
-                <div class="null-tip">
+                <%--<div class="null-tip">
                     <img src="${ctx}/img/null.png" class="img"/>
                     <div class="info">没有内容可供显示哦</div>
-                </div>
+                </div>--%>
+                <ul class="c-cproduct-list">
+                    <li class="display-flex justify-content-space-between align-items-center">
+                        <div class="display-flex">
+                            <img src="${ctx}/img/ala.jpg" width="70" height="70" class="product-img"/>
+                            <div class="pro">
+                                <div class="pro-name">胶原蛋白小分子钛饮</div>
+                                <div class="price">¥150.00</div>
+                            </div>
+                        </div>
+                        <div class="num">X50</div>
+                    </li>
+                </ul>
             </div>
 
             <div class="page-content tab" id="tab-3">
-                <div class="null-tip">
+                <%--<div class="null-tip">
                     <img src="${ctx}/img/null.png" class="img"/>
                     <div class="info">没有内容可供显示哦！</div>
-                </div>
+                </div>--%>
+                    <ul class="c-cproduct-list">
+                        <li class="display-flex justify-content-space-between align-items-center">
+                            <div class="display-flex">
+                                <img src="${ctx}/img/ala.jpg" width="70" height="70" class="product-img"/>
+                                <div class="pro">
+                                    <div class="pro-name">胶原蛋白小分子钛饮</div>
+                                    <div class="price">¥150.00</div>
+                                </div>
+                            </div>
+                            <div class="num">X50</div>
+                        </li>
+                    </ul>
             </div>
         </div>
     </div>

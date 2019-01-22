@@ -4336,7 +4336,31 @@ body.page-reward {
 .page-cloud-inventory .page {
   background-color: #f5f6f8;
 }
-/* cloud_inventory end */
+.page-cloud-inventory .cloud-product-list {
+  padding-top: 5px;
+}
+.page-cloud-inventory .cloud-product-list li{
+  background-color: #fff;
+  margin-bottom: 10px;
+  padding: 10px 10px;
+  font-size: 14px;
+}
+.page-cloud-inventory .cloud-product-list .product-img {
+  width: 70px; height: 70px;
+  margin-right: 10px;
+}
+.page-cloud-inventory .cloud-product-list .pro-name {
+  margin-top: 5px;
+  font-size: 15px;
+}
+.page-cloud-inventory .cloud-product-list .price {
+  margin-top: 5px;
+  color: #e03443;
+}
+.page-cloud-inventory .cloud-product-list .num {
+  color: #a3a4a8;
+}
+  /* cloud_inventory end */
 /* my_pickup_orders_list start */
 .page-pickup-list .page {
   background-color: #f5f6f8;
