@@ -172,7 +172,7 @@
         <i class="icon icon1"></i>
         <span class="text">代理</span>
     </a>
-    <a href="./message/message.html">
+    <a href="${ctx}/message/index">
         <i class="icon icon2"></i>
         <span class="text">消息</span>
     </a>
