@@ -178,10 +178,10 @@
                 </ul>
             </div>
 
-            <div class="protocol">
-                <label class="checkbox"><input type="checkbox" id="checkbox" onclick="check()" value="1"><i class="icon-checkbox"></i></label>
-                <span>我同意并遵守</span><span class="protocol-link">《唤醒记忆代理商协议》</span>
-            </div>
+            <%--<div class="protocol">--%>
+                <%--<label class="checkbox"><input type="checkbox" id="checkbox" onclick="check()" value="1"><i class="icon-checkbox"></i></label>--%>
+                <%--<span>我同意并遵守</span><span class="protocol-link">《唤醒记忆代理商协议》</span>--%>
+            <%--</div>--%>
 
             <a href="#" id="button" class="col button button-big button-fill button-round c-block-btn external" style="margin-top: 8px;" onclick="queren()">下一步</a>
             </form>
@@ -200,7 +200,7 @@
 <!--<script src="../../js/public.js"></script>-->
 <script type="text/javascript">
     $(function(){
-        $("#button").removeAttr('onclick');
+        //$("#button").removeAttr('onclick');
 
     });
 
