@@ -31,6 +31,11 @@ public class MessageController {
 	}
 
 
+	@RequestMapping(value = "/proxy")
+	public String proxy() {
+		return "message/proxy";
+	}
+
 
 	@RequestMapping(value = "/material")
 	public String material() {
