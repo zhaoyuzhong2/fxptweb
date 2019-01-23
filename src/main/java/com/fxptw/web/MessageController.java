@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "audit")
+@RequestMapping(value = "message")
 public class MessageController {
 	@Autowired
 	UserDao userDao;
