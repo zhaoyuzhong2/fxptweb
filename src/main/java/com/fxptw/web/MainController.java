@@ -128,7 +128,7 @@ public class MainController {
 			Map uu = (Map) session.getAttribute("weCharUser");
 			String openid = (String)session.getAttribute("openId");
 			String headimgurl = (String) uu.get("headimgurl");
-			System.out.println("headimgurl:"+headimgurl);
+			//System.out.println("headimgurl:"+headimgurl);
 			model.addAttribute("headimgurl",headimgurl);
 			model.addAttribute("openid",openid);
 			return "login/login";
