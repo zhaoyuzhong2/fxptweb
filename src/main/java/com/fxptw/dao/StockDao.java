@@ -77,7 +77,7 @@ public class StockDao {
     public List<Stock> getStock(int userid,String search_name ) {
         String sql = "SELECT ts.*,SUM(ts.buynum) AS stock,DATE_FORMAT(ts.cdate,'%Y-%m-%d %H:%i:%s') as ccdate,tg.imgfile AS imgfile FROM t_stock ts\n" +
                 "LEFT JOIN (SELECT * FROM t_goods_file WHERE flag=0) tg ON tg.goodid=ts.userid\n" +
-                " WHERE  ts.userid=?  and (username=? or goodname like ? or mobile like ? or postname like ? or postname like ?) GROUP BY ts.goodid   ";
+                " WHERE  ts.flag in('3','4') and ts.userid=?  and (username=? or goodname like ? or mobile like ? or postname like ? or postname like ?) GROUP BY ts.goodid   ";
         return baseDao.query(sql,Stock.class,new Object[]{userid,"%"+search_name+"%","%"+search_name+"%","%"+search_name+"%","%"+search_name+"%","%"+search_name+"%"});
     }
 
