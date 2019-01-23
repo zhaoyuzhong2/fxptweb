@@ -72,18 +72,18 @@
                             </div>
                         </div>
                     </li>
-                    <li class="item-content item-input">
-                        <div class="item-media">
-                            <i class="iconfont icon-ad80"></i>
-                        </div>
-                        <div class="item-inner">
-                            <div class="item-input-wrap">
-                                <input type="text" placeholder="短信码" id="yzm" name="yzm">
-                                <span class="input-clear-button"></span>
-                            </div>
-                        </div>
-                        <a href="#" class="verification-code">验证码</a><!--点击后添加countdown类-->
-                    </li>
+                    <%--<li class="item-content item-input">--%>
+                        <%--<div class="item-media">--%>
+                            <%--<i class="iconfont icon-ad80"></i>--%>
+                        <%--</div>--%>
+                        <%--<div class="item-inner">--%>
+                            <%--<div class="item-input-wrap">--%>
+                                <%--<input type="text" placeholder="短信码" id="yzm" name="yzm">--%>
+                                <%--<span class="input-clear-button"></span>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                        <%--<a href="#" class="verification-code">验证码</a><!--点击后添加countdown类-->--%>
+                    <%--</li>--%>
                     <li class="item-content item-input">
                         <div class="item-media">
                             <i class="iconfont icon-a501"></i>
@@ -211,7 +211,7 @@
         var pwd2 = $("#pwd2").val();
         var name = $("#name").val();
         var mobile = $("#mobile").val();
-        var yzm = $("#yzm").val();
+        //var yzm = $("#yzm").val();
         var idcard = $("#idcard").val();
         var sex = $("#sex").val();
 
