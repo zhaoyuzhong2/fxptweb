@@ -20,7 +20,7 @@
 
 <ul class="list-box">
     <li>
-        <a href="#">
+        <a href="${ctx}/message/proxy">
             <div>
                 <i class="icon icon1"></i><span class="name">代理圈</span>
             </div>
