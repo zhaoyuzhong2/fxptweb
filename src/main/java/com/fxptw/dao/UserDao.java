@@ -268,6 +268,11 @@ public class UserDao {
         return baseDao.update(sql,user);
     }
 
+    public int updUser2(User user){
+        String sql = "UPDATE t_user SET headpath=:headpath WHERE mobile=:mobile";
+        return baseDao.update(sql,user);
+    }
+
     public double getShouru(int userid,String flag){
         String sql = "select IFNULL(sum(totalp),0) from t_user_income where userid=? ";
         if(flag!=null && !flag.equals("")){
