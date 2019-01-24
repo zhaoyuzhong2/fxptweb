@@ -90,7 +90,7 @@
                         </div>
                         <div class="item-inner">
                             <div class="item-input-wrap">
-                                <input type="password" id="pwd1" name="pwd1" placeholder="请填写密码">
+                                <input type="password" id="pwd" name="pwd" placeholder="请填写密码">
                                 <span class="input-clear-button"></span>
                             </div>
                         </div>
@@ -207,7 +207,7 @@
 
     //删除平台
     function queren() {
-        var pwd1 = $("#pwd1").val();
+        var pwd = $("#pwd").val();
         var pwd2 = $("#pwd2").val();
         var name = $("#name").val();
         var mobile = $("#mobile").val();
@@ -215,12 +215,12 @@
         var idcard = $("#idcard").val();
         var sex = $("#sex").val();
 
-        if(pwd1.trim().length<1){
+        if(pwd.trim().length<1){
             Showbo.Msg.alert('请填写密码！');
             return false;
         }
 
-        if(pwd1!=pwd2){
+        if(pwd!=pwd2){
             Showbo.Msg.alert('两个密码不一致！');
             return false;
         }
