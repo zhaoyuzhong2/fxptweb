@@ -119,21 +119,48 @@ public class MainController {
 		request.getSession().setAttribute("openId", openid);
 		request.getSession().setAttribute("weCharUser", user);
 		User user1 = userDao.login(openid);
-		return this.getWelcome(request,model,user1);
+		String headimgurl = (String) user.get("headimgurl");
+
+		return this.getWelcome(request,model,user1,headimgurl,openid);
 	}
 
-	private String getWelcome(HttpServletRequest request, Model model, User user){
+	private String getWelcome(HttpServletRequest request, Model model, User user,String headimgurl,String openid){
 		HttpSession session = request.getSession();
 		if(user == null) {
-			Map uu = (Map) session.getAttribute("weCharUser");
-			String openid = (String)session.getAttribute("openId");
-			String headimgurl = (String) uu.get("headimgurl");
 			//System.out.println("headimgurl:"+headimgurl);
 			model.addAttribute("headimgurl",headimgurl);
 			model.addAttribute("openid",openid);
 			return "login/login";
 		}else{
 
+			user.setHeadpath(headimgurl);
+			userDao.updUser2(user);//更改headpath,防止用户更换微信头像，每次登陆都获取
+
+			session.setAttribute("user", user);
+			model.addAttribute("tyeji","0.00");
+			double tshouru = userDao.getShouru(user.getId(),"");
+			model.addAttribute("tshouru",tshouru);
+			model.addAttribute("huokuan","0.00");
+			model.addAttribute("yeji","0.00");
+			SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM");
+			String yearm = sdf.format(new Date());
+			double byshouru = userDao.getByShouru(user.getId(),yearm);
+			model.addAttribute("shouru",byshouru);
+			model.addAttribute("money",byshouru);
+			model.addAttribute("emp",user);
+			return "main/index";
+		}
+	}
+
+
+
+
+	private String getWelcome2(HttpServletRequest request, Model model, User user){
+		HttpSession session = request.getSession();
+		if(user == null) {
+			//System.out.println("headimgurl:"+headimgurl);
+			return "login/login";
+		}else{
 			session.setAttribute("user", user);
 			model.addAttribute("tyeji","0.00");
 			double tshouru = userDao.getShouru(user.getId(),"");
@@ -155,7 +182,7 @@ public class MainController {
     public String login(String mobile,String pwd,HttpServletRequest request,Model model){
 
         User user = userDao.login(mobile,pwd);
-        return this.getWelcome(request,model,user);
+        return this.getWelcome2(request,model,user);
     }
 
 
@@ -167,7 +194,7 @@ public class MainController {
 			return "login/login";
 		}else {
 			User user = (User) session.getAttribute("user");
-			return this.getWelcome(request,model,user);
+			return this.getWelcome2(request,model,user);
 		}
 
 	}
