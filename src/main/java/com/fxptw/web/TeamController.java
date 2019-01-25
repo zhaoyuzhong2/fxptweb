@@ -21,9 +21,9 @@ public class TeamController {
 
 	//进入邀请关系网
 	@RequestMapping(value = "/request")
-	public String request(Model model,HttpServletRequest request) {
-		User emp1 = (User) request.getSession().getAttribute("user");
-		List<User> myReq = userDao.getDownUser(emp1.getId());//获取我直接邀请的列表
+	public String request(Integer userid,Model model,HttpServletRequest request) {
+		//User emp1 = (User) request.getSession().getAttribute("user");
+		List<User> myReq = userDao.getDownUser(userid);//获取我直接邀请的列表
 		List<User> r1s = new ArrayList<>();
 		List<User> r2s = new ArrayList<>();
 		List<User> r3s = new ArrayList<>();
@@ -47,7 +47,7 @@ public class TeamController {
 		}
 
 
-		List<User> allxjs = userDao.treeMenuList(allusers,emp1.getId());//获取所有子节点用户
+		List<User> allxjs = userDao.treeMenuList(allusers,userid);//获取所有子节点用户
 		List<User> allxjs2 = new ArrayList<>();
 		for (int i=0;i<allxjs.size();i++){
 			User u = (User)allxjs.get(i);
@@ -60,8 +60,8 @@ public class TeamController {
 		}
 
 
-		User sj = userDao.getUpUser(emp1.getId());
-		User topu = userDao.getTopUser(emp1.getId());
+		User sj = userDao.getUpUser(userid);
+		User topu = userDao.getTopUser(userid);
 
 		model.addAttribute("r1s",r1s);
 		model.addAttribute("r1sn",r1s.size());
@@ -87,11 +87,11 @@ public class TeamController {
 
     //进入进货关系网
     @RequestMapping(value = "/buy")
-    public String buy(Model model,HttpServletRequest request) {
-        User emp1 = (User) request.getSession().getAttribute("user");
+    public String buy(Integer userid,Model model,HttpServletRequest request) {
+        //User emp1 = (User) request.getSession().getAttribute("user");
 		List<User> allusers = userDao.getAllUsers();
 
-        List<User> xjusers = userDao.treeMenuList1(allusers,emp1.getId());//所有进货 的下级
+        List<User> xjusers = userDao.treeMenuList1(allusers,userid);//所有进货 的下级
 
 		List<User> xjusers2 = new ArrayList<>();
 		for (int i=0;i<xjusers.size();i++){
@@ -104,7 +104,7 @@ public class TeamController {
 
         int xjnum = xjusers.size();
 
-        List<User> zsusers = userDao.getDownBuyUsers(emp1.getId());//直属的下级
+        List<User> zsusers = userDao.getDownBuyUsers(userid);//直属的下级
 		List<User> zsusers2 = new ArrayList<>();
 		for (int i=0;i<zsusers.size();i++){
 			User u = (User)zsusers.get(i);
