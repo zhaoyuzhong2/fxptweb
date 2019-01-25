@@ -96,13 +96,13 @@
         </a>
     </li>
     <li>
-        <a href="${ctx}/team/buy">
+        <a href="${ctx}/team/buy?userid=${emp.id}">
             <i class="icon icon5"></i>
             <span>进货关系网</span>
         </a>
     </li>
     <li>
-        <a href="${ctx}/team/request">
+        <a href="${ctx}/team/request?userid=${emp.id}">
             <i class="icon icon6"></i>
             <span>邀请关系网</span>
         </a>
