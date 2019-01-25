@@ -59,10 +59,10 @@
                                                     <div class="left display-flex align-items-center">
                                                         <c:choose>
                                                             <c:when test="${u.headpath==null}">
-                                                                <img class="head" src="${ctx}/img/index_head.png"/>
+                                                                <img class="member-head" src="${ctx}/img/index_head.png"/>
                                                             </c:when>
                                                             <c:otherwise>
-                                                                <img class="head" src="${u.headpath}"/>
+                                                                <img class="member-head" src="${u.headpath}"/>
                                                             </c:otherwise>
                                                         </c:choose>
                                                         <div class="member-name">${u.name}</div>
@@ -96,10 +96,10 @@
                                                         <div class="left display-flex align-items-center">
                                                             <c:choose>
                                                                 <c:when test="${u.headpath==null}">
-                                                                    <img class="head" src="${ctx}/img/index_head.png"/>
+                                                                    <img class="member-head" src="${ctx}/img/index_head.png"/>
                                                                 </c:when>
                                                                 <c:otherwise>
-                                                                    <img class="head" src="${u.headpath}"/>
+                                                                    <img class="member-head" src="${u.headpath}"/>
                                                                 </c:otherwise>
                                                             </c:choose>
                                                             <div class="member-name">${u.name}</div>
@@ -134,10 +134,10 @@
                                                         <div class="left display-flex align-items-center">
                                                             <c:choose>
                                                                 <c:when test="${u.headpath==null}">
-                                                                    <img class="head" src="${ctx}/img/index_head.png"/>
+                                                                    <img class="member-head" src="${ctx}/img/index_head.png"/>
                                                                 </c:when>
                                                                 <c:otherwise>
-                                                                    <img class="head" src="${u.headpath}"/>
+                                                                    <img class="member-head" src="${u.headpath}"/>
                                                                 </c:otherwise>
                                                             </c:choose>
                                                             <div class="member-name">${u.name}</div>
@@ -173,10 +173,10 @@
                                 <div class="left">
                                     <c:choose>
                                         <c:when test="${u.headpath==null}">
-                                            <img class="head" src="${ctx}/img/index_head.png"/>
+                                            <img class="member-head" src="${ctx}/img/index_head.png"/>
                                         </c:when>
                                         <c:otherwise>
-                                            <img class="head" src="${u.headpath}"/>
+                                            <img class="member-head" src="${u.headpath}"/>
                                         </c:otherwise>
                                     </c:choose>
                                     <div>
@@ -210,10 +210,10 @@
                                     <div class="item-media">
                                         <c:choose>
                                             <c:when test="${sj.headpath==null}">
-                                                <img class="head" src="${ctx}/img/index_head.png"/>
+                                                <img class="member-head" src="${ctx}/img/index_head.png"/>
                                             </c:when>
                                             <c:otherwise>
-                                                <img class="head" src="${sj.headpath}"/>
+                                                <img class="member-head" src="${sj.headpath}"/>
                                             </c:otherwise>
                                         </c:choose>
                                     </div>
@@ -235,7 +235,16 @@
                             <ul>
                                 <li>
                                     <a href="#" class="item-link item-content">
-                                        <div class="item-media"><img class="head" src="${ctx}/img/index_head.png"/></div>
+                                        <div class="item-media">
+                                            <c:choose>
+                                                <c:when test="${topu.headpath==null}">
+                                                    <img class="member-head" src="${ctx}/img/index_head.png"/>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <img class="member-head" src="${topu.headpath}"/>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </div>
                                         <div class="item-inner">
                                             <div class="item-title">
                                                 <div class="item-header">${topu.name}(${topu.mobile})</div>
