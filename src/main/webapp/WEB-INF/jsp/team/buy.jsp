@@ -50,9 +50,18 @@
                             <ul class="c-mem-list">
                                 <c:forEach items="${zsusers}" var="u">
                                     <li>
-                                        <a href="#" class="inner">
+                                        <a href="${ctx}/team/buy?userid=${u.id}" class="inner">
                                             <div class="left">
-                                                <img class="head" src="${u.headpath}"/>
+                                                <c:choose>
+                                                    <c:when test="${u.headpath==null}">
+                                                        <img class="head" src="${ctx}/img/index_head.png"/>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <img class="head" src="${u.headpath}"/>
+                                                    </c:otherwise>
+                                                </c:choose>
+
+
                                                 <div>
                                                     <div class="name">${u.name}</div>
                                                     <div class="tag">${u.rolename}</div>
@@ -85,9 +94,16 @@
                         <ul class="c-mem-list">
                             <c:forEach items="${xjusers}" var="u">
                                 <li>
-                                    <a href="#" class="inner">
+                                    <a href="${ctx}/team/buy?userid=${u.id}" class="inner">
                                         <div class="left">
-                                            <img class="head" src="${u.headpath}"/>
+                                            <c:choose>
+                                                <c:when test="${u.headpath==null}">
+                                                    <img class="head" src="${ctx}/img/index_head.png"/>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <img class="head" src="${u.headpath}"/>
+                                                </c:otherwise>
+                                            </c:choose>
                                             <div>
                                                 <div class="name">${u.name}</div>
                                                 <div class="tag">${u.rolename}</div>
@@ -117,7 +133,7 @@
                     <ul class="higher-list">
                         <li>
                             <a href="#" class="higher-info">
-                                <img src="../../img/index_head.png" class="head"/>
+                                <img src="${ctx}/img/index_head.png" class="head"/>
                                 <div class="name">陈玲玲</div>
                             </a>
                         </li>
