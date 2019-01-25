@@ -55,9 +55,16 @@
                                         <ul class="member-list">
                                             <c:forEach var="u" items="${r1s}">
                                             <li>
-                                                <a href="#" class="member-inner display-flex justify-content-space-between align-items-center">
+                                                <a href="${ctx}/team/request?userid=${u.id}" class="member-inner display-flex justify-content-space-between align-items-center">
                                                     <div class="left display-flex align-items-center">
-                                                        <img class="member-head" src="${ctx}/img/index_head.png"/>
+                                                        <c:choose>
+                                                            <c:when test="${u.headpath==null}">
+                                                                <img class="head" src="${ctx}/img/index_head.png"/>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <img class="head" src="${u.headpath}"/>
+                                                            </c:otherwise>
+                                                        </c:choose>
                                                         <div class="member-name">${u.name}</div>
                                                     </div>
                                                     <div class="right">
@@ -85,9 +92,16 @@
                                         <ul class="member-list">
                                             <c:forEach var="u" items="${r2s}">
                                                 <li>
-                                                    <a href="#" class="member-inner display-flex justify-content-space-between align-items-center">
+                                                    <a href="${ctx}/team/request?userid=${u.id}" class="member-inner display-flex justify-content-space-between align-items-center">
                                                         <div class="left display-flex align-items-center">
-                                                            <img class="member-head" src="${ctx}/img/index_head.png"/>
+                                                            <c:choose>
+                                                                <c:when test="${u.headpath==null}">
+                                                                    <img class="head" src="${ctx}/img/index_head.png"/>
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <img class="head" src="${u.headpath}"/>
+                                                                </c:otherwise>
+                                                            </c:choose>
                                                             <div class="member-name">${u.name}</div>
                                                         </div>
                                                         <div class="right">
@@ -116,9 +130,16 @@
                                         <ul class="member-list">
                                             <c:forEach var="u" items="${r3s}">
                                                 <li>
-                                                    <a href="#" class="member-inner display-flex justify-content-space-between align-items-center">
+                                                    <a href="${ctx}/team/request?userid=${u.id}" class="member-inner display-flex justify-content-space-between align-items-center">
                                                         <div class="left display-flex align-items-center">
-                                                            <img class="member-head" src="${ctx}/img/index_head.png"/>
+                                                            <c:choose>
+                                                                <c:when test="${u.headpath==null}">
+                                                                    <img class="head" src="${ctx}/img/index_head.png"/>
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <img class="head" src="${u.headpath}"/>
+                                                                </c:otherwise>
+                                                            </c:choose>
                                                             <div class="member-name">${u.name}</div>
                                                         </div>
                                                         <div class="right">
@@ -150,7 +171,14 @@
                         <li>
                             <a href="#" class="inner">
                                 <div class="left">
-                                    <img class="head" src="${ctx}/img/index_head.png"/>
+                                    <c:choose>
+                                        <c:when test="${u.headpath==null}">
+                                            <img class="head" src="${ctx}/img/index_head.png"/>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <img class="head" src="${u.headpath}"/>
+                                        </c:otherwise>
+                                    </c:choose>
                                     <div>
                                         <div class="name">${u.name}</div>
                                         <div class="tag">${u.rolename}</div>
@@ -179,7 +207,16 @@
                         <ul>
                             <li>
                                 <a href="#" class="item-link item-content">
-                                    <div class="item-media"><img class="head" src="${ctx}/img/index_head.png"/></div>
+                                    <div class="item-media">
+                                        <c:choose>
+                                            <c:when test="${sj.headpath==null}">
+                                                <img class="head" src="${ctx}/img/index_head.png"/>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <img class="head" src="${sj.headpath}"/>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </div>
                                     <div class="item-inner">
                                         <div class="item-title">
                                             <div class="item-header">${sj.name}(${sj.mobile})</div>
