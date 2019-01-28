@@ -258,6 +258,38 @@ public class UserDao {
     }
 
 
+
+    //获取某个用户的所有购买货物的子用户
+    public List<User> getAllBuyUsersByUserid(int userid){
+        String sql = "SELECT id,NAME,roleid,rolename FROM (\n" +
+                "              SELECT t1.id,t1.name,t1.pid,t1.rolename,t1.roleid,\n" +
+                "              IF(FIND_IN_SET(pid, @pids) > 0, @pids := CONCAT(@pids, ',', id), 0) AS ischild\n" +
+                "              FROM (\n" +
+                "                   SELECT t.id,t.pid,t.name,t.roleid,b.name AS rolename FROM t_user t LEFT JOIN t_role b ON t.roleid=b.id WHERE t.flag = '0' AND t.id IN (SELECT DISTINCT(userid) FROM t_user_goods WHERE flag IN ('2','3')) \n" +
+                "                  ) t1,\n" +
+                "                  (SELECT @pids := ?) t2\n" +
+                "             ) t3 WHERE ischild != 0";
+
+        return baseDao.query(sql,User.class,new Object[]{userid});
+    }
+
+
+
+    //获取某个用户的所有购买货物的子用户个数
+    public int getAllBuyUsersNumByUserid(int userid){
+        String sql = "SELECT COUNT(*) FROM (\n" +
+                "              SELECT t1.id,\n" +
+                "              IF(FIND_IN_SET(pid, @pids) > 0, @pids := CONCAT(@pids, ',', id), 0) AS ischild\n" +
+                "              FROM (\n" +
+                "                   SELECT id,pid FROM t_user  WHERE flag = '0' AND id IN (SELECT DISTINCT(userid) FROM t_user_goods WHERE flag IN ('2','3'))\n" +
+                "                  ) t1,\n" +
+                "                  (SELECT @pids := ?) t2\n" +
+                "             ) t3 WHERE ischild != 0";
+
+        return baseDao.queryForInt(sql,new Object[]{userid});
+    }
+
+
     public int isExist(String mobile){
         String sql = "select * from t_user where mobile=?";
         List<User> us = baseDao.query(sql,User.class,new Object[]{mobile});
