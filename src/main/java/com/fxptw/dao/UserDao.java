@@ -242,6 +242,22 @@ public class UserDao {
     }
 
 
+
+    //获取某个用户的所有子用户个数
+    public int getAllUsersNumByUserid(int userid){
+        String sql = "SELECT COUNT(*) FROM (\n" +
+                "              SELECT t1.id,\n" +
+                "              IF(FIND_IN_SET(pid, @pids) > 0, @pids := CONCAT(@pids, ',', id), 0) AS ischild\n" +
+                "              FROM (\n" +
+                "                   SELECT id,pid FROM t_user  WHERE flag = '0' ORDER BY id\n" +
+                "                  ) t1,\n" +
+                "                  (SELECT @pids := ?) t2\n" +
+                "             ) t3 WHERE ischild != 0";
+
+        return baseDao.queryForInt(sql,new Object[]{userid});
+    }
+
+
     public int isExist(String mobile){
         String sql = "select * from t_user where mobile=?";
         List<User> us = baseDao.query(sql,User.class,new Object[]{mobile});
