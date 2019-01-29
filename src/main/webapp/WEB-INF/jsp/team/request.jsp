@@ -55,7 +55,7 @@
                                         <ul class="member-list">
                                             <c:forEach var="u" items="${r1s}">
                                             <li>
-                                                <a href="${ctx}/team/request?userid=${u.id}" class="member-inner display-flex justify-content-space-between align-items-center">
+                                                <a href="${ctx}/team/request?userid=${u.id}" class="member-inner display-flex justify-content-space-between align-items-center external">
                                                     <div class="left display-flex align-items-center">
                                                         <c:choose>
                                                             <c:when test="${u.headpath==null}">
@@ -92,7 +92,7 @@
                                         <ul class="member-list">
                                             <c:forEach var="u" items="${r2s}">
                                                 <li>
-                                                    <a href="${ctx}/team/request?userid=${u.id}" class="member-inner display-flex justify-content-space-between align-items-center">
+                                                    <a href="${ctx}/team/request?userid=${u.id}" class="member-inner display-flex justify-content-space-between align-items-center external">
                                                         <div class="left display-flex align-items-center">
                                                             <c:choose>
                                                                 <c:when test="${u.headpath==null}">
@@ -130,7 +130,7 @@
                                         <ul class="member-list">
                                             <c:forEach var="u" items="${r3s}">
                                                 <li>
-                                                    <a href="${ctx}/team/request?userid=${u.id}" class="member-inner display-flex justify-content-space-between align-items-center">
+                                                    <a href="${ctx}/team/request?userid=${u.id}" class="member-inner display-flex justify-content-space-between align-items-center external">
                                                         <div class="left display-flex align-items-center">
                                                             <c:choose>
                                                                 <c:when test="${u.headpath==null}">
@@ -169,7 +169,7 @@
                     <ul class="mem-list">
                         <c:forEach items="${allxjs}" var="u">
                         <li>
-                            <a href="${ctx}/team/request?userid=${u.id}" class="inner">
+                            <a href="${ctx}/team/request?userid=${u.id}" class="inner external">
                                 <div class="left">
                                     <c:choose>
                                         <c:when test="${u.headpath==null}">
