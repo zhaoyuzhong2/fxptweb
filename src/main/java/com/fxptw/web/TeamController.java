@@ -27,13 +27,13 @@ public class TeamController {
 		List<User> r1s = new ArrayList<>();
 		List<User> r2s = new ArrayList<>();
 		List<User> r3s = new ArrayList<>();
-		List<User> allusers = userDao.getAllUsers();
+		//List<User> allusers = userDao.getAllUsers();
 
 		for (int i=0;i<myReq.size();i++){
 			User u = (User)myReq.get(i);
 			int zs = userDao.getXjnum(u.getId());//我直接邀请的人数
 			//int all = userDao.getAllXjnum(u.getId());//团队所有子节点用户之和
-			int all = userDao.treeMenuList(allusers,u.getId()).size();//团队所有子节点用户之和
+			int all = userDao.getAllUsersNumByUserid(u.getId());//团队所有子节点用户之和
 			int roleid = u.getRoleid();
 			u.setXjnum(zs);
 			u.setCount(all);
@@ -47,12 +47,12 @@ public class TeamController {
 		}
 
 
-		List<User> allxjs = userDao.treeMenuList(allusers,userid);//获取所有子节点用户
+		List<User> allxjs = userDao.getAllUsersByUserid(userid);//获取所有子节点用户
 		List<User> allxjs2 = new ArrayList<>();
 		for (int i=0;i<allxjs.size();i++){
 			User u = (User)allxjs.get(i);
 			int zs = userDao.getXjnum(u.getId());//我直接邀请的人数
-			int all = userDao.treeMenuList(allusers,u.getId()).size();//团队所有子节点用户之和
+			int all = userDao.getAllUsersNumByUserid(u.getId());//团队所有子节点用户之和
 			int roleid = u.getRoleid();
 			u.setXjnum(zs);
 			u.setCount(all);
@@ -89,16 +89,16 @@ public class TeamController {
     @RequestMapping(value = "/buy")
     public String buy(Integer userid,Model model,HttpServletRequest request) {
         //User emp1 = (User) request.getSession().getAttribute("user");
-		List<User> allusers = userDao.getAllUsers();
+		//List<User> allusers = userDao.getAllUsers();
 
-        List<User> xjusers = userDao.treeMenuList1(allusers,userid);//所有进货 的下级
+        List<User> xjusers = userDao.getAllBuyUsersByUserid(userid);//所有进货 的下级
 
 		List<User> xjusers2 = new ArrayList<>();
 		for (int i=0;i<xjusers.size();i++){
 			User uu = (User)xjusers.get(i);
 			//System.out.println(u.getName()+"        "+userDao.getAllBuyXjnum(u.getId()));
-			//uu.setXjnum(userDao.getDownBuyUsers(uu.getId()).size());//所有卖货的直属下级人数
-			//uu.setCount(userDao.treeMenuList1(allusers,uu.getId()).size());//所有卖货的下级团队人数
+			uu.setXjnum(userDao.getDownBuyUsers(uu.getId()).size());//所有卖货的直属下级人数
+			uu.setCount(userDao.getAllBuyUsersNumByUserid(uu.getId()));//所有卖货的下级团队人数
 			xjusers2.add(uu);
 		}
 
@@ -108,8 +108,8 @@ public class TeamController {
 		List<User> zsusers2 = new ArrayList<>();
 		for (int i=0;i<zsusers.size();i++){
 			User u = (User)zsusers.get(i);
-			//u.setXjnum(userDao.getDownBuyUsers(u.getId()).size());//所有卖货的直属下级人数
-			//u.setCount(userDao.treeMenuList1(allusers,u.getId()).size());//所有卖货的下级团队人数
+			u.setXjnum(userDao.getDownBuyUsers(u.getId()).size());//所有卖货的直属下级人数
+			u.setCount(userDao.getAllBuyUsersNumByUserid(u.getId()));//所有卖货的下级团队人数
 			zsusers2.add(u);
 		}
 
