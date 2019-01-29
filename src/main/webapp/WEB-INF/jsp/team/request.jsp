@@ -169,14 +169,14 @@
                     <ul class="mem-list">
                         <c:forEach items="${allxjs}" var="u">
                         <li>
-                            <a href="#" class="inner">
+                            <a href="${ctx}/team/request?userid=${u.id}" class="inner">
                                 <div class="left">
                                     <c:choose>
                                         <c:when test="${u.headpath==null}">
-                                            <img class="member-head" src="${ctx}/img/index_head.png"/>
+                                            <img class="head" src="${ctx}/img/index_head.png"/>
                                         </c:when>
                                         <c:otherwise>
-                                            <img class="member-head" src="${u.headpath}"/>
+                                            <img class="head" src="${u.headpath}"/>
                                         </c:otherwise>
                                     </c:choose>
                                     <div>
