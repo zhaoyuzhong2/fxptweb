@@ -65,9 +65,9 @@ public class UserInComeController {
         List<User> users = new ArrayList<>(1);
         users.add(emp1);
         String userIds = userGoodsDao.usersByIds(users);
-        BigDecimal money = userInComeDao.sumMoney(yearMonth, userIds);
-        request.setAttribute("MyMoney", money);
-        System.out.println("Moeny:"+money);
+//        BigDecimal money = userInComeDao.sumMoney(yearMonth, userIds);
+//        request.setAttribute("MyMoney", money);
+//        System.out.println("Moeny:"+money);
         return "/MyAchievements/SalesPerEmployee";
     }
 }
