@@ -39,7 +39,7 @@
         <div class="tabs">
             <div class="page-content tab tab-active" id="tab-1">
                 <div class="pagenav-content" style="display: block;">
-                    <form id="form" name="form" class="c-searchbar display-flex align-items-center" action="${ctx}/myorder/getList" method="post">
+                    <form id="form" name="form" class="c-searchbar c-searchbar-fixed display-flex align-items-center" action="${ctx}/myorder/getList" method="post">
                         <div class="input-wrap display-flex align-items-center">
                             <i class="iconfont icon-sousuo"></i>
                             <input class="search-ipt" id="search_name" name="search_name" style="text-align: left;width: 100%" value="${search_name}" type="text" placeholder="订单号/姓名/电话"/>
@@ -150,153 +150,153 @@
             </div>
 
             <div class="page-content tab" id="tab-3">
-                <div class="null-tip">
-                    <c:choose>
-                        <c:when test="${list1.size()==0}">
+                <c:choose>
+                    <c:when test="${list1.size()==0}">
+                        <div class="null-tip">
                             <div class="info">没有商品可供显示哦</div>
-                        </c:when>
-                        <c:otherwise>
-                            <ul class="order-list">
-                                <c:forEach items="${list1}" var="map" >
-                                    <li>
-                                        <div class="top">
-                                            <div class="number">订单编号: ${map.code}</div>
-                                            <div class="status">已完成</div>
-                                        </div>
-                                        <div class="tag-box"><span class="tag">云订单</span></div>
-                                        <c:forEach items="${map.goodlist}" var="usergood">
-                                            <div class="order-detail">
-                                                <c:choose>
-                                                    <c:when test="${usergood.imgfile}==null">
-                                                        <img src="${ctx}/img/ala.jpg" width="70" height="70" class="pro-img"/>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <img src="${ctx}${usergood.imgfile}" width="70" height="70" class="pro-img"/>
-                                                    </c:otherwise>
-                                                </c:choose>
-                                                <img src="${ctx}${usergood.imgfile}" width="70" height="70" class="pro-img"/>
-                                                <div class="pro">
-                                                    <div class="pro-name">${usergood.goodname}</div>
-                                                    <div class="price-box">
-                                                        <div class="price">¥${usergood.buyprice}</div>
-                                                        <div class="num">×${usergood.buynum}</div>
-                                                    </div>
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+                        <ul class="order-list">
+                            <c:forEach items="${list1}" var="map" >
+                                <li>
+                                    <div class="top">
+                                        <div class="number">订单编号: ${map.code}</div>
+                                        <div class="status">已完成</div>
+                                    </div>
+                                    <div class="tag-box"><span class="tag">云订单</span></div>
+                                    <c:forEach items="${map.goodlist}" var="usergood">
+                                        <div class="order-detail">
+                                            <c:choose>
+                                                <c:when test="${usergood.imgfile}==null">
+                                                    <img src="${ctx}/img/ala.jpg" width="70" height="70" class="pro-img"/>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <img src="${ctx}${usergood.imgfile}" width="70" height="70" class="pro-img"/>
+                                                </c:otherwise>
+                                            </c:choose>
+                                            <img src="${ctx}${usergood.imgfile}" width="70" height="70" class="pro-img"/>
+                                            <div class="pro">
+                                                <div class="pro-name">${usergood.goodname}</div>
+                                                <div class="price-box">
+                                                    <div class="price">¥${usergood.buyprice}</div>
+                                                    <div class="num">×${usergood.buynum}</div>
                                                 </div>
                                             </div>
-                                        </c:forEach>
-                                        <div class="total-price clearfix">
-                                            <div class="right"><span class="pri">总计:&nbsp;&nbsp;¥${map.totalprice}</span><span class="freight">( 运费:&nbsp;&nbsp;0.00 )</span></div>
                                         </div>
-                                        <div class="btn-box">
-                                            <a href="${ctx}/ug/wantToBy" class="btn">再次购买</a>
-                                        </div>
-                                    </li>
-                                </c:forEach>
-                            </ul>
-                            <div class="loading-info">已全部加载</div>
-                        </c:otherwise>
-                    </c:choose>
-                </div>
+                                    </c:forEach>
+                                    <div class="total-price clearfix">
+                                        <div class="right"><span class="pri">总计:&nbsp;&nbsp;¥${map.totalprice}</span><span class="freight">( 运费:&nbsp;&nbsp;0.00 )</span></div>
+                                    </div>
+                                    <div class="btn-box">
+                                        <a href="${ctx}/ug/wantToBy" class="btn">再次购买</a>
+                                    </div>
+                                </li>
+                            </c:forEach>
+                        </ul>
+                        <div class="loading-info">已全部加载</div>
+                    </c:otherwise>
+                </c:choose>
             </div>
 
             <div class="page-content tab" id="tab-4">
-                <div class="null-tip">
-                    <c:choose>
-                        <c:when test="${list2.size()==0}">
+                <c:choose>
+                    <c:when test="${list2.size()==0}">
+                        <div class="null-tip">
                             <div class="info">没有商品可供显示哦</div>
-                        </c:when>
-                        <c:otherwise>
-                            <ul class="order-list">
-                                <c:forEach items="${list2}" var="map" >
-                                    <li>
-                                        <div class="top">
-                                            <div class="number">订单编号: ${map.code}</div>
-                                            <div class="status">已完成</div>
-                                        </div>
-                                        <div class="tag-box"><span class="tag">云订单</span></div>
-                                        <c:forEach items="${map.goodlist}" var="usergood">
-                                            <div class="order-detail">
-                                                <c:choose>
-                                                    <c:when test="${usergood.imgfile}==null">
-                                                        <img src="${ctx}/img/ala.jpg" width="70" height="70" class="pro-img"/>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <img src="${ctx}${usergood.imgfile}" width="70" height="70" class="pro-img"/>
-                                                    </c:otherwise>
-                                                </c:choose>
-                                                <img src="${ctx}${usergood.imgfile}" width="70" height="70" class="pro-img"/>
-                                                <div class="pro">
-                                                    <div class="pro-name">${usergood.goodname}</div>
-                                                    <div class="price-box">
-                                                        <div class="price">¥${usergood.buyprice}</div>
-                                                        <div class="num">×${usergood.buynum}</div>
-                                                    </div>
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+                        <ul class="order-list">
+                            <c:forEach items="${list2}" var="map" >
+                                <li>
+                                    <div class="top">
+                                        <div class="number">订单编号: ${map.code}</div>
+                                        <div class="status">已完成</div>
+                                    </div>
+                                    <div class="tag-box"><span class="tag">云订单</span></div>
+                                    <c:forEach items="${map.goodlist}" var="usergood">
+                                        <div class="order-detail">
+                                            <c:choose>
+                                                <c:when test="${usergood.imgfile}==null">
+                                                    <img src="${ctx}/img/ala.jpg" width="70" height="70" class="pro-img"/>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <img src="${ctx}${usergood.imgfile}" width="70" height="70" class="pro-img"/>
+                                                </c:otherwise>
+                                            </c:choose>
+                                            <img src="${ctx}${usergood.imgfile}" width="70" height="70" class="pro-img"/>
+                                            <div class="pro">
+                                                <div class="pro-name">${usergood.goodname}</div>
+                                                <div class="price-box">
+                                                    <div class="price">¥${usergood.buyprice}</div>
+                                                    <div class="num">×${usergood.buynum}</div>
                                                 </div>
                                             </div>
-                                        </c:forEach>
-                                        <div class="total-price clearfix">
-                                            <div class="right"><span class="pri">总计:&nbsp;&nbsp;¥${map.totalprice}</span><span class="freight">( 运费:&nbsp;&nbsp;0.00 )</span></div>
                                         </div>
-                                        <div class="btn-box">
-                                            <a href="${ctx}/ug/wantToBy" class="btn">再次购买</a>
-                                        </div>
-                                    </li>
-                                </c:forEach>
-                            </ul>
-                            <div class="loading-info">已全部加载</div>
-                        </c:otherwise>
-                    </c:choose>
-                </div>
+                                    </c:forEach>
+                                    <div class="total-price clearfix">
+                                        <div class="right"><span class="pri">总计:&nbsp;&nbsp;¥${map.totalprice}</span><span class="freight">( 运费:&nbsp;&nbsp;0.00 )</span></div>
+                                    </div>
+                                    <div class="btn-box">
+                                        <a href="${ctx}/ug/wantToBy" class="btn">再次购买</a>
+                                    </div>
+                                </li>
+                            </c:forEach>
+                        </ul>
+                        <div class="loading-info">已全部加载</div>
+                    </c:otherwise>
+                </c:choose>
             </div>
 
             <div class="page-content tab" id="tab-5">
-                <div class="null-tip">
-                    <c:choose>
-                        <c:when test="${list3.size()==0}">
+                <c:choose>
+                    <c:when test="${list3.size()==0}">
+                        <div class="null-tip">
                             <div class="info">没有商品可供显示哦</div>
-                        </c:when>
-                        <c:otherwise>
-                            <ul class="order-list">
-                                <c:forEach items="${list3}" var="map" >
-                                    <li>
-                                        <div class="top">
-                                            <div class="number">订单编号: ${map.code}</div>
-                                            <div class="status">已完成</div>
-                                        </div>
-                                        <div class="tag-box"><span class="tag">云订单</span></div>
-                                        <c:forEach items="${map.goodlist}" var="usergood">
-                                            <div class="order-detail">
-                                                <c:choose>
-                                                    <c:when test="${usergood.imgfile}==null">
-                                                        <img src="${ctx}/img/ala.jpg" width="70" height="70" class="pro-img"/>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <img src="${ctx}${usergood.imgfile}" width="70" height="70" class="pro-img"/>
-                                                    </c:otherwise>
-                                                </c:choose>
-                                                <img src="${ctx}${usergood.imgfile}" width="70" height="70" class="pro-img"/>
-                                                <div class="pro">
-                                                    <div class="pro-name">${usergood.goodname}</div>
-                                                    <div class="price-box">
-                                                        <div class="price">¥${usergood.buyprice}</div>
-                                                        <div class="num">×${usergood.buynum}</div>
-                                                    </div>
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+                        <ul class="order-list">
+                            <c:forEach items="${list3}" var="map" >
+                                <li>
+                                    <div class="top">
+                                        <div class="number">订单编号: ${map.code}</div>
+                                        <div class="status">已完成</div>
+                                    </div>
+                                    <div class="tag-box"><span class="tag">云订单</span></div>
+                                    <c:forEach items="${map.goodlist}" var="usergood">
+                                        <div class="order-detail">
+                                            <c:choose>
+                                                <c:when test="${usergood.imgfile}==null">
+                                                    <img src="${ctx}/img/ala.jpg" width="70" height="70" class="pro-img"/>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <img src="${ctx}${usergood.imgfile}" width="70" height="70" class="pro-img"/>
+                                                </c:otherwise>
+                                            </c:choose>
+                                            <img src="${ctx}${usergood.imgfile}" width="70" height="70" class="pro-img"/>
+                                            <div class="pro">
+                                                <div class="pro-name">${usergood.goodname}</div>
+                                                <div class="price-box">
+                                                    <div class="price">¥${usergood.buyprice}</div>
+                                                    <div class="num">×${usergood.buynum}</div>
                                                 </div>
                                             </div>
-                                        </c:forEach>
-                                        <div class="total-price clearfix">
-                                            <div class="right"><span class="pri">总计:&nbsp;&nbsp;¥${map.totalprice}</span><span class="freight">( 运费:&nbsp;&nbsp;0.00 )</span></div>
                                         </div>
-                                        <div class="btn-box">
-                                            <a href="${ctx}/ug/wantToBy" class="btn">再次购买</a>
-                                        </div>
-                                    </li>
-                                </c:forEach>
-                            </ul>
-                            <div class="loading-info">已全部加载</div>
-                        </c:otherwise>
-                    </c:choose>
-                </div>
+                                    </c:forEach>
+                                    <div class="total-price clearfix">
+                                        <div class="right"><span class="pri">总计:&nbsp;&nbsp;¥${map.totalprice}</span><span class="freight">( 运费:&nbsp;&nbsp;0.00 )</span></div>
+                                    </div>
+                                    <div class="btn-box">
+                                        <a href="${ctx}/ug/wantToBy" class="btn">再次购买</a>
+                                    </div>
+                                </li>
+                            </c:forEach>
+                        </ul>
+                        <div class="loading-info">已全部加载</div>
+                    </c:otherwise>
+                </c:choose>
             </div>
         </div>
     </div>

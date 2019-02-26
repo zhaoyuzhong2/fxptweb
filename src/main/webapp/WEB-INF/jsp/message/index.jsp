@@ -14,6 +14,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
     <title>消息</title>
+    <link rel="stylesheet" href="${ctx}/css/font.css">
     <link rel="stylesheet" href="${ctx}/css/public.css">
 </head>
 <body class="page-message">
@@ -53,15 +54,15 @@
 
 <div class="bottom-navbar">
     <a href="${ctx}/main/index">
-        <i class="icon icon1"></i>
+        <i class="iconfont icon-daili"></i>
         <span class="text">代理</span>
     </a>
     <a href="${ctx}/message/index" class="active">
-        <i class="icon icon2"></i>
+        <i class="iconfont icon-xiaoxi"></i>
         <span class="text">消息</span>
     </a>
     <a href="${ctx}/my/index">
-        <i class="icon icon3"></i>
+        <i class="iconfont icon-wode1"></i>
         <span class="text">我</span>
     </a>
 </div>

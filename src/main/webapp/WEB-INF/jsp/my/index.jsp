@@ -162,15 +162,15 @@
 </div>
 <div class="bottom-navbar">
     <a href="../index.html">
-        <i class="icon icon1"></i>
+        <i class="iconfont icon-daili"></i>
         <span class="text">代理</span>
     </a>
     <a href="../message/message.html">
-        <i class="icon icon2"></i>
+        <i class="iconfont icon-xiaoxi"></i>
         <span class="text">消息</span>
     </a>
     <a href="${ctx}/my/index" class="active">
-        <i class="icon icon3"></i>
+        <i class="iconfont icon-wode1"></i>
         <span class="text">我</span>
     </a>
 </div>

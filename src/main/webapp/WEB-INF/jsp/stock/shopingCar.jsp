@@ -41,8 +41,10 @@
             <div class="price">¥${ug.buyprice}</div>
         </div>
     </div>
-
+    <a class="right product-num">
         <span>X${ug.buynum}</span>
+    </a>
+
 
 </div>
 </c:forEach>

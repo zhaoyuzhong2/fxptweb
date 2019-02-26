@@ -48,7 +48,7 @@
         <h3 class="title">蛋圆饼干</h3>
         <ul class="list-detail">
             <c:forEach items="${gs}" var="g">
-
+            <li>
                 <c:choose>
                     <c:when test="${g.imgfile==null}">
                         <img src="${ctx}/img/product1.png" width="70" height="70"/>

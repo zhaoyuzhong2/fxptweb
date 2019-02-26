@@ -71,7 +71,7 @@
             </ul>
 
             <div class="take-goods-btn">
-                <a href="${ctx}/cloud/promptdelivery" class="col button button-fill button-round button-big external">立即提货</a>
+                <a href="${ctx}/cloud/promptdelivery" class="col button button-big button-fill button-round c-block-btn external">立即提货</a>
             </div>
         </div>
     </div>

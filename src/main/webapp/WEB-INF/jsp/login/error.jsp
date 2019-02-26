@@ -23,7 +23,7 @@
     </style>
 </head>
 <body class="page-certificate">
-二维码失效
+二维码失效，请重新生成。
 
 <a href="javascript:history.back(-1);" class="goback" id="goBack"></a>
 </body>
