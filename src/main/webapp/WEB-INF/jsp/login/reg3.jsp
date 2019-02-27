@@ -214,6 +214,7 @@
         //var yzm = $("#yzm").val();
         var idcard = $("#idcard").val();
         var sex = $("#sex").val();
+        var area = $("#area").val();
 
         if(pwd.trim().length<1){
             Showbo.Msg.alert('请填写密码！');
@@ -245,7 +246,7 @@
 
 
         if(area.length<1){
-            Showbo.Msg.alert('请选择所在地区！');
+            Showbo.Msg.alert('请填写所在地区！');
             return false;
         }
 
