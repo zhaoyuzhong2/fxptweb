@@ -85,7 +85,8 @@
         </a>
     </li>
     <li>
-        <a href="${ctx}/reward/index">
+        <%--<a href="${ctx}/reward/index">--%>
+        <a href="#">
             <i class="icon icon3"></i>
             <span>奖励</span>
         </a>
