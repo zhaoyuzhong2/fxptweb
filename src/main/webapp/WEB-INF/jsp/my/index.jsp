@@ -161,11 +161,11 @@
     </div>
 </div>
 <div class="bottom-navbar">
-    <a href="../index.html">
+    <a href="${ctx}/main/index">
         <i class="iconfont icon-daili"></i>
         <span class="text">代理</span>
     </a>
-    <a href="../message/message.html">
+    <a href="${ctx}/message/index">
         <i class="iconfont icon-xiaoxi"></i>
         <span class="text">消息</span>
     </a>
