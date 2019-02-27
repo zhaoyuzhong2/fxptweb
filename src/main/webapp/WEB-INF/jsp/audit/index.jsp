@@ -27,7 +27,6 @@
 
 <ul class="page-nav">
     <li><a href="javascript:void(0);" class="active">待审核</a></li>
-    <li><a href="javascript:void(0);">准代理</a></li>
     <li><a href="javascript:void(0);">已代理</a></li>
     <li><a href="javascript:void(0);">已拒绝</a></li>
 </ul>
@@ -66,40 +65,40 @@
         </c:otherwise>
     </c:choose>
 </div>
-<div class="pagenav-content">
-    <c:choose>
-        <c:when test="${zdln==0}">
-            <div class="null-tip">
-                <img src="${ctx}/img/null.png" class="img"/>
-                <div class="info">没有内容可供显示</div>
-            </div>
-        </c:when>
-        <c:otherwise>
-            <ul class="already-agent-list">
-                <c:forEach var="d" items="${zdl}">
-                    <li>
-                        <div class="top display-flex justify-content-space-between align-items-center">
-                            <div class="left display-flex align-items-center">
-                                <div>代理:&nbsp;&nbsp;</div>
-                                <div>${d.name}&nbsp;&nbsp;(${d.mobile})</div>
-                            </div>
-                            <div class="right">待审核</div>
-                        </div>
-                        <ul class="content">
-                            <li class="display-flex justify-content-space-between align-items-center">
-                                <div>微信号:&nbsp;&nbsp;${d.chatno}</div>
-                                <div class="date">${d.cdate}</div>
-                            </li>
-                            <li>身份证号:&nbsp;&nbsp;${d.idcard}</li>
-                            <li>邀请人:&nbsp;&nbsp;${d.pname} (${d.pmobile})</li>
-                            <li>申请等级:&nbsp;&nbsp;${d.rolename}</li>
-                        </ul>
-                    </li>
-                </c:forEach>
-            </ul>
-        </c:otherwise>
-    </c:choose>
-</div>
+<%--<div class="pagenav-content">--%>
+    <%--<c:choose>--%>
+        <%--<c:when test="${zdln==0}">--%>
+            <%--<div class="null-tip">--%>
+                <%--<img src="${ctx}/img/null.png" class="img"/>--%>
+                <%--<div class="info">没有内容可供显示</div>--%>
+            <%--</div>--%>
+        <%--</c:when>--%>
+        <%--<c:otherwise>--%>
+            <%--<ul class="already-agent-list">--%>
+                <%--<c:forEach var="d" items="${zdl}">--%>
+                    <%--<li>--%>
+                        <%--<div class="top display-flex justify-content-space-between align-items-center">--%>
+                            <%--<div class="left display-flex align-items-center">--%>
+                                <%--<div>代理:&nbsp;&nbsp;</div>--%>
+                                <%--<div>${d.name}&nbsp;&nbsp;(${d.mobile})</div>--%>
+                            <%--</div>--%>
+                            <%--<div class="right">待审核</div>--%>
+                        <%--</div>--%>
+                        <%--<ul class="content">--%>
+                            <%--<li class="display-flex justify-content-space-between align-items-center">--%>
+                                <%--<div>微信号:&nbsp;&nbsp;${d.chatno}</div>--%>
+                                <%--<div class="date">${d.cdate}</div>--%>
+                            <%--</li>--%>
+                            <%--<li>身份证号:&nbsp;&nbsp;${d.idcard}</li>--%>
+                            <%--<li>邀请人:&nbsp;&nbsp;${d.pname} (${d.pmobile})</li>--%>
+                            <%--<li>申请等级:&nbsp;&nbsp;${d.rolename}</li>--%>
+                        <%--</ul>--%>
+                    <%--</li>--%>
+                <%--</c:forEach>--%>
+            <%--</ul>--%>
+        <%--</c:otherwise>--%>
+    <%--</c:choose>--%>
+<%--</div>--%>
 <div class="pagenav-content">
     <c:choose>
         <c:when test="${ydln==0}">
