@@ -28,6 +28,12 @@ public class MaterialDao {
         return baseDao.query(sql,Material.class,new Object[]{typeid});
     }
 
+    //查询某个类型的素材前几条
+    public List<Material> selectLimitMaterialByTypeId(Integer typeid,int num) {
+        String sql = "select * from t_material where typeid=? order by cdate desc limit "+num;
+        return baseDao.query(sql,Material.class,new Object[]{typeid});
+    }
+
 
 
 
