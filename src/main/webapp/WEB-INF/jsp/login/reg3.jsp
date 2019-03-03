@@ -28,7 +28,7 @@
                 <input type="hidden" id="roleid" name="roleid" value="${roleid}"/>
             <div class="c-login-banner">
                 <img class="logo" src="${ctx}/img/1.jpg"/>
-                <div class="title">聚益恒集团</div>
+                <div class="title">久康沅</div>
                 <div class="sub-title">邀请人：${reqUsername}</div>
             </div>
 
