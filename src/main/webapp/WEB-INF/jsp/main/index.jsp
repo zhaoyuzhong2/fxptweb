@@ -124,30 +124,30 @@
 </ul>
 
 <ul class="index-nav2">
-    <li class="item4">
-        <a href="#">
-            <div class="name">累计业绩</div>
-            <div class="val">¥${tyeji}</div>
-        </a>
-    </li>
+    <%--<li class="item4">--%>
+        <%--<a href="#">--%>
+            <%--<div class="name">累计业绩</div>--%>
+            <%--<div class="val">¥${tyeji}</div>--%>
+        <%--</a>--%>
+    <%--</li>--%>
     <li class="item5">
         <a href="#">
             <div class="name">累计收入</div>
             <div class="val">¥${tshouru}</div>
         </a>
     </li>
-    <li class="item6">
-        <a href="#">
-            <div class="name">货款余额</div>
-            <div class="val">¥${huokuan}</div>
-        </a>
-    </li>
-    <li class="item7">
-        <a href="#">
-            <div class="name">当月业绩</div>
-            <div class="val">¥${yeji}</div>
-        </a>
-    </li>
+    <%--<li class="item6">--%>
+        <%--<a href="#">--%>
+            <%--<div class="name">货款余额</div>--%>
+            <%--<div class="val">¥${huokuan}</div>--%>
+        <%--</a>--%>
+    <%--</li>--%>
+    <%--<li class="item7">--%>
+        <%--<a href="#">--%>
+            <%--<div class="name">当月业绩</div>--%>
+            <%--<div class="val">¥${yeji}</div>--%>
+        <%--</a>--%>
+    <%--</li>--%>
     <li class="item1">
         <a href="#">
             <div class="name">当月收入</div>
@@ -155,12 +155,12 @@
         </a>
     </li>
 
-    <li class="item3">
-        <a href="#">
-            <div class="name">可提现余额</div>
-            <div class="val">¥${money}</div>
-        </a>
-    </li>
+    <%--<li class="item3">--%>
+        <%--<a href="#">--%>
+            <%--<div class="name">可提现余额</div>--%>
+            <%--<div class="val">¥${money}</div>--%>
+        <%--</a>--%>
+    <%--</li>--%>
 </ul>
 
 <div class="index-banner">
