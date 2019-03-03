@@ -29,7 +29,7 @@
                 <input type="hidden" id="openid" name="openid" value="${openid}"/>
             <div class="c-login-banner">
                 <img class="logo" src="${ctx}/img/1.jpg"/>
-                <div class="title">聚益恒集团</div>
+                <div class="title">久康沅</div>
             </div>
 
             <div class="list c-list-input">
@@ -59,9 +59,9 @@
                 </ul>
             </div>
 
-            <div class="text-align-right f-p-box">
-                <a href="./change_password.html" class="forget-password-btn external">忘记密码?</a>
-            </div>
+            <%--<div class="text-align-right f-p-box">--%>
+                <%--<a href="./change_password.html" class="forget-password-btn external">忘记密码?</a>--%>
+            <%--</div>--%>
 
             <button class="col button button-big button-fill button-round c-block-btn" onclick="check()">登录</button>
             </form>
