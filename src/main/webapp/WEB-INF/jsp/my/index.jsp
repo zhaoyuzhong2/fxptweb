@@ -154,7 +154,7 @@
 
             <div class="footer">
                 <img class="logo-icon" src="${ctx}/img/class_icon1.png"/>
-                <div class="txt">聚益恒集团</div>
+                <div class="txt">久康沅</div>
             </div>
 
         </div>
