@@ -22,13 +22,13 @@
 <div id="app">
     <div class="page">
         <div class="page-content">
-            <form class="c-searchbar display-flex align-items-center">
+            <form class="c-searchbar display-flex align-items-center" action="${ctx}/material/material" method="post" id="form">
                 <div class="input-wrap display-flex align-items-center">
                     <i class="iconfont icon-sousuo"></i>
                     <input class="search-ipt" type="text" placeholder="搜索素材" style="width: 70px;"/>
                     <a href="#" class="iconfont icon-cancel-1 clear-btn"></a>
                 </div>
-                <a href="#" class="search-btn">搜索</a>
+                <a href="#" class="search-btn" onclick="search()">搜索</a>
             </form>
 
             <ul class="total-class row no-gap">
@@ -206,7 +206,9 @@
 <script src="${ctx}/js/my-app.js"></script>
 <script src="${ctx}/js/public.js"></script>
 <script>
-
+function search() {
+    $("#form").submit();
+}
 </script>
 </body>
 </html>
