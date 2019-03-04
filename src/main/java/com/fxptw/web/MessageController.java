@@ -1,7 +1,11 @@
 package com.fxptw.web;
 
 
+import com.fxptw.dao.MaterialDao;
+import com.fxptw.dao.MaterialTypeDao;
 import com.fxptw.dao.UserDao;
+import com.fxptw.dto.Material;
+import com.fxptw.dto.MaterialType;
 import com.fxptw.dto.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +20,10 @@ import java.util.List;
 public class MessageController {
 	@Autowired
 	UserDao userDao;
+	@Autowired
+	MaterialDao materialDao;
+	@Autowired
+	MaterialTypeDao materialTypeDao;
 
 
 	//消息首页
@@ -38,7 +46,15 @@ public class MessageController {
 
 
 	@RequestMapping(value = "/material")
-	public String material() {
+	public String material(Model model) {
+		List<MaterialType> mts = materialTypeDao.getMaterialTypes();
+		model.addAttribute("mts",mts);
+		for(int i=1;i<=mts.size();i++){
+			MaterialType mt = mts.get(i-1);
+			List<Material> ms = materialDao.selectLimitMaterialByTypeId(mt.getId(),9);//取某个素材的前9条
+			model.addAttribute("ms"+i,ms);
+		}
+
 		return "message/material";
 	}
 
