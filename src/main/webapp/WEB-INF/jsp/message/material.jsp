@@ -22,178 +22,56 @@
 <div id="app">
     <div class="page">
         <div class="page-content">
-            <form class="c-searchbar display-flex align-items-center" action="${ctx}/material/material" method="post" id="form">
-                <div class="input-wrap display-flex align-items-center">
-                    <i class="iconfont icon-sousuo"></i>
-                    <input class="search-ipt" type="text" placeholder="搜索素材" style="width: 70px;"/>
-                    <a href="#" class="iconfont icon-cancel-1 clear-btn"></a>
-                </div>
-                <a href="#" class="search-btn" onclick="search()">搜索</a>
-            </form>
+            <%--搜索条件暂时不启用--%>
+            <%--<form class="c-searchbar display-flex align-items-center" action="${ctx}/material/material" method="post" id="form">--%>
+                <%--<div class="input-wrap display-flex align-items-center">--%>
+                    <%--<i class="iconfont icon-sousuo"></i>--%>
+                    <%--<input class="search-ipt" type="text" placeholder="搜索素材" style="width: 70px;" id="name"/>--%>
+                    <%--<a href="#" class="iconfont icon-cancel-1 clear-btn"></a>--%>
+                <%--</div>--%>
+                <%--<a href="#" class="search-btn" onclick="search()">搜索</a>--%>
+            <%--</form>--%>
 
-            <ul class="total-class row no-gap">
-                <li class="col-25">
-                    <a href="#" class="external link">
-                        <div class="material-wrap">
-                            <img class="material" src="${ctx}/img/material1.jpg"/>
-                        </div>
-                        <div class="txt">胶原蛋白反馈</div>
-                    </a>
-                </li>
-                <li class="col-25">
-                    <a href="#" class="external link">
-                        <div class="material-wrap">
-                            <img class="material" src="${ctx}/img/material4.jpg"/>
-                        </div>
-                        <div class="txt">胶原蛋白中秋活动</div>
-                    </a>
-                </li>
-                <li class="col-25">
-                    <a href="#" class="external link">
-                        <div class="material-wrap">
-                            <img class="material" src="${ctx}/img/material1.jpg"/>
-                        </div>
-                        <div class="txt">胶原蛋白反馈</div>
-                    </a>
-                </li>
-                <li class="col-25">
-                    <a href="#" class="external link">
-                        <div class="material-wrap">
-                            <img class="material" src="${ctx}/img/material4.jpg"/>
-                        </div>
-                        <div class="txt">胶原蛋白中秋活动</div>
-                    </a>
-                </li>
-                <li class="col-25">
-                    <a href="#" class="external link">
-                        <div class="material-wrap">
-                            <img class="material" src="${ctx}/img/material1.jpg"/>
-                        </div>
-                        <div class="txt">胶原蛋白反馈</div>
-                    </a>
-                </li>
-                <li class="col-25">
-                    <a href="#" class="external link">
-                        <div class="material-wrap">
-                            <img class="material" src="${ctx}/img/material4.jpg"/>
-                        </div>
-                        <div class="txt">胶原蛋白中秋活动</div>
-                    </a>
-                </li>
-                <li class="col-25">
-                    <a href="#" class="external link">
-                        <div class="material-wrap">
-                            <img class="material" src="${ctx}/img/material1.jpg"/>
-                        </div>
-                        <div class="txt">胶原蛋白反馈</div>
-                    </a>
-                </li>
-                <li class="col-25">
-                    <a href="#" class="external link">
-                        <div class="material-wrap">
-                            <img class="material" src="${ctx}/img/material4.jpg"/>
-                        </div>
-                        <div class="txt">胶原蛋白中秋活动</div>
-                    </a>
-                </li>
-                <li class="col-25">
-                    <a href="#" class="external link">
-                        <div class="material-wrap">
-                            <img class="material" src="${ctx}/img/material1.jpg"/>
-                        </div>
-                        <div class="txt">胶原蛋白反馈</div>
-                    </a>
-                </li>
-                <li class="col-25">
-                    <a href="#" class="external link">
-                        <div class="material-wrap">
-                            <img class="material" src="${ctx}/img/material4.jpg"/>
-                        </div>
-                        <div class="txt">早安</div>
-                    </a>
-                </li>
-            </ul>
 
+            <%--这个是置顶的图片，暂不显示--%>
+
+            <%--<ul class="total-class row no-gap">--%>
+                <%--<li class="col-25">--%>
+                    <%--<a href="#" class="external link">--%>
+                        <%--<div class="material-wrap">--%>
+                            <%--<img class="material" src="${ctx}/img/material1.jpg"/>--%>
+                        <%--</div>--%>
+                        <%--<div class="txt">胶原蛋白反馈</div>--%>
+                    <%--</a>--%>
+                <%--</li>--%>
+                <%----%>
+            <%--</ul>--%>
+            <c:forEach var="mt" items="${mts}" varStatus="k">
             <div class="item-class">
                 <div class="title display-flex justify-content-space-between align-items-center">
-                    <div class="txt">胶原蛋白反馈</div>
-                    <a href="#" class="external">查看全部&nbsp;>></a>
+                    <div class="txt">${mt.name}</div>
+                    <a href="${ctx}/message/materialList?typeid=${mt.id}" class="external">查看全部&nbsp;>></a>
                 </div>
                 <ul class="imgs-list row no-gap">
+                <c:set var="id" value="${k.count}"/>
+                    <c:forEach items="${ms1}" var="m">
                     <li class="col-33">
                         <a href="" class="link external">
                             <div class="material-wrap">
-                                <img class="material" src="${ctx}/img/material2.jpg"/>
+                                <img class="material" src="${ctx}/img_material/${m.imgpath}"/>
                             </div>
-                            <div class="txt">反馈</div>
+                            <div class="txt">${m.name}</div>
                             <div class="date">2018-10-21</div>
                         </a>
                     </li>
-                    <li class="col-33">
-                        <a href="" class="link external">
-                            <div class="material-wrap">
-                                <img class="material" src="${ctx}/img/material2.jpg"/>
-                            </div>
-                            <div class="txt">反馈</div>
-                            <div class="date">2018-10-21</div>
-                        </a>
-                    </li>
-                    <li class="col-33">
-                        <a href="" class="link external">
-                            <div class="material-wrap">
-                                <img class="material" src="${ctx}/img/material2.jpg"/>
-                            </div>
-                            <div class="txt">反馈</div>
-                            <div class="date">2018-10-21</div>
-                        </a>
-                    </li>
-                    <li class="col-33">
-                        <a href="" class="link external">
-                            <div class="material-wrap">
-                                <img class="material" src="${ctx}/img/material2.jpg"/>
-                            </div>
-                            <div class="txt">反馈</div>
-                            <div class="date">2018-10-21</div>
-                        </a>
-                    </li>
-                    <li class="col-33">
-                        <a href="" class="link external">
-                            <div class="material-wrap">
-                                <img class="material" src="${ctx}/img/material2.jpg"/>
-                            </div>
-                            <div class="txt">反馈</div>
-                            <div class="date">2018-10-21</div>
-                        </a>
-                    </li>
+                    </c:forEach>
+
                 </ul>
             </div>
 
-            <div class="item-class">
-                <div class="title display-flex justify-content-space-between align-items-center">
-                    <div class="txt">胶原蛋白中秋活动</div>
-                    <a href="#" class="external">查看全部&nbsp;>></a>
-                </div>
-                <ul class="imgs-list row no-gap">
-                    <li class="col-33">
-                        <a href="" class="link external">
-                            <div class="material-wrap">
-                                <img class="material" src="${ctx}/img/material3.jpg"/>
-                            </div>
-                            <div class="txt">中秋</div>
-                            <div class="date">2018-10-21</div>
-                        </a>
-                    </li>
-                    <li class="col-33">
-                        <a href="" class="link external">
-                            <div class="material-wrap">
-                                <img class="material" src="${ctx}/img/material5.jpg"/>
-                            </div>
-                            <div class="txt">中秋</div>
-                            <div class="date">2018-10-21</div>
-                        </a>
-                    </li>
-                </ul>
-            </div>
+            </c:forEach>
+
+
         </div>
     </div>
 </div>
