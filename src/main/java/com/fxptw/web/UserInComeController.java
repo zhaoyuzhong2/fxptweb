@@ -1,5 +1,6 @@
 package com.fxptw.web;
 
+import com.fxptw.dao.SiteInDao;
 import com.fxptw.dao.UserDao;
 import com.fxptw.dao.UserGoodsDao;
 import com.fxptw.dao.UserInComeDao;
@@ -30,6 +31,9 @@ public class UserInComeController {
 
     @Autowired
     private UserGoodsDao userGoodsDao;
+
+    @Autowired
+    SiteInDao siteInDao;
 
     /**
      * 根据用户名称获取
@@ -70,4 +74,6 @@ public class UserInComeController {
 //        System.out.println("Moeny:"+money);
         return "/MyAchievements/SalesPerEmployee";
     }
+
+
 }

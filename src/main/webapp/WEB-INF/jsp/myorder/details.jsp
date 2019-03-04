@@ -37,7 +37,7 @@
                         <div class="item-content">
                             <div class="item-media"><i class="icon icon-seller"></i></div>
                             <div class="item-inner">
-                                <div class="item-title">卖家：聚益恒集团</div>
+                                <div class="item-title">卖家：久康沅</div>
                                 <div class="item-after"><a href="#" class="phone-link"><i class="phone-red2"></i><span class="txt">联系卖家</span></a></div>
                             </div>
                         </div>
