@@ -46,12 +46,13 @@ public class MessageController {
 
 
 	@RequestMapping(value = "/material")
-	public String material(Model model) {
+	public String material(Model model,String name) {
 		List<MaterialType> mts = materialTypeDao.getMaterialTypes();
 		model.addAttribute("mts",mts);
-		for(int i=1;i<=mts.size();i++){
+		for(int i=0;i<mts.size();i++){
 			MaterialType mt = mts.get(i-1);
 			List<Material> ms = materialDao.selectLimitMaterialByTypeId(mt.getId(),9);//取某个素材的前9条
+
 			model.addAttribute("ms"+i,ms);
 		}
 
