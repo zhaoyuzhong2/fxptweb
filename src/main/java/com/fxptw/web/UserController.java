@@ -98,7 +98,25 @@ public class UserController {
 			model.addAttribute("openid",openid);
             return "login/login";
 
-        }else{
+        }else if(user.getFlag().equals("0")){
+			model.addAttribute("error","您的账号并未审核！");
+			model.addAttribute("headimgurl",headimgurl);
+			model.addAttribute("openid",openid);
+			return "login/login";
+
+		}else if(user.getFlag().equals("2")){
+			model.addAttribute("error","您的账号审核未通过！");
+			model.addAttribute("headimgurl",headimgurl);
+			model.addAttribute("openid",openid);
+			return "login/login";
+
+		}else if(user.getFlag().equals("3")){
+			model.addAttribute("error","您的账号已被注销！");
+			model.addAttribute("headimgurl",headimgurl);
+			model.addAttribute("openid",openid);
+			return "login/login";
+
+		}else{
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user);
 			user.setOpenid(openid);
