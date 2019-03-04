@@ -22,7 +22,7 @@ public class UserDao {
 
     //登录系统
     public User login(String mobile, String pwd){
-        final String sql ="select * from t_user where mobile = ? and pwd = ? and flag='0'";
+        final String sql ="select * from t_user where mobile = ? and pwd = ?";
         List<User> emps = baseDao.query(sql,User.class,new Object[]{mobile,pwd});
         if(emps.size()>0){
             return emps.get(0);
