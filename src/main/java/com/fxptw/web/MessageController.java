@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -49,14 +50,30 @@ public class MessageController {
 	public String material(Model model,String name) {
 		List<MaterialType> mts = materialTypeDao.getMaterialTypes();
 		model.addAttribute("mts",mts);
+		HashMap map = new HashMap();
 		for(int i=0;i<mts.size();i++){
 			MaterialType mt = mts.get(i-1);
 			List<Material> ms = materialDao.selectLimitMaterialByTypeId(mt.getId(),9);//取某个素材的前9条
+			map.put(i,ms);
 
-			model.addAttribute("ms"+i,ms);
 		}
-
+		model.addAttribute("map",map);
 		return "message/material";
+	}
+
+
+
+	@RequestMapping(value = "/materialList")
+	public String materialList(Model model,String typeid,String name) {
+		List<Material> ms = materialDao.selectMaterialByTypeIdName(Integer.parseInt(typeid),name);
+		model.addAttribute("typeid",typeid);
+		if(name!=null){
+			model.addAttribute("name",name);
+		}else{
+			model.addAttribute("name","");
+		}
+		model.addAttribute("ms",ms);
+		return "message/materialList";
 	}
 
 
