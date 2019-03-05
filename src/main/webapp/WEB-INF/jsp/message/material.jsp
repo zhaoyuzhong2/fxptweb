@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="en">
@@ -53,15 +54,15 @@
                     <a href="${ctx}/message/materialList?typeid=${mt.id}" class="external">查看全部&nbsp;>></a>
                 </div>
                 <ul class="imgs-list row no-gap">
-                <c:set var="id" value="${k.count}"/>
-                    <c:forEach items="${ms1}" var="m">
+                <c:set var="id" value="${k.index}"/>
+                    <c:forEach items="${map[id]}" var="m">
                     <li class="col-33">
                         <a href="" class="link external">
                             <div class="material-wrap">
                                 <img class="material" src="${ctx}/img_material/${m.imgpath}"/>
                             </div>
                             <div class="txt">${m.name}</div>
-                            <div class="date">2018-10-21</div>
+                            <div class="date"><fmt:formatDate value="${m.cdate}" pattern="yyyy-MM-dd" /></div>
                         </a>
                     </li>
                     </c:forEach>
