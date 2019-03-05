@@ -28,7 +28,7 @@
                 <input type="hidden" id="headimgurl" name="headimgurl" value="${headimgurl}"/>
                 <input type="hidden" id="openid" name="openid" value="${openid}"/>
             <div class="c-login-banner">
-                <img class="logo" src="${ctx}/img/1.jpg"/>
+                <img class="logo" src="${ctx}/img/logo.png"/>
                 <div class="title">久康沅</div>
             </div>
 
