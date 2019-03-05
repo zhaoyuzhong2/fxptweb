@@ -6,6 +6,7 @@ import com.fxptw.dao.UserDao;
 import com.fxptw.dao.UserGoodsDao;
 import com.fxptw.dto.User;
 import com.fxptw.dto.UserGoods;
+import com.fxptw.util.ParamSettings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +27,8 @@ public class MyController {
     UserGoodsDao userGoodsDao;
     @Autowired
     StockDao stockDao;
+	@Autowired
+	ParamSettings paramSettings;
 
 
 	//进入  首页    我
@@ -38,6 +41,7 @@ public class MyController {
 		double byshouru = userDao.getByShouru(emp1.getId(),yearm);
 
 		model.addAttribute("user",emp1);
+		model.addAttribute("zbtel",paramSettings.getTel());
 		model.addAttribute("byshouru",byshouru);
 		return "my/index";
 	}
