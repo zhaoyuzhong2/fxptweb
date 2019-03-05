@@ -52,7 +52,7 @@ public class MessageController {
 		model.addAttribute("mts",mts);
 		HashMap map = new HashMap();
 		for(int i=0;i<mts.size();i++){
-			MaterialType mt = mts.get(i-1);
+			MaterialType mt = mts.get(i);
 			List<Material> ms = materialDao.selectLimitMaterialByTypeId(mt.getId(),9);//取某个素材的前9条
 			map.put(i,ms);
 
@@ -74,6 +74,16 @@ public class MessageController {
 		}
 		model.addAttribute("ms",ms);
 		return "message/materialList";
+	}
+
+
+
+	@RequestMapping(value = "/materialDetail")
+	public String materialDetail(Model model,String id) {
+		Material m = materialDao.selectMaterialById(Integer.parseInt(id));
+		model.addAttribute("name",m.getName());
+		model.addAttribute("imgpath",m.getImgpath());
+		return "message/materialDetail";
 	}
 
 
