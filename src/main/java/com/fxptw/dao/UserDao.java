@@ -253,7 +253,7 @@ public class UserDao {
                 "                  ) t1,\n" +
                 "                  (SELECT @pids := ?) t2\n" +
                 "             ) t3 WHERE ischild != 0";
-        System.out.println(sql);
+
         return baseDao.queryForInt(sql,new Object[]{userid});
     }
 
