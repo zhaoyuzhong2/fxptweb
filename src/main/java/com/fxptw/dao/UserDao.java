@@ -233,7 +233,7 @@ public class UserDao {
                 "              SELECT t1.id,t1.name,t1.pid,t1.rolename,t1.roleid,\n" +
                 "              IF(FIND_IN_SET(pid, @pids) > 0, @pids := CONCAT(@pids, ',', id), 0) AS ischild\n" +
                 "              FROM (\n" +
-                "                   SELECT t.id,t.pid,t.name,t.roleid,b.name AS rolename FROM t_user t LEFT JOIN t_role b ON t.roleid=b.id WHERE t.flag = '0' ORDER BY id\n" +
+                "                   SELECT t.id,t.pid,t.name,t.roleid,b.name AS rolename FROM t_user t LEFT JOIN t_role b ON t.roleid=b.id ORDER BY id\n" +
                 "                  ) t1,\n" +
                 "                  (SELECT @pids := ?) t2\n" +
                 "             ) t3 WHERE ischild != 0";
@@ -249,11 +249,11 @@ public class UserDao {
                 "              SELECT t1.id,\n" +
                 "              IF(FIND_IN_SET(pid, @pids) > 0, @pids := CONCAT(@pids, ',', id), 0) AS ischild\n" +
                 "              FROM (\n" +
-                "                   SELECT id,pid FROM t_user  WHERE flag = '0' ORDER BY id\n" +
+                "                   SELECT id,pid FROM t_user  ORDER BY id\n" +
                 "                  ) t1,\n" +
                 "                  (SELECT @pids := ?) t2\n" +
                 "             ) t3 WHERE ischild != 0";
-
+        System.out.println(sql);
         return baseDao.queryForInt(sql,new Object[]{userid});
     }
 
