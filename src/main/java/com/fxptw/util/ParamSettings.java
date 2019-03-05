@@ -19,14 +19,14 @@ public class ParamSettings {
 
     private String appSecret;
 
-    private String mobile;
+    private String tel;
 
-    public String getMobile() {
-        return mobile;
+    public String getTel() {
+        return tel;
     }
 
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
+    public void setTel(String tel) {
+        this.tel = tel;
     }
 
     public String getUrl() {
