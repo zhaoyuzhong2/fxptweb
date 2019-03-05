@@ -87,6 +87,12 @@ public class UserInComeDao {
         return baseDao.queryForObject(sql,Double.class,new Object[]{userid});
     }
 
+    //获得某个人最近3个月的个人收入
+    public double getMoneyBy3Month(int userid){
+        String sql = "SELECT IFNULL(SUM(money),0) FROM t_user_income WHERE userid=? AND cdate>DATE_SUB(NOW(), INTERVAL 3 MONTH)";
+        return baseDao.queryForObject(sql,Double.class,new Object[]{userid});
+    }
+
 
     //获得某个人某个月收入
     public Double getMoneyByUseridYearm(int userid,String yearm){
