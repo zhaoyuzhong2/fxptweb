@@ -57,7 +57,7 @@
                 <c:set var="id" value="${k.index}"/>
                     <c:forEach items="${map[id]}" var="m">
                     <li class="col-33">
-                        <a href="" class="link external">
+                        <a href="${ctx}/message/materialDetail?id=${m.id}" class="link external">
                             <div class="material-wrap">
                                 <img class="material" src="${ctx}/img_material/${m.imgpath}"/>
                             </div>
