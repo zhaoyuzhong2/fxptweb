@@ -40,12 +40,12 @@
         <li>
             <a href="javascript:void(0);">
                 <i class="class-icon icon1"></i>
-                <span class="name">食品</span>
+                <%--<span class="name">食品</span>--%>
             </a>
         </li>
     </ul>
     <div class="product-list">
-        <h3 class="title">蛋圆饼干</h3>
+        <h3 class="title">久康沅</h3>
         <ul class="list-detail">
             <c:forEach items="${gs}" var="g">
             <li>
