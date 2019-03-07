@@ -31,7 +31,7 @@
 </head>
 <body class="page-stock">
 
-<div class="page-tip">向总部（0431-81752818）进货，购买后商品将会邮寄给您。</div>
+<div class="page-tip">向总部（${tel}）进货，购买后商品将会邮寄给您。</div>
 <form name="form" action="${ctx}/ug/shopingCar" id="form">
     <input type="hidden" id="param" name="param" value=""/>
 
