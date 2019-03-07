@@ -25,7 +25,11 @@
     <div class="page-subtip">购买成功，请及时付款！</div>
 
 </div>
-<a href="javascript:history.back(-1);" class="goback" id="goBack"></a>
-
+<a href="#" class="goback" id="goBack" onclick="fh()"></a>
+<script>
+    function fh() {
+        window.location.href="${ctx}/main/index";
+    }
+</script>
 </body>
 </html>
