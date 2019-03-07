@@ -30,7 +30,6 @@
             <div class="toolbar-inner">
                 <!-- Links have "tab-link" class instead of just "link" to switch tabs -->
                 <a href="#tab-1" class="tab-link tab-link-active">全部</a>
-                <a href="#tab-2" class="tab-link">待确认</a>
                 <a href="#tab-3" class="tab-link">待付款</a>
                 <a href="#tab-4" class="tab-link">待发货</a>
                 <a href="#tab-5" class="tab-link">待收货</a>
@@ -87,9 +86,9 @@
                                         <div class="total-price clearfix">
                                             <div class="right"><span class="pri">总计:&nbsp;&nbsp;¥${map.totalprice}</span><span class="freight">( 运费:&nbsp;&nbsp;0.00 )</span></div>
                                         </div>
-                                        <div class="btn-box">
-                                            <a href="${ctx}/ug/wantToBy" class="btn">再次购买</a>
-                                        </div>
+                                        <%--<div class="btn-box">--%>
+                                            <%--<a href="${ctx}/ug/wantToBy" class="btn">再次购买</a>--%>
+                                        <%--</div>--%>
                                     </li>
                                 </c:forEach>
                             </ul>
@@ -99,55 +98,55 @@
                 </div>
             </div>
 
-            <div class="page-content tab" id="tab-2">
-                <div class="null-tip">
-                    <c:choose>
-                    <c:when test="${list0.size()==0}">
-                        <div class="info">没有商品可供显示哦</div>
-                    </c:when>
-                    <c:otherwise>
-                        <ul class="order-list">
-                            <c:forEach items="${list0}" var="map" >
-                                <li>
-                                    <div class="top">
-                                        <div class="number">订单编号: ${map.code}</div>
-                                        <div class="status">已完成</div>
-                                    </div>
-                                    <div class="tag-box"><span class="tag">云订单</span></div>
-                                    <c:forEach items="${map.goodlist}" var="usergood">
-                                        <div class="order-detail">
-                                            <c:choose>
-                                                <c:when test="${usergood.imgfile}==null">
-                                                    <img src="${ctx}/img/ala.jpg" width="70" height="70" class="pro-img"/>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <img src="${ctx}${usergood.imgfile}" width="70" height="70" class="pro-img"/>
-                                                </c:otherwise>
-                                            </c:choose>
-                                            <img src="${ctx}${usergood.imgfile}" width="70" height="70" class="pro-img"/>
-                                            <div class="pro">
-                                                <div class="pro-name">${usergood.goodname}</div>
-                                                <div class="price-box">
-                                                    <div class="price">¥${usergood.buyprice}</div>
-                                                    <div class="num">×${usergood.buynum}</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </c:forEach>
-                                    <div class="total-price clearfix">
-                                        <div class="right"><span class="pri">总计:&nbsp;&nbsp;¥${map.totalprice}</span><span class="freight">( 运费:&nbsp;&nbsp;0.00 )</span></div>
-                                    </div>
-                                    <div class="btn-box">
-                                        <a href="${ctx}/ug/wantToBy" class="btn">再次购买</a>
-                                    </div>
-                                </li>
-                            </c:forEach>
-                        </ul>
-                        <div class="loading-info">已全部加载</div>
-                    </c:otherwise>
-                </c:choose>
-                </div>
-            </div>
+            <%--<div class="page-content tab" id="tab-2">--%>
+                <%--<div class="null-tip">--%>
+                    <%--<c:choose>--%>
+                    <%--<c:when test="${list0.size()==0}">--%>
+                        <%--<div class="info">没有商品可供显示哦</div>--%>
+                    <%--</c:when>--%>
+                    <%--<c:otherwise>--%>
+                        <%--<ul class="order-list">--%>
+                            <%--<c:forEach items="${list0}" var="map" >--%>
+                                <%--<li>--%>
+                                    <%--<div class="top">--%>
+                                        <%--<div class="number">订单编号: ${map.code}</div>--%>
+                                        <%--<div class="status">已完成</div>--%>
+                                    <%--</div>--%>
+                                    <%--<div class="tag-box"><span class="tag">云订单</span></div>--%>
+                                    <%--<c:forEach items="${map.goodlist}" var="usergood">--%>
+                                        <%--<div class="order-detail">--%>
+                                            <%--<c:choose>--%>
+                                                <%--<c:when test="${usergood.imgfile}==null">--%>
+                                                    <%--<img src="${ctx}/img/ala.jpg" width="70" height="70" class="pro-img"/>--%>
+                                                <%--</c:when>--%>
+                                                <%--<c:otherwise>--%>
+                                                    <%--<img src="${ctx}${usergood.imgfile}" width="70" height="70" class="pro-img"/>--%>
+                                                <%--</c:otherwise>--%>
+                                            <%--</c:choose>--%>
+                                            <%--<img src="${ctx}${usergood.imgfile}" width="70" height="70" class="pro-img"/>--%>
+                                            <%--<div class="pro">--%>
+                                                <%--<div class="pro-name">${usergood.goodname}</div>--%>
+                                                <%--<div class="price-box">--%>
+                                                    <%--<div class="price">¥${usergood.buyprice}</div>--%>
+                                                    <%--<div class="num">×${usergood.buynum}</div>--%>
+                                                <%--</div>--%>
+                                            <%--</div>--%>
+                                        <%--</div>--%>
+                                    <%--</c:forEach>--%>
+                                    <%--<div class="total-price clearfix">--%>
+                                        <%--<div class="right"><span class="pri">总计:&nbsp;&nbsp;¥${map.totalprice}</span><span class="freight">( 运费:&nbsp;&nbsp;0.00 )</span></div>--%>
+                                    <%--</div>--%>
+                                    <%--<div class="btn-box">--%>
+                                        <%--<a href="${ctx}/ug/wantToBy" class="btn">再次购买</a>--%>
+                                    <%--</div>--%>
+                                <%--</li>--%>
+                            <%--</c:forEach>--%>
+                        <%--</ul>--%>
+                        <%--<div class="loading-info">已全部加载</div>--%>
+                    <%--</c:otherwise>--%>
+                <%--</c:choose>--%>
+                <%--</div>--%>
+            <%--</div>--%>
 
             <div class="page-content tab" id="tab-3">
                 <c:choose>
@@ -188,9 +187,9 @@
                                     <div class="total-price clearfix">
                                         <div class="right"><span class="pri">总计:&nbsp;&nbsp;¥${map.totalprice}</span><span class="freight">( 运费:&nbsp;&nbsp;0.00 )</span></div>
                                     </div>
-                                    <div class="btn-box">
-                                        <a href="${ctx}/ug/wantToBy" class="btn">再次购买</a>
-                                    </div>
+                                    <%--<div class="btn-box">--%>
+                                        <%--<a href="${ctx}/ug/wantToBy" class="btn">再次购买</a>--%>
+                                    <%--</div>--%>
                                 </li>
                             </c:forEach>
                         </ul>
@@ -238,9 +237,9 @@
                                     <div class="total-price clearfix">
                                         <div class="right"><span class="pri">总计:&nbsp;&nbsp;¥${map.totalprice}</span><span class="freight">( 运费:&nbsp;&nbsp;0.00 )</span></div>
                                     </div>
-                                    <div class="btn-box">
-                                        <a href="${ctx}/ug/wantToBy" class="btn">再次购买</a>
-                                    </div>
+                                    <%--<div class="btn-box">--%>
+                                        <%--<a href="${ctx}/ug/wantToBy" class="btn">再次购买</a>--%>
+                                    <%--</div>--%>
                                 </li>
                             </c:forEach>
                         </ul>
@@ -288,9 +287,9 @@
                                     <div class="total-price clearfix">
                                         <div class="right"><span class="pri">总计:&nbsp;&nbsp;¥${map.totalprice}</span><span class="freight">( 运费:&nbsp;&nbsp;0.00 )</span></div>
                                     </div>
-                                    <div class="btn-box">
-                                        <a href="${ctx}/ug/wantToBy" class="btn">再次购买</a>
-                                    </div>
+                                    <%--<div class="btn-box">--%>
+                                        <%--<a href="${ctx}/ug/wantToBy" class="btn">再次购买</a>--%>
+                                    <%--</div>--%>
                                 </li>
                             </c:forEach>
                         </ul>
