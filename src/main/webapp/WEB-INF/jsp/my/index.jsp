@@ -27,10 +27,10 @@
                 <div class="head-icon">
                     <c:choose>
                         <c:when test="${user.headpath!=null}">
-                            <img src="${user.headpath}"/>
+                            <img src="${user.headpath}" width="100%" height="100%"/>
                         </c:when>
                         <c:otherwise>
-                            <img src="${ctx}/img/index_head.png"/>
+                            <img src="${ctx}/img/index_head.png" width="100%" height="100%"/>
                         </c:otherwise>
                     </c:choose>
                 </div>
@@ -168,15 +168,15 @@
     </div>
 </div>
 <div class="bottom-navbar">
-    <a href="${ctx}/main/index">
+    <a href="${ctx}/main/index" class="external">
         <i class="iconfont icon-daili"></i>
         <span class="text">代理</span>
     </a>
-    <a href="${ctx}/message/index">
+    <a href="${ctx}/message/index" class="external">
         <i class="iconfont icon-xiaoxi"></i>
         <span class="text">消息</span>
     </a>
-    <a href="${ctx}/my/index" class="active">
+    <a href="${ctx}/my/index" class="active external">
         <i class="iconfont icon-wode1"></i>
         <span class="text">我</span>
     </a>
