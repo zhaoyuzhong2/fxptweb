@@ -31,7 +31,7 @@
 </head>
 <body class="page-stock">
 
-<div class="page-tip">向总部（0431-81752818）进货，购买后商品将会邮寄给您。</div>
+<div class="page-tip">向总部（${tel}）进货，购买后商品将会邮寄给您。</div>
 <form name="form" action="${ctx}/ug/shopingCar" id="form">
     <input type="hidden" id="param" name="param" value=""/>
 
@@ -40,12 +40,12 @@
         <li>
             <a href="javascript:void(0);">
                 <i class="class-icon icon1"></i>
-                <span class="name">食品</span>
+                <%--<span class="name">食品</span>--%>
             </a>
         </li>
     </ul>
     <div class="product-list">
-        <h3 class="title">蛋圆饼干</h3>
+        <h3 class="title">久康沅</h3>
         <ul class="list-detail">
             <c:forEach items="${gs}" var="g">
             <li>

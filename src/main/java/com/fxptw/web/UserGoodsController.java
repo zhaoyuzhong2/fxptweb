@@ -7,6 +7,7 @@ import com.fxptw.dao.UserGoodsDao;
 import com.fxptw.dto.Goods;
 import com.fxptw.dto.User;
 import com.fxptw.dto.UserGoods;
+import com.fxptw.util.ParamSettings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +30,8 @@ public class UserGoodsController {
 	GoodsDao goodsDao;
 	@Autowired
 	UserDao userDao;
+	@Autowired
+	ParamSettings paramSettings;
 	//首页跳转
 	@RequestMapping(value = "/myList")
 	public String myList(Model model) {
@@ -91,6 +94,7 @@ public class UserGoodsController {
 			model.addAttribute("price", price);
 			model.addAttribute("ids", ids);
 			model.addAttribute("gs", gs1);
+			model.addAttribute("tel", paramSettings.getTel());
 		}catch (Exception e){
 			e.printStackTrace();
 		}
@@ -119,9 +123,10 @@ public class UserGoodsController {
 					int num = Integer.parseInt(goods[i].split("#")[1]);//放进货车的商品数量
 
 					if (num > 0) {
+
 						//购买数量大于0放进进货车，等于0的不处理
 						UserGoods ug = userGoodsDao.getMyGoods(userid, goodid);
-
+						System.out.println("goodid:"+goodid+"======>>"+num+"====>>"+ug);
 						if (ug == null) {
 							//说明进货车没有该商品信息，是新增
 							UserGoods xug = new UserGoods();

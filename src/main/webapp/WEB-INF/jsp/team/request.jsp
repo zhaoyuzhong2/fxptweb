@@ -47,7 +47,7 @@
 
                                     <a href="#" class="item-content item-link">
                                         <div class="item-inner">
-                                            <div class="item-title"><i class="iconfont icon-right1"></i>唤醒联创</div>
+                                            <div class="item-title"><i class="iconfont icon-right1"></i>小白</div>
                                             <div class="role-num">${r1sn}</div>
                                         </div>
                                     </a>
@@ -84,7 +84,7 @@
 
                                     <a href="#" class="item-content item-link">
                                         <div class="item-inner">
-                                            <div class="item-title"><i class="iconfont icon-right1"></i>唤醒大区</div>
+                                            <div class="item-title"><i class="iconfont icon-right1"></i>总代</div>
                                             <div class="role-num">${r2sn}</div>
                                         </div>
                                     </a>
@@ -122,7 +122,7 @@
 
                                     <a href="#" class="item-content item-link">
                                         <div class="item-inner">
-                                            <div class="item-title"><i class="iconfont icon-right1"></i>唤醒联创</div>
+                                            <div class="item-title"><i class="iconfont icon-right1"></i>大区</div>
                                             <div class="role-num">${r3sn}</div>
                                         </div>
                                     </a>
