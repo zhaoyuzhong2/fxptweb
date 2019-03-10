@@ -55,51 +55,66 @@ public class UserGoodsController {
 	@RequestMapping(value = "/wantToBy")
 	public String wantToBy(Model model,HttpServletRequest request) {
 		//System.out.println("我要进货...........");
-		try {
+		User emp1 = (User) request.getSession().getAttribute("user");
+		if(emp1==null){
+			return "login/login";
+		}else{
+			if(emp1.getFlag().equals("0")){
+				model.addAttribute("message","账户审核通过后才可以访问");
+				return "error/error";
+			}else{
 
-			User emp1 = (User) request.getSession().getAttribute("user");
-			List<Goods> gs = goodsDao.getList();
-			//System.out.println("            " + gs.size());
-			User user = userDao.getUserById(emp1.getId());//重新获取用户是担心用户角色有变化
+				try {
 
-			List<Goods> gs1 = new ArrayList<>();
 
-			int roleid = user.getRoleid();
-			int total = 0;
-			double price = 0.00;
-			String ids = "";
+					List<Goods> gs = goodsDao.getList();
+					//System.out.println("            " + gs.size());
+					User user = userDao.getUserById(emp1.getId());//重新获取用户是担心用户角色有变化
 
-			for (Goods g : gs) {
-				int num = userGoodsDao.getMyGoodNum(emp1.getId(), g.getId());
-				ids = ids + g.getId() + ",";
-				total = total + num;
-				g.setCount(num);
-				if (roleid == 1) {
-					g.setPrice(g.getBuyprice1());
-					price = price + g.getBuyprice1() * num;
-				} else if (roleid == 2) {
-					g.setPrice(g.getBuyprice2());
-					price = price + g.getBuyprice2() * num;
-				} else if (roleid == 3) {
-					g.setPrice(g.getBuyprice3());
-					price = price + g.getBuyprice3() * num;
+					List<Goods> gs1 = new ArrayList<>();
+
+					int roleid = user.getRoleid();
+					int total = 0;
+					double price = 0.00;
+					String ids = "";
+
+					for (Goods g : gs) {
+						int num = userGoodsDao.getMyGoodNum(emp1.getId(), g.getId());
+						ids = ids + g.getId() + ",";
+						total = total + num;
+						g.setCount(num);
+						if (roleid == 1) {
+							g.setPrice(g.getBuyprice1());
+							price = price + g.getBuyprice1() * num;
+						} else if (roleid == 2) {
+							g.setPrice(g.getBuyprice2());
+							price = price + g.getBuyprice2() * num;
+						} else if (roleid == 3) {
+							g.setPrice(g.getBuyprice3());
+							price = price + g.getBuyprice3() * num;
+						}
+
+						gs1.add(g);
+					}
+					if (ids.indexOf(",") > 0) {
+						ids = ids.substring(0, ids.length() - 1);
+					}
+					model.addAttribute("total", total);
+					model.addAttribute("price", price);
+					model.addAttribute("ids", ids);
+					model.addAttribute("gs", gs1);
+					model.addAttribute("tel", paramSettings.getTel());
+				}catch (Exception e){
+					e.printStackTrace();
 				}
+				return "good/index";
 
-				gs1.add(g);
+
 			}
-			if (ids.indexOf(",") > 0) {
-				ids = ids.substring(0, ids.length() - 1);
-			}
-			model.addAttribute("total", total);
-			model.addAttribute("price", price);
-			model.addAttribute("ids", ids);
-			model.addAttribute("gs", gs1);
-			model.addAttribute("tel", paramSettings.getTel());
-		}catch (Exception e){
-			e.printStackTrace();
 		}
 
-		return "good/index";
+
+
 	}
 
 
