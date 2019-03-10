@@ -194,7 +194,7 @@ public class UserController {
                 user.setRolename(role.getName());
             }
             user.setId(id);
-
+			user.setFlag("0");//注册默认是0
 
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user);
