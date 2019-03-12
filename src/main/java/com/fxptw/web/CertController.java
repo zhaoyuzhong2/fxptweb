@@ -38,8 +38,12 @@ public class CertController {
 				code = "JKY"+new Date().getTime();
 			}
 			String rolename = emp1.getRolename();
+			//System.out.println("rolename:"+rolename);
 			String name = emp1.getName();
 			String wechat = emp1.getChatno();
+			if(wechat==null){
+				wechat = "";
+			}
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			String cdate = sdf.format(emp1.getCdate());
 			String yxq = (Integer.parseInt(cdate.substring(0,4))+1)+cdate.substring(4,10);//有效期年数+1
