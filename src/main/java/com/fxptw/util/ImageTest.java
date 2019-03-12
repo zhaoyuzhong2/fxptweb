@@ -21,11 +21,11 @@ public class ImageTest {
     //定义上传的文件夹
     private static final String UPLOAD_PATH = "E:/save";
     //定义水印文字样式
-    private static final String MARK_TEXT = "久康沅";
+    private static final String MARK_TEXT = "久康元";
     private static final String FONT_NAME = "微软雅黑";
-    private static final int FONT_STYLE = Font.BOLD;
-    private static final int FONT_SIZE = 60;
-    private static final int FONT_SIZE2 = 20;
+    private static final int FONT_STYLE = Font.PLAIN;
+    private static final int FONT_SIZE = 70;
+    private static final int FONT_SIZE2 = 34;
     private static final Color FONT_COLOR = Color.black;
 
 
@@ -188,7 +188,7 @@ public class ImageTest {
 
     public static void main(String args[]){
         ImageTest it = new ImageTest();
-        it.moreTextWaterMark(new File("D:/zhengshu.jpg"),"");
+        it.moreTextWaterMark(new File("G:/zhengshu.jpg"),"");
     }
 
     //添加多条文字水印
@@ -229,8 +229,15 @@ public class ImageTest {
 
             int x = -width/2;
             int y = -height/2;
-            graphics3d.drawString("赵羽中", 360,693);
-            graphics3d.drawString("17745676171", 50,150);
+            graphics3d.drawString("JKY12345678911", 499,611);
+
+            graphics3d.drawString("大区",415,792);
+            graphics3d.drawString("赵羽中",415,852);
+            graphics3d.drawString("23228333",415,912);
+            graphics3d.drawString("17745676171",415,972);
+            graphics3d.drawString("23010619820914253X",415,1032);
+            graphics3d.drawString("2019-03-11",415,1092);
+            graphics3d.drawString("久康沅",415,1152);
             while(x < width*1.5){
                 y = -height/2;
                 while(y < height*1.5){
@@ -299,15 +306,17 @@ public class ImageTest {
 
             int x = -width/2;
             int y = -height/2;
-            graphics3d.drawString(code, 443,509);
 
-            graphics3d.drawString(rolename,360,693);
-            graphics3d.drawString(name,360,743);
-            graphics3d.drawString(wechat,360,793);
-            graphics3d.drawString(mobile,360,843);
-            graphics3d.drawString(idcard,360,893);
-            graphics3d.drawString(yxq,360,943);
-            graphics3d.drawString(dw,360,993);
+
+            graphics3d.drawString(code, 499,611);
+
+            graphics3d.drawString(rolename,415,792);
+            graphics3d.drawString(name,415,852);
+            graphics3d.drawString(wechat,415,912);
+            graphics3d.drawString(mobile,415,972);
+            graphics3d.drawString(idcard,415,1032);
+            graphics3d.drawString(yxq,415,1092);
+            graphics3d.drawString(dw,415,1152);
             while(x < width*1.5){
                 y = -height/2;
                 while(y < height*1.5){
