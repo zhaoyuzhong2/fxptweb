@@ -32,6 +32,7 @@ public class User extends BaseDTO {
     private String pmobile;
     private String pname;
     private Date cdate;
+    private String code;
 
     public Date getCdate() {
         return cdate;
@@ -239,5 +240,13 @@ public class User extends BaseDTO {
 
     public void setOpenid(String openid) {
         this.openid = openid;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }
