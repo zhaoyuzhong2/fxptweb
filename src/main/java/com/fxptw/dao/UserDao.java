@@ -315,8 +315,8 @@ public class UserDao {
 
     public int insUser(User user){
 
-        String sql = "insert into t_user(name,roleid,pid,mobile,chatno,sex,pwd,birthday,idcard,area,cdate,flag, openid,headpath,money) " +
-                "values(:name,:roleid,:pid,:mobile,:chatno,:sex,:pwd,:birthday,:idcard,:area,now(),'0',:openid, :headpath,0)";
+        String sql = "insert into t_user(name,roleid,pid,mobile,chatno,sex,pwd,birthday,idcard,area,cdate,flag, openid,headpath,money,code) " +
+                "values(:name,:roleid,:pid,:mobile,:chatno,:sex,:pwd,:birthday,:idcard,:area,now(),'0',:openid, :headpath,0,:code)";
         return baseDao.insert(sql,user);
     }
 
