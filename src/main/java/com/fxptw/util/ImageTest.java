@@ -21,7 +21,7 @@ public class ImageTest {
     //定义上传的文件夹
     private static final String UPLOAD_PATH = "E:/save";
     //定义水印文字样式
-    private static final String MARK_TEXT = "小卖铺的老爷爷";
+    private static final String MARK_TEXT = "久康沅";
     private static final String FONT_NAME = "微软雅黑";
     private static final int FONT_STYLE = Font.BOLD;
     private static final int FONT_SIZE = 60;
@@ -188,7 +188,7 @@ public class ImageTest {
 
     public static void main(String args[]){
         ImageTest it = new ImageTest();
-        it.moreTextWaterMark(new File("D:/moban.jpg"),"");
+        it.moreTextWaterMark(new File("D:/zhengshu.jpg"),"");
     }
 
     //添加多条文字水印
@@ -224,12 +224,12 @@ public class ImageTest {
             int waterHeight = FONT_SIZE;
 
             //水印透明设置
-            graphics2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_ATOP, ALPHA));
+            graphics2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_ATOP, 0.1F));
             graphics2d.rotate(Math.toRadians(30), bufferedImage.getWidth()/2, bufferedImage.getHeight()/2);
 
             int x = -width/2;
             int y = -height/2;
-            graphics3d.drawString("赵羽中", 50,50);
+            graphics3d.drawString("赵羽中", 360,693);
             graphics3d.drawString("17745676171", 50,150);
             while(x < width*1.5){
                 y = -height/2;
@@ -257,6 +257,86 @@ public class ImageTest {
         }
         return "success";
     }
+
+
+
+
+    //添加多条文字水印,生成授权证书
+    public String createZhengshu(File myFile,String imgpath,String code,String rolename,String name,String wechat,String mobile,String idcard,String yxq,String dw) {
+        InputStream is =null;
+        OutputStream os =null;
+        int X = 636;
+        int Y = 763;
+
+        try {
+            InputStream input = new FileInputStream(myFile);
+            Image image = ImageIO.read(input);
+            //计算原始图片宽度长度
+            int width = image.getWidth(null);
+            int height = image.getHeight(null);
+            //创建图片缓存对象
+            BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+            //创建java绘图工具对象
+            Graphics2D graphics2d = bufferedImage.createGraphics();
+            Graphics2D graphics3d = bufferedImage.createGraphics();
+            //参数主要是，原图，坐标，宽高
+            graphics2d.drawImage(image, 0, 0, width, height, null);
+            graphics2d.setFont(new Font(FONT_NAME, FONT_STYLE, FONT_SIZE));
+            graphics2d.setColor(FONT_COLOR);
+
+            graphics3d.drawImage(image, 0, 0, width, height, null);
+            graphics3d.setFont(new Font(FONT_NAME, FONT_STYLE, FONT_SIZE2));
+            graphics3d.setColor(FONT_COLOR);
+
+            //使用绘图工具将水印绘制到图片上
+            //计算文字水印宽高值
+            int waterWidth = FONT_SIZE*getTextLength(MARK_TEXT);
+            int waterHeight = FONT_SIZE;
+
+            //水印透明设置
+            graphics2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_ATOP, 0.1F));
+            graphics2d.rotate(Math.toRadians(30), bufferedImage.getWidth()/2, bufferedImage.getHeight()/2);
+
+            int x = -width/2;
+            int y = -height/2;
+            graphics3d.drawString(code, 443,509);
+
+            graphics3d.drawString(rolename,360,693);
+            graphics3d.drawString(name,360,743);
+            graphics3d.drawString(wechat,360,793);
+            graphics3d.drawString(mobile,360,843);
+            graphics3d.drawString(idcard,360,893);
+            graphics3d.drawString(yxq,360,943);
+            graphics3d.drawString(dw,360,993);
+            while(x < width*1.5){
+                y = -height/2;
+                while(y < height*1.5){
+                    graphics2d.drawString(MARK_TEXT, x, y);
+                    y+=waterHeight+100;
+                }
+                x+=waterWidth+100;
+            }
+            graphics2d.dispose();
+
+            os = new FileOutputStream(imgpath);//生成到指定目录
+            //创建图像编码工具类
+            JPEGImageEncoder en = JPEGCodec.createJPEGEncoder(os);
+            //使用图像编码工具类，输出缓存图像到目标文件
+            en.encode(bufferedImage);
+            if(is!=null){
+                is.close();
+            }
+            if(os!=null){
+                os.close();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "success";
+    }
+
+
+
 
     //多图片水印
     public String moreImageWaterMark(MultipartFile myFile, String imageFileName, HttpServletRequest request) {
