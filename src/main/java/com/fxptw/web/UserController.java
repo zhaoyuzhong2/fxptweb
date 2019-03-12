@@ -187,6 +187,7 @@ public class UserController {
 		String idcard = user.getIdcard();
 		String birthday = idcard.substring(6,14);
 		user.setBirthday(birthday);
+		user.setCode("JKY"+new Date().getTime());
 		int id = userDao.insUser(user);
         if(id>0) {
             Role role = roleDao.getRoleById(user.getRoleid());
