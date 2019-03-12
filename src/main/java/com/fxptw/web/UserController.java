@@ -118,9 +118,12 @@ public class UserController {
 
 		}else{
 			HttpSession session = request.getSession();
-			session.setAttribute("user", user);
+			Role role = roleDao.getRoleById(user.getRoleid());
 			user.setOpenid(openid);
 			user.setHeadpath(headimgurl);
+			user.setRolename(role.getName());
+			session.setAttribute("user", user);
+
 			userDao.updUser(user);//更改openid和headpath
 
 			model.addAttribute("tyeji","0.00");
