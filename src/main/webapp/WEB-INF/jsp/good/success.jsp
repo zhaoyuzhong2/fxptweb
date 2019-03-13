@@ -13,7 +13,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
-    <title>物流订单下单</title>
+    <title>商品下单</title>
     <link rel="stylesheet" href="${ctx}/css/framework7.min.css">
     <link rel="stylesheet" href="${ctx}/css/public.css">
     <link rel="stylesheet" href="${ctx}/css/showBo.css">
@@ -22,7 +22,7 @@
 <body class="page-placeorder">
 
 <div id="app">
-    <div class="page-subtip">购买成功，请及时付款！</div>
+    <div class="page-subtip">商品购买成功，请及时付款！</div>
 
 </div>
 <a href="#" class="goback" id="goBack" onclick="fh()"></a>
