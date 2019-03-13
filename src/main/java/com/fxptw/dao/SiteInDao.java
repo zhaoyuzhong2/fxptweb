@@ -17,11 +17,10 @@ public class SiteInDao {
      * 存储签到信息数据
      * @param siteIn 签到对象
      */
-    public void insertSiteIn(SiteIn siteIn){
-        StringBuffer sqlBuffer = new StringBuffer("INSERT INTO t_site_in(openId,site,site_address)");
-        sqlBuffer.append(" VALUES('").append(siteIn.getOpenId()).append("','").append(siteIn.getSite());
-        sqlBuffer.append("','").append(siteIn.getSiteAddress()).append("')");
-        baseDao.insert(sqlBuffer.toString(), siteIn);
+    public int insertSiteIn(SiteIn siteIn){
+        String sql = "INSERT INTO t_site_in(openId,mobile,name,cdate) values(:openId,:mobile,:name,now())";
+
+        return baseDao.insert(sql, siteIn);
     }
 
     /**
