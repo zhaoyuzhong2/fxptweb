@@ -20,7 +20,7 @@ public class SiteIn extends BaseDTO implements Serializable {
     private String openId;
 
     //创建时间
-    private Date createDate;
+    private Date cdate;
 
     //定位经纬度数据（未实现）
     private String site;
@@ -72,18 +72,12 @@ public class SiteIn extends BaseDTO implements Serializable {
         this.openId = openId;
     }
 
-    /**
-     * @return 创建时间
-     */
-    public Date getCreateDate() {
-        return createDate;
+    public Date getCdate() {
+        return cdate;
     }
 
-    /**
-     * @param createDate 创建时间
-     */
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
+    public void setCdate(Date cdate) {
+        this.cdate = cdate;
     }
 
     /**
@@ -184,10 +178,5 @@ public class SiteIn extends BaseDTO implements Serializable {
         this.mobile = mobile;
     }
 
-    /**
-     * @return 签到时间
-     */
-    public String getCreateDateStr() {
-        return this.sdf.format(this.createDate);
-    }
+
 }
