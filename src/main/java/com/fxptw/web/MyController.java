@@ -52,7 +52,7 @@ public class MyController {
 	public String txye(Model model,HttpServletRequest request) {
 		User emp1 = (User) request.getSession().getAttribute("user");
 
-		SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
 		String yearm = sdf.format(new Date());
 		double byshouru = userDao.getByShouru(emp1.getId(),yearm);
 		double tshouru = userDao.getShouru(emp1.getId(),"");
