@@ -48,7 +48,7 @@
 
             <ul class="list-box">
                 <li>
-                    <a href="${ctx}/my/txye">
+                    <a href="${ctx}/my/txye" class="external">
                         <div class="left">
                             <i class="icon my-icon1"></i>
                             <div>
@@ -99,7 +99,7 @@
 
             <ul class="list-box">
                 <li>
-                    <a href="${ctx}/my/sztj">
+                    <a href="${ctx}/my/sztj" class="external">
                         <div class="left">
                             <i class="icon my-icon4"></i>
                             <div>
@@ -112,7 +112,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="${ctx}/my/spchtj">
+                    <a href="${ctx}/my/spchtj" class="external">
                         <div class="left">
                             <i class="icon my-icon5"></i>
                             <div>
