@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 2019/1/23/023
-  Time: 23:55
+  User: james
+  Date: 2019/3/5
+  Time: 11:14
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -14,7 +14,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
-    <title>素材库</title>
+    <title>素材搜索</title>
     <link rel="stylesheet" href="${ctx}/css/framework7.min.css">
     <link rel="stylesheet" href="${ctx}/css/font.css">
     <link rel="stylesheet" href="${ctx}/css/public.css">
@@ -23,39 +23,19 @@
 <div id="app">
     <div class="page">
         <div class="page-content">
-            <%--搜索条件暂时不启用--%>
-            <%--<form class="c-searchbar display-flex align-items-center" action="${ctx}/material/material" method="post" id="form">--%>
-                <%--<div class="input-wrap display-flex align-items-center">--%>
-                    <%--<i class="iconfont icon-sousuo"></i>--%>
-                    <%--<input class="search-ipt" type="text" placeholder="搜索素材" style="width: 70px;" id="name"/>--%>
-                    <%--<a href="#" class="iconfont icon-cancel-1 clear-btn"></a>--%>
-                <%--</div>--%>
-                <%--<a href="#" class="search-btn" onclick="search()">搜索</a>--%>
-            <%--</form>--%>
-
-
-            <%--这个是置顶的图片，暂不显示--%>
-
-            <%--<ul class="total-class row no-gap">--%>
-                <%--<li class="col-25">--%>
-                    <%--<a href="#" class="external link">--%>
-                        <%--<div class="material-wrap">--%>
-                            <%--<img class="material" src="${ctx}/img/material1.jpg"/>--%>
-                        <%--</div>--%>
-                        <%--<div class="txt">胶原蛋白反馈</div>--%>
-                    <%--</a>--%>
-                <%--</li>--%>
-                <%----%>
-            <%--</ul>--%>
-            <c:forEach var="mt" items="${mts}" varStatus="k">
-            <div class="item-class">
-                <div class="title display-flex justify-content-space-between align-items-center">
-                    <div class="txt">${mt.name}</div>
-                    <a href="${ctx}/message/materialList?typeid=${mt.id}" class="external">查看全部&nbsp;>></a>
+            <form class="c-searchbar display-flex align-items-center" id="form" action="${ctx}/message/materialList">
+                <input type="hidden" id="typeid" name="typeid" value="${typeid}"/>
+                <div class="input-wrap display-flex align-items-center">
+                    <i class="iconfont icon-sousuo"></i>
+                    <input class="search-ipt" type="text" placeholder="图片名称" name="name" style="width: 40px;"/>
+                    <a href="#" class="iconfont icon-cancel-1 clear-btn"></a>
                 </div>
+                <a href="#" class="search-btn" onclick="sub()">搜索</a>
+            </form>
+
+            <div class="item-class" style="margin-top: 0;">
                 <ul class="imgs-list row no-gap">
-                <c:set var="id" value="${k.index}"/>
-                    <c:forEach items="${map[id]}" var="m">
+                    <c:forEach var="m" items="${ms}">
                     <li class="col-33">
                         <a href="${ctx}/message/materialDetail?id=${m.id}" class="link external">
                             <div class="material-wrap">
@@ -69,10 +49,7 @@
 
                 </ul>
             </div>
-
-            </c:forEach>
-
-
+            <div class="c-load-tip">已全部加载</div>
         </div>
     </div>
 </div>
@@ -84,8 +61,9 @@
 <script src="${ctx}/js/jquery.min.js"></script>
 <script src="${ctx}/js/my-app.js"></script>
 <script src="${ctx}/js/public.js"></script>
+
 <script>
-function search() {
+function sub() {
     $("#form").submit();
 }
 </script>

@@ -26,6 +26,6 @@
 
 </div>
 
-
+<a href="javascript:history.back(-1);" class="goback" id="goBack"></a>
 </body>
 </html>

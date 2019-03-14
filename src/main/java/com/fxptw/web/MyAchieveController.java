@@ -7,6 +7,7 @@ import com.fxptw.dto.User;
 import com.fxptw.dto.UserInCome;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,38 +35,56 @@ public class MyAchieveController {
      * @param request 请求对象
      * @return 请求结果
      */
+//    @RequestMapping("/index")
+//    public String getMyAchievements(HttpServletRequest request) {
+//        User emp1 = (User) request.getSession().getAttribute("user");
+//        int userId = emp1.getId();
+//        UserInCome userInCome = userInComeDao.getUserInCome(userId);
+//        if(userInCome!=null){
+//            request.setAttribute("myAchievements", userInCome.getTotalp());
+//        }else{
+//            request.setAttribute("myAchievements", 0);
+//        }
+//        int subUserSum = userDao.getAllXjnum(userId);
+//        //获取子用户数量统计
+//        request.setAttribute("subUserSum", subUserSum);
+//        double shouru = userDao.getShouru(userId,"1");
+//        request.setAttribute("shouru",shouru);
+//        String yearMonth = new SimpleDateFormat("yyyy-MM").format(new Date());
+//        double byShouru = userDao.getByShouru(userId, yearMonth);
+//        request.setAttribute("byShouru",byShouru);
+//        request.setAttribute("yearMonth", yearMonth);
+//        Integer xjnum = userDao.getXjnum(userId);
+//        request.setAttribute("xjnum", xjnum);
+//        request.setAttribute("month", new SimpleDateFormat("MM").format(new Date()));
+//        Integer allXjnum = userDao.getAllXjnum(userId);
+//        request.setAttribute("allXjnum", allXjnum);
+//        List<User> userList = userDao.inviteUsers(userId);
+//        userGoodsDao.queryUsersByGoodsNum(userList);
+//        List<User> users = new ArrayList<>(1);
+//        users.add(emp1);
+//        String userIds = userGoodsDao.usersByIds(users);
+//        double money = userInComeDao.getMoneyByUseridYearm(userId,yearMonth);
+//        request.setAttribute("MyMoney", money);
+//        System.out.println("Moeny:"+money);
+//        return "MyAchievements/SalesPerEmployee";
+//    }
+
+
     @RequestMapping("/index")
-    public String getMyAchievements(HttpServletRequest request) {
+    public String getMyAchievements(Model model,HttpServletRequest request) {
         User emp1 = (User) request.getSession().getAttribute("user");
         int userId = emp1.getId();
-        UserInCome userInCome = userInComeDao.getUserInCome(userId);
-        if(userInCome!=null){
-            request.setAttribute("myAchievements", userInCome.getTotalp());
-        }else{
-            request.setAttribute("myAchievements", 0);
-        }
-        int subUserSum = userDao.getAllXjnum(userId);
-        //获取子用户数量统计
-        request.setAttribute("subUserSum", subUserSum);
-        double shouru = userDao.getShouru(userId,"1");
-        request.setAttribute("shouru",shouru);
+
+        int allxjnum = userDao.getAllUsersNumByUserid(userId);
+        int xjnum = userDao.getDownUsers(userId).size();
+        double money = userInComeDao.getMoneyBy3Month(userId);
         String yearMonth = new SimpleDateFormat("yyyy-MM").format(new Date());
-        double byShouru = userDao.getByShouru(userId, yearMonth);
-        request.setAttribute("byShouru",byShouru);
-        request.setAttribute("yearMonth", yearMonth);
-        Integer xjnum = userDao.getXjnum(userId);
-        request.setAttribute("xjnum", xjnum);
-        request.setAttribute("month", new SimpleDateFormat("MM").format(new Date()));
-        Integer allXjnum = userDao.getAllXjnum(userId);
-        request.setAttribute("allXjnum", allXjnum);
-        List<User> userList = userDao.inviteUsers(userId);
-        userGoodsDao.queryUsersByGoodsNum(userList);
-        List<User> users = new ArrayList<>(1);
-        users.add(emp1);
-        String userIds = userGoodsDao.usersByIds(users);
-        double money = userInComeDao.getMoneyByUseridYearm(userId,yearMonth);
-        request.setAttribute("MyMoney", money);
-        System.out.println("Moeny:"+money);
+        model.addAttribute("yearMonth",yearMonth);
+        model.addAttribute("allXjnum",allxjnum);
+        model.addAttribute("xjnum",xjnum);
+        model.addAttribute("money",money);
         return "MyAchievements/SalesPerEmployee";
     }
+
 }

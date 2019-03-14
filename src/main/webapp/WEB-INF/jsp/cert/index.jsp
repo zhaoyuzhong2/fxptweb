@@ -23,7 +23,7 @@
     </style>
 </head>
 <body class="page-certificate">
-<img class="certificate" src="${ctx}/img/certificate.png"/>
+<img class="certificate" src="${ctx}/img_zs/${filename}"/>
 
 <a href="javascript:history.back(-1);" class="goback" id="goBack"></a>
 </body>

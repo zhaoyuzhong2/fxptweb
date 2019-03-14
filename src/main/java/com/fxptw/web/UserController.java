@@ -98,11 +98,32 @@ public class UserController {
 			model.addAttribute("openid",openid);
             return "login/login";
 
-        }else{
+        }else if(user.getFlag().equals("0")){
+			model.addAttribute("error","您的账号并未审核！");
+			model.addAttribute("headimgurl",headimgurl);
+			model.addAttribute("openid",openid);
+			return "login/login";
+
+		}else if(user.getFlag().equals("2")){
+			model.addAttribute("error","您的账号审核未通过！");
+			model.addAttribute("headimgurl",headimgurl);
+			model.addAttribute("openid",openid);
+			return "login/login";
+
+		}else if(user.getFlag().equals("3")){
+			model.addAttribute("error","您的账号已被注销！");
+			model.addAttribute("headimgurl",headimgurl);
+			model.addAttribute("openid",openid);
+			return "login/login";
+
+		}else{
 			HttpSession session = request.getSession();
-			session.setAttribute("user", user);
+			Role role = roleDao.getRoleById(user.getRoleid());
 			user.setOpenid(openid);
 			user.setHeadpath(headimgurl);
+			user.setRolename(role.getName());
+			session.setAttribute("user", user);
+
 			userDao.updUser(user);//更改openid和headpath
 
 			model.addAttribute("tyeji","0.00");
@@ -169,6 +190,7 @@ public class UserController {
 		String idcard = user.getIdcard();
 		String birthday = idcard.substring(6,14);
 		user.setBirthday(birthday);
+		user.setCode("JKY"+new Date().getTime());
 		int id = userDao.insUser(user);
         if(id>0) {
             Role role = roleDao.getRoleById(user.getRoleid());
@@ -176,7 +198,7 @@ public class UserController {
                 user.setRolename(role.getName());
             }
             user.setId(id);
-
+			user.setFlag("0");//注册默认是0
 
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user);

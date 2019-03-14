@@ -43,10 +43,23 @@ public class AddressMapping extends WebMvcConfigurerAdapter {
                     .addResourceLocations("file:D://fxpt_upload//material//") //媒体资源
                     .addResourceLocations("classpath:/WEB-INF/gjimage/");  //swagger2页面
 
+            registry.addResourceHandler("/img_zs/**")
+                    // /apple/**表示在磁盘apple目录下的所有资源会被解析为以下的路径
+                    .addResourceLocations("file:D://fxpt_upload//zs//") //媒体资源
+                    .addResourceLocations("classpath:/WEB-INF/gjimage/");  //swagger2页面
+
         } else {  //linux 和mac
             //path = "/usr/home/gjimage";
-            registry.addResourceHandler("/img/**")
-                    .addResourceLocations("file:/usr/home/gjimage/")  //媒体资源
+            registry.addResourceHandler("/img_index/**")
+                    .addResourceLocations("file:/usr/fxpt_upload/index/")  //媒体资源
+                    .addResourceLocations("classpath:/WEB-INF/gjimage/");  //swagger2页面;
+
+            registry.addResourceHandler("/img_material/**")
+                    .addResourceLocations("file:/usr/fxpt_upload/material/")  //媒体资源
+                    .addResourceLocations("classpath:/WEB-INF/gjimage/");  //swagger2页面;
+
+            registry.addResourceHandler("/img_zs/**")
+                    .addResourceLocations("file:/usr/fxpt_upload/zs/")  //媒体资源
                     .addResourceLocations("classpath:/WEB-INF/gjimage/");  //swagger2页面;
         }
 

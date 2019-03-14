@@ -155,6 +155,13 @@
         </a>
     </li>
 
+
+    <li class="item1">
+        <a href="#" onclick="sitein()">
+            <div class="name">签到</div>
+        </a>
+    </li>
+
     <%--<li class="item3">--%>
         <%--<a href="#">--%>
             <%--<div class="name">可提现余额</div>--%>
@@ -188,4 +195,26 @@
 </div>
 
 </body>
+<script>
+    function sitein() {
+        $.post("${ctx}/site/in",{},function (d) {
+            if(d=="ajaxfail"){
+                Showbo.Msg.confirm1("会话过期,请重新登录!",function(btn){
+                    if(btn=="yes"){
+                        window.location.href="${ctx}/main/tologin";
+                    }
+                });
+            }else {
+                if(d=="ok"){
+                    Showbo.Msg.alert('签到成功');
+
+                }else {
+                    Showbo.Msg.alert('签到失败');
+                }
+            }
+
+        });
+    }
+    
+</script>    
 </html>

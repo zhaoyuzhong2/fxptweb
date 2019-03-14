@@ -73,7 +73,7 @@
         <div class="toolbar">
             <div class="toolbar-inner">
                 <div class="right" style="visibility:hidden;"><a class="link sheet-close" href="#"></a></div>
-                <div class="left">新建收货地址</div>
+                <div class="left">填写收货地址</div>
                 <div class="right"><a class="link sheet-close" href="#"></a></div>
             </div>
         </div>
@@ -82,7 +82,7 @@
                 <div class="display-flex left">
                     <div class="intel-icon"></div>
                     <div class="name">智能地址</div>
-                    <div class="tip display-flex align-items-center flex-shrink-1">(在下方粘贴整段地址信息，系统自动识别)</div>
+                    <div class="tip display-flex align-items-center flex-shrink-1">(填写收货人，系统自动识别)</div>
                 </div>
                 <div class="to-icon"></div>
             </div>

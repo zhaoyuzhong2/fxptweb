@@ -22,7 +22,7 @@ public class UserDao {
 
     //登录系统
     public User login(String mobile, String pwd){
-        final String sql ="select * from t_user where mobile = ? and pwd = ? and flag='0'";
+        final String sql ="select * from t_user where mobile = ? and pwd = ?";
         List<User> emps = baseDao.query(sql,User.class,new Object[]{mobile,pwd});
         if(emps.size()>0){
             return emps.get(0);
@@ -233,7 +233,7 @@ public class UserDao {
                 "              SELECT t1.id,t1.name,t1.pid,t1.rolename,t1.roleid,\n" +
                 "              IF(FIND_IN_SET(pid, @pids) > 0, @pids := CONCAT(@pids, ',', id), 0) AS ischild\n" +
                 "              FROM (\n" +
-                "                   SELECT t.id,t.pid,t.name,t.roleid,b.name AS rolename FROM t_user t LEFT JOIN t_role b ON t.roleid=b.id WHERE t.flag = '0' ORDER BY id\n" +
+                "                   SELECT t.id,t.pid,t.name,t.roleid,b.name AS rolename FROM t_user t LEFT JOIN t_role b ON t.roleid=b.id ORDER BY id\n" +
                 "                  ) t1,\n" +
                 "                  (SELECT @pids := ?) t2\n" +
                 "             ) t3 WHERE ischild != 0";
@@ -249,7 +249,7 @@ public class UserDao {
                 "              SELECT t1.id,\n" +
                 "              IF(FIND_IN_SET(pid, @pids) > 0, @pids := CONCAT(@pids, ',', id), 0) AS ischild\n" +
                 "              FROM (\n" +
-                "                   SELECT id,pid FROM t_user  WHERE flag = '0' ORDER BY id\n" +
+                "                   SELECT id,pid FROM t_user  ORDER BY id\n" +
                 "                  ) t1,\n" +
                 "                  (SELECT @pids := ?) t2\n" +
                 "             ) t3 WHERE ischild != 0";
@@ -315,8 +315,8 @@ public class UserDao {
 
     public int insUser(User user){
 
-        String sql = "insert into t_user(name,roleid,pid,mobile,chatno,sex,pwd,birthday,idcard,area,cdate,flag, openid,headpath,money) " +
-                "values(:name,:roleid,:pid,:mobile,:chatno,:sex,:pwd,:birthday,:idcard,:area,now(),'0',:openid, :headpath,0)";
+        String sql = "insert into t_user(name,roleid,pid,mobile,chatno,sex,pwd,birthday,idcard,area,cdate,flag, openid,headpath,money,code) " +
+                "values(:name,:roleid,:pid,:mobile,:chatno,:sex,:pwd,:birthday,:idcard,:area,now(),'0',:openid, :headpath,0,:code)";
         return baseDao.insert(sql,user);
     }
 
@@ -336,7 +336,7 @@ public class UserDao {
     }
 
     public double getShouru(int userid,String flag){
-        String sql = "select IFNULL(sum(totalp),0) from t_user_income where userid=? ";
+        String sql = "select IFNULL(sum(money),0) from t_user_income where userid=? ";
         if(flag!=null && !flag.equals("")){
             sql = sql + " and flag='"+flag+"'";
         }
@@ -346,7 +346,7 @@ public class UserDao {
 
 
     public double getByShouru(int userid,String yearm){
-        String sql = "select IFNULL(sum(totalp),0) from t_user_income where userid=? and yearm=?";
+        String sql = "select IFNULL(sum(money),0) from t_user_income where userid=? and yearm=?";
         return baseDao.queryForObject(sql,Double.class,new Object[]{userid,yearm});
     }
 

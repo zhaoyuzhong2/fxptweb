@@ -25,7 +25,14 @@
             <header class="my-header">
                 <div class="my-banner"></div>
                 <div class="head-icon">
-                    <img src="${ctx}/img/index_head.png" width="100%" height="100%"/>
+                    <c:choose>
+                        <c:when test="${user.headpath!=null}">
+                            <img src="${user.headpath}" width="100%" height="100%"/>
+                        </c:when>
+                        <c:otherwise>
+                            <img src="${ctx}/img/index_head.png" width="100%" height="100%"/>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
                 <div class="user-name">${user.name}</div>
                 <div class="tag-box">
@@ -74,21 +81,21 @@
                 </li>
             </ul>
 
-            <ul class="list-box">
-                <li>
-                    <a href="#">
-                        <div class="left">
-                            <i class="icon my-icon3"></i>
-                            <div>
-                                <div class="name">联创团队管理</div>
-                            </div>
-                        </div>
-                        <div class="right">
-                            <div class="to-icon"></div>
-                        </div>
-                    </a>
-                </li>
-            </ul>
+            <%--<ul class="list-box">--%>
+                <%--<li>--%>
+                    <%--<a href="#">--%>
+                        <%--<div class="left">--%>
+                            <%--<i class="icon my-icon3"></i>--%>
+                            <%--<div>--%>
+                                <%--<div class="name">联创团队管理</div>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                        <%--<div class="right">--%>
+                            <%--<div class="to-icon"></div>--%>
+                        <%--</div>--%>
+                    <%--</a>--%>
+                <%--</li>--%>
+            <%--</ul>--%>
 
             <ul class="list-box">
                 <li>
@@ -145,7 +152,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="open-vertical">
+                    <a href="tel:${zbtel}" class="open-vertical">
                         <i class="iconfont icon-kefufenxiermaikefu"></i>
                         <div class="name">联系总部</div>
                     </a>
@@ -153,23 +160,23 @@
             </ul>
 
             <div class="footer">
-                <img class="logo-icon" src="${ctx}/img/class_icon1.png"/>
-                <div class="txt">聚益恒集团</div>
+                <img class="logo-icon" src="${ctx}/img/logo.png"/>
+                <div class="txt">久康沅</div>
             </div>
 
         </div>
     </div>
 </div>
 <div class="bottom-navbar">
-    <a href="${ctx}/main/index">
+    <a href="${ctx}/main/index" class="external">
         <i class="iconfont icon-daili"></i>
         <span class="text">代理</span>
     </a>
-    <a href="${ctx}/message/index">
+    <a href="${ctx}/message/index" class="external">
         <i class="iconfont icon-xiaoxi"></i>
         <span class="text">消息</span>
     </a>
-    <a href="${ctx}/my/index" class="active">
+    <a href="${ctx}/my/index" class="active external">
         <i class="iconfont icon-wode1"></i>
         <span class="text">我</span>
     </a>
@@ -186,14 +193,9 @@
             text: '',
             buttons: [
                 {
-                    text: '呼叫',
+                    text: '13600556666',
                 },
-                {
-                    text: '复制',
-                },
-                {
-                    text: '添加到手机通讯录',
-                },
+
             ],
             verticalButtons: true,
         }).open();

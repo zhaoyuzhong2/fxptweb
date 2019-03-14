@@ -19,6 +19,15 @@ public class ParamSettings {
 
     private String appSecret;
 
+    private String tel;
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
 
     public String getUrl() {
         return url;
