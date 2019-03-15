@@ -97,7 +97,7 @@ public class MainController {
 
 	//登录功能
 	@RequestMapping(value = "/tologin")
-	public String tologin(HttpServletRequest request, HttpServletResponse response, Model model)
+	public String toLogin(HttpServletRequest request, HttpServletResponse response, Model model)
 			throws UnsupportedEncodingException {
 		response.setContentType("text/html");
 		request.setCharacterEncoding("UTF-8");
@@ -112,16 +112,27 @@ public class MainController {
 				"https://api.weixin.qq.com/sns/oauth2/access_token", params);
 		JSONObject jsonObject = JSONObject.parseObject(result);
 		String openid = jsonObject.get("openid").toString();
+		System.out.println("OpenId:"+openid);
 		String url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token="+WeCharQuartz.getAccessToken()
 				+"&openid="+openid+"&lang=zh_CN";
+		System.out.println("AccessToken:"+WeCharQuartz.getAccessToken());
 		Map user = restTemplate.getForEntity(url,Map.class,new HashMap<>()).getBody();
 		System.out.println("得到的openid为:"+openid+"\tuser:"+user);
 		request.getSession().setAttribute("openId", openid);
 		request.getSession().setAttribute("weCharUser", user);
+		String headImgurl = (String) user.get("headimgurl");
 		User user1 = userDao.login(openid);
-		String headimgurl = (String) user.get("headimgurl");
-
-		return this.getWelcome(request,model,user1,headimgurl,openid);
+		if(user1 == null){
+			String mobile = request.getParameter("mobile");
+			String pwd = request.getParameter("pwd");
+			User userTemp = userDao.login(mobile,pwd);
+			if(userTemp != null){
+				userTemp.setOpenid(openid);
+				userTemp.setHeadpath(headImgurl);
+				userDao.updUser(userTemp);
+			}
+		}
+		return this.getWelcome(request,model,user1,headImgurl,openid);
 	}
 
 	private String getWelcome(HttpServletRequest request, Model model, User user,String headimgurl,String openid){
@@ -181,7 +192,7 @@ public class MainController {
     @RequestMapping(value = "/login")
     public String login(String mobile,String pwd,HttpServletRequest request,Model model){
 
-        User user = userDao.login(mobile,pwd);
+		User user = userDao.login(mobile,pwd);
         return this.getWelcome2(request,model,user);
     }
 

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,7 +35,7 @@ public class WeCharController {
     private String accessToken = WeCharQuartz.getAccessToken();
 
     //初始化执行首页绑定处理
-    private String beforUrl =
+    private String beforeUrl =
             "https://open.weixin.qq.com/connect/oauth2/authorize?appid=AppId"
                     +"&redirect_uri=REDIRECT_URI&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
 
@@ -50,6 +51,9 @@ public class WeCharController {
     //系统默认地址
     private final String sysUrl = "http://www.paipaigou.com/fxptweb/main/tologin";
 
+    @Autowired
+    private RestTemplate restTemplate;
+
     /**
      * 用户基础信息获取
      * @param request 用户参数
@@ -61,14 +65,14 @@ public class WeCharController {
         response.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF-8");
         try {
-            beforUrl = beforUrl.replace("REDIRECT_URI", URLEncoder.encode(sysUrl,"utf-8"));
+            beforeUrl = beforeUrl.replace("REDIRECT_URI", URLEncoder.encode(sysUrl,"utf-8"));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        beforUrl = beforUrl.replace("AppId",paramSettings.getAppId());
+        beforeUrl = beforeUrl.replace("AppId",paramSettings.getAppId());
         //这里请不要使用get请求单纯的将页面跳转到该url即可
-        System.out.println(beforUrl);
-        response.sendRedirect(beforUrl);
+        System.out.println(beforeUrl);
+        response.sendRedirect(beforeUrl);
         return null;
     }
 
@@ -121,5 +125,13 @@ public class WeCharController {
                 }
             };
         }
+    }
+
+    @RequestMapping("/getByOpenId")
+    public Object userInfoByOpenId(){
+        accessTokenByOpenId = accessTokenByOpenId.replace("{AppId}", paramSettings.getAppId());
+        accessTokenByOpenId = accessTokenByOpenId.replace("{AccessToken}", accessToken);
+        return restTemplate.getForObject(accessTokenByOpenId,Map.class,
+                new HashMap<String,String>(){{put("AppId",paramSettings.getAppId());put("AccessToken",accessToken);}});
     }
 }
