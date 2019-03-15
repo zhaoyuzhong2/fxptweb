@@ -39,41 +39,49 @@ public class StockController {
 	@RequestMapping(value = "/wantToBy")
 	public String wantToBy(Model model,HttpServletRequest request) {
 		//System.out.println("我要进货...........");
-		try {
+		User emp1 = (User) request.getSession().getAttribute("user");
+		if(emp1==null){
+			return "login/login";
+		}else {
+			if (emp1.getFlag().equals("0")) {
+				model.addAttribute("message", "账户审核通过后才可以访问");
+				return "error/error";
+			} else {
+				try {
+					List<Goods> gs = goodsDao.getList();
+					//System.out.println("            " + gs.size());
+					User user = userDao.getUserById(emp1.getId());//重新获取用户是担心用户角色有变化
 
-			User emp1 = (User) request.getSession().getAttribute("user");
-			List<Goods> gs = goodsDao.getList();
-			//System.out.println("            " + gs.size());
-			User user = userDao.getUserById(emp1.getId());//重新获取用户是担心用户角色有变化
+					List<Goods> gs1 = new ArrayList<>();
 
-			List<Goods> gs1 = new ArrayList<>();
+					int roleid = user.getRoleid();
+					String ids = "";
 
-			int roleid = user.getRoleid();
-			String ids = "";
+					for (Goods g : gs) {
+						ids = ids + g.getId() + ",";
 
-			for (Goods g : gs) {
-				ids = ids + g.getId() + ",";
+						if (roleid == 2) {
+							g.setPrice(g.getBuyprice1());
+						} else if (roleid == 3) {
+							g.setPrice(g.getBuyprice2());
+						} else if (roleid == 4) {
+							g.setPrice(g.getBuyprice3());
+						}
 
-				if (roleid == 2) {
-					g.setPrice(g.getBuyprice1());
-				} else if (roleid == 3) {
-					g.setPrice(g.getBuyprice2());
-				} else if (roleid == 4) {
-					g.setPrice(g.getBuyprice3());
+						gs1.add(g);
+					}
+					if (ids.indexOf(",") > 0) {
+						ids = ids.substring(0, ids.length() - 1);
+					}
+					model.addAttribute("ids", ids);
+					model.addAttribute("gs", gs1);
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
 
-				gs1.add(g);
+				return "stock/buy";
 			}
-			if (ids.indexOf(",") > 0) {
-				ids = ids.substring(0, ids.length() - 1);
-			}
-			model.addAttribute("ids", ids);
-			model.addAttribute("gs", gs1);
-		}catch (Exception e){
-			e.printStackTrace();
 		}
-
-		return "stock/buy";
 	}
 
 
