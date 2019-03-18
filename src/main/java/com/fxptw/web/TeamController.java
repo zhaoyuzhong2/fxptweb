@@ -23,6 +23,7 @@ public class TeamController {
 	@RequestMapping(value = "/request")
 	public String request(Integer userid,Model model,HttpServletRequest request) {
 		//User emp1 = (User) request.getSession().getAttribute("user");
+        User uu = userDao.getUserById(userid);
 		List<User> myReq = userDao.getDownUser(userid);//获取我直接邀请的列表
 		List<User> r1s = new ArrayList<>();
 		List<User> r2s = new ArrayList<>();
@@ -61,7 +62,9 @@ public class TeamController {
 
 
 		User sj = userDao.getUpUser(userid);
-		User topu = userDao.getTopUser(userid);
+		User topu = userDao.getTopUser(uu.getPid());
+        if(topu==null) topu = uu;
+        if(sj==null) sj = uu;
 
 		model.addAttribute("r1s",r1s);
 		model.addAttribute("r1sn",r1s.size());

@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="${ctx}/css/framework7.min.css">
     <link rel="stylesheet" href="${ctx}/css/font.css">
     <link rel="stylesheet" href="${ctx}/css/public.css">
+    <link rel="stylesheet" href="${ctx}/css/showBo.css">
+    <script src="${ctx}/js/showBo.js"></script>
 </head>
 <body class="page-goup-list">
 <div id="app">
@@ -116,26 +118,25 @@
 
 
     function goup(roleid) {
-        Showbo.Msg.confirm("确定要升级？",function(btn){
-            if(btn=="yes"){
-                $.post("${ctx}/upgrade/goup",{roleid:roleid},function (d) {
-                    if(d=="ajaxfail"){
-                        Showbo.Msg.confirm("会话过期,请重新登录!",function(btn){
-                            if(btn=="yes"){
-                                window.location.href="${ctx}/sys/index";
-                            }
-                        });
-                    }else {
-                        if(d=="ok"){
-                            Showbo.Msg.alert('申请成功，请等待审核！');
-                        }else {
-                            Showbo.Msg.alert('程序错误，请联系管理员！');
-                        }
-                    }
 
+        $.post("${ctx}/upgrade/goup",{roleid:roleid},function (d) {
+            if(d=="ajaxfail"){
+                Showbo.Msg.confirm("会话过期,请重新登录!",function(btn){
+                    if(btn=="yes"){
+                        window.location.href="${ctx}/sys/index";
+                    }
                 });
+            }else {
+                if(d=="ok"){
+                    Showbo.Msg.alert('申请成功，请等待审核！');
+                }else {
+                    Showbo.Msg.alert('程序错误，请联系管理员！');
+                }
             }
-        })
+
+        });
+
+
     }
 
 
@@ -155,7 +156,7 @@
                     text: '确定',
                     cssClass: 'btn-confirm',
                     onClick: function (e){
-
+                        goup(roleid);
                     }
                 }
             ],

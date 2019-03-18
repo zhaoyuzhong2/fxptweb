@@ -186,10 +186,14 @@ public class UserDao {
     //获取某个用户最顶级用户信息
     public User getTopUser(int userid){
         User user = getUserById(userid);
-        if(user.getPid()==0){
-            return user;
+        if(user==null) {
+            return null;
         }else{
-            return getTopUser(user.getId());
+            if (user.getPid() == 0) {
+                return user;
+            } else {
+                return getTopUser(user.getPid());
+            }
         }
     }
 
