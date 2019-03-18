@@ -161,7 +161,7 @@
                                 <li>
                                     <div class="top">
                                         <div class="number">订单编号: ${map.code}</div>
-                                        <div class="status">已完成</div>
+                                        <div class="status">未付款</div>
                                     </div>
                                     <div class="tag-box"><span class="tag">云订单</span></div>
                                     <c:forEach items="${map.goodlist}" var="usergood">
@@ -174,7 +174,7 @@
                                                     <img src="${ctx}${usergood.imgfile}" width="70" height="70" class="pro-img"/>
                                                 </c:otherwise>
                                             </c:choose>
-                                            <img src="${ctx}${usergood.imgfile}" width="70" height="70" class="pro-img"/>
+
                                             <div class="pro">
                                                 <div class="pro-name">${usergood.goodname}</div>
                                                 <div class="price-box">
@@ -211,7 +211,7 @@
                                 <li>
                                     <div class="top">
                                         <div class="number">订单编号: ${map.code}</div>
-                                        <div class="status">已完成</div>
+                                        <div class="status">未发货</div>
                                     </div>
                                     <div class="tag-box"><span class="tag">云订单</span></div>
                                     <c:forEach items="${map.goodlist}" var="usergood">
@@ -224,7 +224,7 @@
                                                     <img src="${ctx}${usergood.imgfile}" width="70" height="70" class="pro-img"/>
                                                 </c:otherwise>
                                             </c:choose>
-                                            <img src="${ctx}${usergood.imgfile}" width="70" height="70" class="pro-img"/>
+
                                             <div class="pro">
                                                 <div class="pro-name">${usergood.goodname}</div>
                                                 <div class="price-box">
@@ -260,10 +260,15 @@
                             <c:forEach items="${list3}" var="map" >
                                 <li>
                                     <div class="top">
-                                        <div class="number">订单编号: ${map.code}</div>
-                                        <div class="status">已完成</div>
+                                        <div class="number">订单编号:</div>
+                                        <div class="status">已发货</div>
                                     </div>
-                                    <div class="tag-box"><span class="tag">云订单</span></div>
+                                    <div class="tag-box">
+                                        <span class="tag">云订单</span>&nbsp;&nbsp;
+                                        <c:if test="${map.postcom!=null}">
+                                            ${map.postcom}:${map.postnum}
+                                        </c:if>
+                                    </div>
                                     <c:forEach items="${map.goodlist}" var="usergood">
                                         <div class="order-detail">
                                             <c:choose>
@@ -274,7 +279,7 @@
                                                     <img src="${ctx}${usergood.imgfile}" width="70" height="70" class="pro-img"/>
                                                 </c:otherwise>
                                             </c:choose>
-                                            <img src="${ctx}${usergood.imgfile}" width="70" height="70" class="pro-img"/>
+
                                             <div class="pro">
                                                 <div class="pro-name">${usergood.goodname}</div>
                                                 <div class="price-box">
