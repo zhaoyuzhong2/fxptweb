@@ -128,6 +128,8 @@ public class MyOrderController {
 			map.put("goodlist", goodlist);
 			map.put("code", userGoods.getCode());
 			map.put("totalprice", totalprice);
+			map.put("postcom", userGoods.getPostcom());
+			map.put("postnum", userGoods.getPostnum());
 			list3.add(map);
 		}
 		model.addAttribute("list3",list3);
