@@ -1,8 +1,10 @@
 package com.fxptw.web;
 
 
+import com.fxptw.dao.GoodsDao;
 import com.fxptw.dao.StockDao;
 import com.fxptw.dao.UserGoodsDao;
+import com.fxptw.dto.Goods;
 import com.fxptw.dto.Stock;
 import com.fxptw.dto.User;
 import com.fxptw.dto.UserGoods;
@@ -23,6 +25,8 @@ import java.util.Map;
 public class CloudController {
 	@Autowired
 	private StockDao stockDao;
+	@Autowired
+	GoodsDao goodsDao;
 
 	@RequestMapping(value = "/cloudstorage")
 	public String index(){
@@ -86,12 +90,71 @@ public class CloudController {
 
 	@RequestMapping(value = "/promptdelivery")
 	public String promptdelivery(Model model,HttpServletRequest request){
+		User emp1 = (User) request.getSession().getAttribute("user");
+		List<Stock> stocks=stockDao.getStockByUseridauwcw(emp1.getId());
+		String ids = "";
+		for(Stock stock : stocks){
+			ids = ids + stock.getGoodid() + ",";
+		}
+		if(ids.length()>1){
+			ids = ids.substring(0,ids.length()-1);
+		}
+		model.addAttribute("ids",ids);
+		model.addAttribute("list",stocks);
 		return  "cloud/promptdelivery";
+
 	}
 
 	@RequestMapping(value = "/entityexchangerecord")
 	public String entityexchangerecord(Model model,HttpServletRequest request){
 		return  "cloud/entityexchangerecord";
+	}
+
+	
+
+	//增加提货功能
+	@RequestMapping(value = "/th")
+	private String th(String param,HttpServletRequest request){
+		User emp1 = (User) request.getSession().getAttribute("user");
+		int userid = emp1.getId();
+		try {
+			//解析param增加或者修改t_user_goods表flag为0的记录
+			if (param.indexOf(",") > 0) {
+				String goods[] = param.substring(0, param.length() - 1).split(",");//获取商品集合
+				for (int i = 0; i < goods.length; i++) {
+					int goodid = Integer.parseInt(goods[i].split("#")[0]);//商品id
+					int num = Integer.parseInt(goods[i].split("#")[1]);//放进货车的商品数量
+
+					if (num > 0) {
+						Goods g = goodsDao.getGoodsByid(goodid);
+						//购买数量大于0放进进货车，等于0的不处理
+						Stock st = new Stock();
+						st.setUserid(userid);
+						st.setUsername(emp1.getName());
+						st.setMobile(emp1.getMobile());
+
+						st.setPrice(g.getBuyprice1());
+
+						st.setBuynum(-num);//提货时buynum数量为负数
+						st.setGoodid(goodid);
+						st.setGoodname(g.getName());
+						st.setPostname("");
+						st.setPostadd("");
+						st.setPostname("");
+						st.setMessage("");
+						st.setType("0");
+
+
+						stockDao.addStock2(st);
+					}
+				}
+			}
+
+
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+		return "cloud/th";
 	}
 
 
