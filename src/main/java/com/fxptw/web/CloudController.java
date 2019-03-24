@@ -110,16 +110,20 @@ public class CloudController {
 		return  "cloud/entityexchangerecord";
 	}
 
-	
+
 
 	//增加提货功能
 	@RequestMapping(value = "/th")
 	private String th(String param,HttpServletRequest request){
 		User emp1 = (User) request.getSession().getAttribute("user");
+		System.out.println("param:"+param);
+		if(param.length()>0){
+			param = param.substring(0,param.length()-1);
+		}
 		int userid = emp1.getId();
 		try {
 			//解析param增加或者修改t_user_goods表flag为0的记录
-			if (param.indexOf(",") > 0) {
+			if (param.indexOf(",") >= 0) {
 				String goods[] = param.substring(0, param.length() - 1).split(",");//获取商品集合
 				for (int i = 0; i < goods.length; i++) {
 					int goodid = Integer.parseInt(goods[i].split("#")[0]);//商品id
@@ -147,6 +151,32 @@ public class CloudController {
 
 						stockDao.addStock2(st);
 					}
+				}
+			}else{
+				int goodid = Integer.parseInt(param.split("#")[0]);//商品id
+				int num = Integer.parseInt(param.split("#")[1]);//放进货车的商品数量
+
+				if (num > 0) {
+					Goods g = goodsDao.getGoodsByid(goodid);
+					//购买数量大于0放进进货车，等于0的不处理
+					Stock st = new Stock();
+					st.setUserid(userid);
+					st.setUsername(emp1.getName());
+					st.setMobile(emp1.getMobile());
+
+					st.setPrice(g.getBuyprice1());
+
+					st.setBuynum(-num);//提货时buynum数量为负数
+					st.setGoodid(goodid);
+					st.setGoodname(g.getName());
+					st.setPostname("");
+					st.setPostadd("");
+					st.setPostname("");
+					st.setMessage("");
+					st.setType("0");
+
+
+					stockDao.addStock2(st);
 				}
 			}
 
