@@ -57,13 +57,16 @@ public class StockDao {
         return baseDao.queryForInt(sql,new Object[]{userid,flag});
     }
 
-    //查询所有库存不为零的商品
+    //查询所有库存不为零的商品，已购买的减去提货的剩余数量大于0的
     public List<Stock> getStockByUseridauwcw(int userid) {
         String sql = "SELECT ts.*,SUM(ts.buynum) AS stock,DATE_FORMAT(ts.cdate,'%Y-%m-%d %H:%i:%s') as ccdate,tg.imgfile as imgfile FROM t_stock ts\n" +
                 "LEFT JOIN (SELECT * FROM t_goods_file WHERE flag=0) tg ON tg.goodid=ts.userid\n" +
                 " WHERE(ts.flag=2 OR ts.flag=4) AND ts.userid=? GROUP BY ts.goodid  HAVING SUM( ts.buynum)>0 ";
         return baseDao.query(sql,Stock.class,new Object[]{userid});
     }
+
+
+
 
     //根据flag查询集合
     public List<Stock> getStockListByFlag(String flag,int userid,String search_name ) {
