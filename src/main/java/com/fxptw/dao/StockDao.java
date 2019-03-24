@@ -60,7 +60,7 @@ public class StockDao {
     //查询所有库存不为零的商品，已购买的减去提货的剩余数量大于0的
     public List<Stock> getStockByUseridauwcw(int userid) {
         String sql = "SELECT ts.*,SUM(ts.buynum) AS stock,DATE_FORMAT(ts.cdate,'%Y-%m-%d %H:%i:%s') as ccdate,tg.imgfile as imgfile FROM t_stock ts\n" +
-                "LEFT JOIN (SELECT * FROM t_goods_file WHERE flag=0) tg ON tg.goodid=ts.userid\n" +
+                "LEFT JOIN (SELECT * FROM t_goods_file WHERE flag=0) tg ON tg.goodid=ts.goodid\n" +
                 " WHERE(ts.flag=2 OR ts.flag=4) AND ts.userid=? GROUP BY ts.goodid  HAVING SUM( ts.buynum)>0 ";
         return baseDao.query(sql,Stock.class,new Object[]{userid});
     }
@@ -71,7 +71,7 @@ public class StockDao {
     //根据flag查询集合
     public List<Stock> getStockListByFlag(String flag,int userid,String search_name ) {
         String sql = "SELECT ts.*,SUM(ts.buynum) AS stock,DATE_FORMAT(ts.cdate,'%Y-%m-%d %H:%i:%s') as ccdate,tg.imgfile AS imgfile FROM t_stock ts\n" +
-                "LEFT JOIN (SELECT * FROM t_goods_file WHERE flag=0) tg ON tg.goodid=ts.userid\n" +
+                "LEFT JOIN (SELECT * FROM t_goods_file WHERE flag=0) tg ON tg.goodid=ts.goodid\n" +
                 " WHERE ts.flag=?  AND ts.userid=?  and (username=? or  goodname like ? or mobile like ? or postname like ? or postname like ?) GROUP BY ts.goodid   ";
         return baseDao.query(sql,Stock.class,new Object[]{flag,userid,"%"+search_name+"%","%"+search_name+"%","%"+search_name+"%","%"+search_name+"%","%"+search_name+"%"});
     }
@@ -79,7 +79,7 @@ public class StockDao {
     //根据flag查询集合
     public List<Stock> getStock(int userid,String search_name ) {
         String sql = "SELECT ts.*,SUM(ts.buynum) AS stock,DATE_FORMAT(ts.cdate,'%Y-%m-%d %H:%i:%s') as ccdate,tg.imgfile AS imgfile FROM t_stock ts\n" +
-                "LEFT JOIN (SELECT * FROM t_goods_file WHERE flag=0) tg ON tg.goodid=ts.userid\n" +
+                "LEFT JOIN (SELECT * FROM t_goods_file WHERE flag=0) tg ON tg.goodid=ts.goodid\n" +
                 " WHERE  ts.flag in('3','4') and ts.userid=?  and (username=? or goodname like ? or mobile like ? or postname like ? or postname like ?) GROUP BY ts.goodid   ";
         return baseDao.query(sql,Stock.class,new Object[]{userid,"%"+search_name+"%","%"+search_name+"%","%"+search_name+"%","%"+search_name+"%","%"+search_name+"%"});
     }
