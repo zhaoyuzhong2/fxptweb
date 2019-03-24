@@ -39,6 +39,7 @@
                 <c:otherwise>
                     <ul class="c-cproduct-list">
                         <c:forEach items="${list}" var="stock">
+                            <input type="hidden" id="n${stock.id}" value="${stock.stock}"/>
                             <li class="display-flex justify-content-space-between align-items-center">
                                 <div class="display-flex">
                                     <c:choose>
@@ -90,16 +91,24 @@ function check() {
         if(ids.indexOf(",")>0) {
             var id = ids.split(",");
             for (var i = 0; i < id.length; i++) {
+                var n = $("#n" + id[i]).val();
                 var num = $("#num" + id[i]).val();//直接拼接字符串就可以了
-
+                if(num>n){
+                    Showbo.Msg.alert('提货数量不能大于库存数量！');
+                    return false;
+                }
                 if (num > 0) {
                     param = param + id[i] + "#" + num + ",";
                 }
                 total = total + num;
             }
         }else{
+            var n = $("#n" + ids).val();
             var num = $("#num" + ids).val();//直接拼接字符串就可以了
-
+            if(num>n){
+                Showbo.Msg.alert('提货数量不能大于库存数量！');
+                return false;
+            }
             if (num > 0) {
                 param = param + ids + "#" + num + ",";
             }
