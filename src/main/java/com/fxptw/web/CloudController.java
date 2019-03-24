@@ -146,7 +146,7 @@ public class CloudController {
 						st.setPostadd("");
 						st.setPostname("");
 						st.setMessage("");
-						st.setType("0");
+						st.setType("1");
 
 
 						stockDao.addStock2(st);
