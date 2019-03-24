@@ -147,7 +147,7 @@ public class UserGoodsDao {
     }
     //查询出所有的订单号
     public List<UserGoods> getCodeByUseridByFlag(Integer userid,String flag,String search_name) {
-        String sql = "select code From t_user_goods where flag=? and (userid=? and code like ? or postmobile like ? or postname like ?) group by code";
+        String sql = "select code From t_user_goods where flag=? and userid=? and (code like ? or postmobile like ? or postname like ?) group by code";
         return baseDao.query(sql,UserGoods.class,new Object[]{flag,userid,"%"+search_name+"%","%"+search_name+"%","%"+search_name+"%"});
     }
 

@@ -26,6 +26,7 @@ public class UserGoods extends BaseDTO {
     private String postmobile;
     private String postadd;
     private String postcom;
+    private String postnum;
     private String message;
     private double totalprice;
     private String flag;
@@ -260,5 +261,13 @@ public class UserGoods extends BaseDTO {
 
     public void setCqxdate(String cqxdate) {
         this.cqxdate = cqxdate;
+    }
+
+    public String getPostnum() {
+        return postnum;
+    }
+
+    public void setPostnum(String postnum) {
+        this.postnum = postnum;
     }
 }
