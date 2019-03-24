@@ -35,18 +35,12 @@
                     <img src="${ctx}/img/null.png" class="img"/>
                     <div class="info">没有内容可供显示</div>
                 </div>--%>
-                <ul class="c-cproduct-list">
-                    <li class="display-flex justify-content-space-between align-items-center">
-                        <div class="display-flex">
-                            <img src="${ctx}/img/ala.jpg" width="70" height="70" class="product-img"/>
-                            <div class="pro">
-                                <div class="pro-name">胶原蛋白小分子钛饮</div>
-                                <div class="price">¥150.00</div>
-                            </div>
+                    <ul class="c-cproduct-list">
+                        <div class="null-tip">
+                            <img src="${ctx}/img/null.png" class="img"/>
+                            <div class="info">没有内容可供显示哦！</div>
                         </div>
-                        <div class="num">X50</div>
-                    </li>
-                </ul>
+                    </ul>
             </div>
 
             <div class="page-content tab" id="tab-2">
@@ -54,18 +48,12 @@
                     <img src="${ctx}/img/null.png" class="img"/>
                     <div class="info">没有内容可供显示</div>
                 </div>--%>
-                <ul class="c-cproduct-list">
-                    <li class="display-flex justify-content-space-between align-items-center">
-                        <div class="display-flex">
-                            <img src="${ctx}/img/ala.jpg" width="70" height="70" class="product-img"/>
-                            <div class="pro">
-                                <div class="pro-name">胶原蛋白小分子钛饮</div>
-                                <div class="price">¥150.00</div>
-                            </div>
+                    <ul class="c-cproduct-list">
+                        <div class="null-tip">
+                            <img src="${ctx}/img/null.png" class="img"/>
+                            <div class="info">没有内容可供显示哦！</div>
                         </div>
-                        <div class="num">X50</div>
-                    </li>
-                </ul>
+                    </ul>
             </div>
 
             <div class="page-content tab" id="tab-3">
@@ -74,18 +62,12 @@
                     <div class="info">没有内容可供显示哦！</div>
                 </div>--%>
 
-                <ul class="c-cproduct-list">
-                    <li class="display-flex justify-content-space-between align-items-center">
-                        <div class="display-flex">
-                            <img src="${ctx}/img/ala.jpg" width="70" height="70" class="product-img"/>
-                            <div class="pro">
-                                <div class="pro-name">胶原蛋白小分子钛饮</div>
-                                <div class="price">¥150.00</div>
-                            </div>
+                    <ul class="c-cproduct-list">
+                        <div class="null-tip">
+                            <img src="${ctx}/img/null.png" class="img"/>
+                            <div class="info">没有内容可供显示哦！</div>
                         </div>
-                        <div class="num">X50</div>
-                    </li>
-                </ul>
+                    </ul>
             </div>
 
             <div class="page-content tab" id="tab-4">
@@ -94,18 +76,12 @@
                     <div class="info">没有内容可供显示呢！</div>
                 </div>--%>
 
-                <ul class="c-cproduct-list">
-                    <li class="display-flex justify-content-space-between align-items-center">
-                        <div class="display-flex">
-                            <img src="${ctx}/img/ala.jpg" width="70" height="70" class="product-img"/>
-                            <div class="pro">
-                                <div class="pro-name">胶原蛋白小分子钛饮</div>
-                                <div class="price">¥150.00</div>
-                            </div>
+                    <ul class="c-cproduct-list">
+                        <div class="null-tip">
+                            <img src="${ctx}/img/null.png" class="img"/>
+                            <div class="info">没有内容可供显示哦！</div>
                         </div>
-                        <div class="num">X50</div>
-                    </li>
-                </ul>
+                    </ul>
 
             </div>
         </div>
