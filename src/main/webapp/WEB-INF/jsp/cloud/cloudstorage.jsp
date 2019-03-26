@@ -46,14 +46,14 @@
                     <a id="cloudinventory"  class="external" href="${ctx}/cloud/cloudinventory">
                         <i class="icon icon1"></i>
                         <div  class="name">云库存</div>
-                        <span class="badge color-red">60</span>
+                        <%--<span class="badge color-red">60</span>--%>
                     </a>
                 </li>
                 <li class="col-25">
                     <a id="physicalinventory"  class="external" href="${ctx}/cloud/physicalinventory">
                         <i class="icon icon2"></i>
                         <div  class="name">实体库存</div>
-                        <span class="badge color-red">99+</span>
+                        <%--<span class="badge color-red">99+</span>--%>
                     </a>
                 </li>
                 <li class="col-25">

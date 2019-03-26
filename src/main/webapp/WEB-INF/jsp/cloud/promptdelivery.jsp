@@ -19,9 +19,8 @@
 </head>
 <body class="page-delivery">
 <div id="app">
-    <div class="page">
-        <form id="form" action="${ctx}/cloud/th">
-            <input type="hidden" id="param" name="param" value=""/>
+    <form id="form" action="${ctx}/cloud/th" class="page">
+        <input type="hidden" id="param" name="param" value=""/>
         <div class="toolbar toolbar-bottom-md toolbar-bottom-btn">
             <div class="toolbar-inner">
                 <span class="link info"><span>合计:</span><span class="num" id="num">0件</span></span>
@@ -37,31 +36,28 @@
                     </div>
                 </c:when>
                 <c:otherwise>
-                    <ul class="c-cproduct-list">
+                    <ul class="c-product-list2">
                         <c:forEach items="${list}" var="stock">
                             <input type="hidden" id="n${stock.id}" value="${stock.stock}"/>
-                            <li class="display-flex justify-content-space-between align-items-center">
-                                <div class="display-flex">
-                                    <c:choose>
-                                        <c:when test="${stock.imgfile}==null">
-                                            <img src="${ctx}/img/ala.jpg" width="70" height="70" class="product-img"/>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <img src="${ctx}${stock.imgfile}" width="70" height="70" class="product-img"/>
-                                        </c:otherwise>
-                                    </c:choose>
-                                    <div class="product-detail">
-                                        <div class="name">${stock.goodname}</div>
-                                        <div class="price"><span class="pri">¥${stock.price}</span><span class="inventory">库存:&nbsp;&nbsp;${stock.stock}</span></div>
-                                        <div class="num clearfix">
-                                            <div class="right">
-                                                    <%--<i class="sub-btn" id="jian${g.id}" onclick="changenum(${g.id},-1)">-</i>--%>
-                                                <input class="val" type="text" id="num${stock.id}" value="0" />
-                                                    <%--<i class="add-btn" id="jia${g.id}"  onclick="changenum(${g.id},1)">＋</i>--%>
-                                            </div>
+                            <li class="display-flex justify-content-space-between">
+                                <c:choose>
+                                    <c:when test="${stock.imgfile}==null">
+                                        <img src="${ctx}/img/ala.jpg" class="product-img"/>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <img src="${ctx}${stock.imgfile}" class="product-img"/>
+                                    </c:otherwise>
+                                </c:choose>
+                                <div class="product-detail">
+                                    <div class="name">${stock.goodname}</div>
+                                    <div class="price"><span class="pri">¥${stock.price}</span><span class="inventory">库存:&nbsp;&nbsp;${stock.stock}</span></div>
+                                    <div class="num clearfix">
+                                        <div class="right">
+                                                <%--<i class="sub-btn" id="jian${g.id}" onclick="changenum(${g.id},-1)">-</i>--%>
+                                            <input class="val" type="text" id="num${stock.id}" value="0" />
+                                                <%--<i class="add-btn" id="jia${g.id}"  onclick="changenum(${g.id},1)">＋</i>--%>
                                         </div>
                                     </div>
-
                                 </div>
                             </li>
                         </c:forEach>
@@ -69,8 +65,7 @@
                 </c:otherwise>
             </c:choose>
         </div>
-        </form>
-    </div>
+    </form>
 </div>
 
 

@@ -38,9 +38,9 @@
                         <input class="search-ipt"  id="search_name" name="search_name" style="text-align: left;width: 100%" value="${search_name}" type="text" placeholder="商品名称/姓名/电话"/>
                         <a href="#" class="iconfont icon-cancel-1 clear-btn"></a>
                     </div>
-                    <button  class="search-btn" style="width: 50px;text-align: center" onclick="search()">搜索</button>
+                    <%--<button  class="search-btn" style="width: 50px;text-align: center" onclick="search()">搜索</button>--%>
                   <%--  <a href="#" class="search-btn"  onclick="search()">搜索</a>--%>
-                    <a href="javascript:void(document.form.submit())" class="search-btn"  >搜索</a>
+                    <a href="javascript:void(document.form.submit())" class="search-btn" onclick="search()">搜索</a>
                <%--     <a href="#" class="iconfont icon-xq- changelist-btn"  onclick="search()"></a>--%>
                 </form>
                 <c:choose>
@@ -52,22 +52,26 @@
                     </c:when>
                     <c:otherwise>
                         <c:forEach items="${list}" var="stock">
-                            <div class="null-tip">
-                                <c:choose>
-                                    <c:when test="${stock.imgfile}==null">
-                                        <img src="${ctx}/img/ala.jpg" width="70" height="70" class="img"/>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <img src="${ctx}${stock.imgfile}" width="70" height="70" class="img"/>
-                                    </c:otherwise>
-                                </c:choose>
-                                <div class="pro">
-                                    <div class="pro-name">${stock.goodname}</div>
-                                    <div class="price-box">
-                                        <div class="num">${stock.stock}</div>
+
+                            <ul class="c-product-list2">
+                                <li class="display-flex justify-content-space-between">
+                                    <c:choose>
+                                        <c:when test="${stock.imgfile}==null">
+                                            <img src="${ctx}/img/ala.jpg" class="product-img"/>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <img src="${ctx}${stock.imgfile}" class="product-img"/>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <div class="product-detail">
+                                        <div class="name">${stock.goodname}</div>
+                                        <div class="price">
+                                            <span class="inventory">库存:&nbsp;&nbsp;${stock.stock}</span>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
+                                </li>
+                            </ul>
+
                         </c:forEach>
                     </c:otherwise>
                 </c:choose>
@@ -83,22 +87,25 @@
                     </c:when>
                     <c:otherwise>
                         <c:forEach items="${list1}" var="stock">
-                            <div class="null-tip">
-                                <c:choose>
-                                    <c:when test="${stock.imgfile}==null">
-                                        <img src="${ctx}/img/ala.jpg" width="70" height="70" class="img"/>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <img src="${ctx}${stock.imgfile}" width="70" height="70" class="img"/>
-                                    </c:otherwise>
-                                </c:choose>
-                                <div class="pro">
-                                    <div class="pro-name">${stock.goodname}</div>
-                                    <div class="price-box">
-                                        <div class="num">${stock.stock}</div>
+                            <ul class="c-product-list2">
+                                <li class="display-flex justify-content-space-between">
+                                    <c:choose>
+                                        <c:when test="${stock.imgfile}==null">
+                                            <img src="${ctx}/img/ala.jpg" class="product-img"/>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <img src="${ctx}${stock.imgfile}" class="product-img"/>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <div class="product-detail">
+                                        <div class="name">${stock.goodname}</div>
+                                        <div class="price">
+                                            <span class="inventory">库存:&nbsp;&nbsp;${stock.stock}</span>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
+                                </li>
+                            </ul>
+
                         </c:forEach>
                     </c:otherwise>
                 </c:choose>
@@ -114,22 +121,24 @@
                     </c:when>
                     <c:otherwise>
                         <c:forEach items="${list2}" var="stock">
-                            <div class="null-tip">
-                                <c:choose>
-                                    <c:when test="${stock.imgfile}==null">
-                                        <img src="${ctx}/img/ala.jpg" width="70" height="70" class="img"/>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <img src="${ctx}${stock.imgfile}" width="70" height="70" class="img"/>
-                                    </c:otherwise>
-                                </c:choose>
-                                <div class="pro">
-                                    <div class="pro-name">${stock.goodname}</div>
-                                    <div class="price-box">
-                                        <div class="num">${stock.stock}</div>
+                            <ul class="c-product-list2">
+                                <li class="display-flex justify-content-space-between">
+                                    <c:choose>
+                                        <c:when test="${stock.imgfile}==null">
+                                            <img src="${ctx}/img/ala.jpg" class="product-img"/>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <img src="${ctx}${stock.imgfile}" class="product-img"/>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <div class="product-detail">
+                                        <div class="name">${stock.goodname}</div>
+                                        <div class="price">
+                                            <span class="inventory">库存:&nbsp;&nbsp;${stock.stock}</span>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
+                                </li>
+                            </ul>
                         </c:forEach>
                     </c:otherwise>
                 </c:choose>
@@ -145,58 +154,61 @@
                     </c:when>
                     <c:otherwise>
                         <c:forEach items="${list3}" var="stock">
-                            <div class="null-tip">
-                                <c:choose>
-                                    <c:when test="${stock.imgfile}==null">
-                                        <img src="${ctx}/img/ala.jpg" width="70" height="70" class="img"/>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <img src="${ctx}${stock.imgfile}" width="70" height="70" class="img"/>
-                                    </c:otherwise>
-                                </c:choose>
-                                <div class="pro">
-                                    <div class="pro-name">${stock.goodname}</div>
-                                    <div class="price-box">
-                                        <div class="num">${stock.stock}</div>
+                            <ul class="c-product-list2">
+                                <li class="display-flex justify-content-space-between">
+                                    <c:choose>
+                                        <c:when test="${stock.imgfile}==null">
+                                            <img src="${ctx}/img/ala.jpg" class="product-img"/>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <img src="${ctx}${stock.imgfile}" class="product-img"/>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <div class="product-detail">
+                                        <div class="name">${stock.goodname}</div>
+                                        <div class="price">
+                                            <span class="inventory">库存:&nbsp;&nbsp;${stock.stock}</span>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
+                                </li>
+                            </ul>
                         </c:forEach>
                     </c:otherwise>
                 </c:choose>
             </div>
 
             <div class="page-content tab" id="tab-5">
-                <div class="null-tip">
-                    <c:choose>
-                        <c:when test="${list4.size()==0}">
-                            <div class="null-tip">
-                                <img src="${ctx}/img/null.png" class="img"/>
-                                <div class="info">没有内容可供显示</div>
-                            </div>
-                        </c:when>
-                        <c:otherwise>
-                            <c:forEach items="${list4}" var="stock">
-                                <div class="null-tip">
+                <c:choose>
+                    <c:when test="${list4.size()==0}">
+                        <div class="null-tip">
+                            <img src="${ctx}/img/null.png" class="img"/>
+                            <div class="info">没有内容可供显示</div>
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+                        <c:forEach items="${list4}" var="stock">
+                            <ul class="c-product-list2">
+                                <li class="display-flex justify-content-space-between">
                                     <c:choose>
                                         <c:when test="${stock.imgfile}==null">
-                                            <img src="${ctx}/img/ala.jpg" width="70" height="70" class="img"/>
+                                            <img src="${ctx}/img/ala.jpg" class="product-img"/>
                                         </c:when>
                                         <c:otherwise>
-                                            <img src="${ctx}${stock.imgfile}" width="70" height="70" class="img"/>
+                                            <img src="${ctx}${stock.imgfile}" class="product-img"/>
                                         </c:otherwise>
                                     </c:choose>
-                                    <div class="pro">
-                                        <div class="pro-name">${stock.goodname}</div>
-                                        <div class="price-box">
-                                            <div class="num">${stock.stock}</div>
+                                    <div class="product-detail">
+                                        <div class="name">${stock.goodname}</div>
+                                        <div class="price">
+                                            <span class="inventory">库存:&nbsp;&nbsp;${stock.stock}</span>
                                         </div>
                                     </div>
-                                </div>
-                            </c:forEach>
-                        </c:otherwise>
-                    </c:choose>
-                </div>
+                                </li>
+                            </ul>
+
+                        </c:forEach>
+                    </c:otherwise>
+                </c:choose>
             </div>
         </div>
     </div>

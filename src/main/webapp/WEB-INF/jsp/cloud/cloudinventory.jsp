@@ -36,24 +36,24 @@
                             </div>
                         </c:when>
                         <c:otherwise>
-                            <ul class="c-cproduct-list">
+                            <ul class="c-product-list3">
                                 <c:forEach items="${list}" var="stock">
-                                    <li class="display-flex justify-content-space-between align-items-center">
-                                        <div class="display-flex">
-                                            <c:choose>
-                                                <c:when test="${stock.imgfile}==null">
-                                                    <img src="${ctx}/img/ala.jpg" width="70" height="70" class="product-img"/>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <img src="${ctx}${stock.imgfile}" width="70" height="70" class="product-img"/>
-                                                </c:otherwise>
-                                            </c:choose>
-                                            <div class="pro">
-                                                <div class="pro-name">${stock.goodname}</div>
+                                    <li>
+                                        <c:choose>
+                                            <c:when test="${stock.imgfile}==null">
+                                                <img src="${ctx}/img/ala.jpg" width="70" height="70" class="product-img"/>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <img src="${ctx}${stock.imgfile}" width="70" height="70" class="product-img"/>
+                                            </c:otherwise>
+                                        </c:choose>
+                                        <div class="pro-detail">
+                                            <div class="name">${stock.goodname}</div>
+                                            <div class="bottom-box">
                                                 <div class="price">¥150.00</div>
+                                                <div class="num">X${stock.stock}</div>
                                             </div>
                                         </div>
-                                        <div class="num">X${stock.stock}</div>
                                     </li>
                                 </c:forEach>
                             </ul>
