@@ -54,7 +54,7 @@
                                 <img src="${ctx}/img/product1.png" width="70" height="70"/>
                             </c:when>
                             <c:otherwise>
-                                <img src="${ctx}${g.imgfile}" width="70" height="70"/>
+                                <img src="${ctx}/img_goods/${g.imgfile}" width="70" height="70"/>
                             </c:otherwise>
                         </c:choose>
                         <div class="product-detail">
