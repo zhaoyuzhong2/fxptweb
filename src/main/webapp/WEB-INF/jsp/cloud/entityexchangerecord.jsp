@@ -35,12 +35,10 @@
                     <img src="${ctx}/img/null.png" class="img"/>
                     <div class="info">没有内容可供显示</div>
                 </div>--%>
-                <ul class="c-product-list3">
                     <div class="null-tip">
-                        <img src="${ctx}/img/null.png"/>
+                        <img src="${ctx}/img/null.png" class="img"/>
                         <div class="info">没有内容可供显示</div>
                     </div>
-                </ul>
             </div>
 
             <div class="page-content tab" id="tab-2">
@@ -48,12 +46,10 @@
                     <img src="${ctx}/img/null.png" class="img"/>
                     <div class="info">没有内容可供显示</div>
                 </div>--%>
-                <ul class="c-product-list3">
                     <div class="null-tip">
-                        <img src="${ctx}/img/null.png"/>
+                        <img src="${ctx}/img/null.png" class="img"/>
                         <div class="info">没有内容可供显示</div>
                     </div>
-                </ul>
             </div>
 
             <div class="page-content tab" id="tab-3">
@@ -62,12 +58,10 @@
                     <div class="info">没有内容可供显示哦！</div>
                 </div>--%>
 
-                <ul class="c-product-list3">
                     <div class="null-tip">
-                        <img src="${ctx}/img/null.png"/>
+                        <img src="${ctx}/img/null.png" class="img"/>
                         <div class="info">没有内容可供显示</div>
                     </div>
-                </ul>
             </div>
 
             <div class="page-content tab" id="tab-4">
@@ -76,12 +70,10 @@
                     <div class="info">没有内容可供显示呢！</div>
                 </div>--%>
 
-                <ul class="c-product-list3">
                     <div class="null-tip">
-                        <img src="${ctx}/img/null.png"/>
+                        <img src="${ctx}/img/null.png" class="img"/>
                         <div class="info">没有内容可供显示</div>
                     </div>
-                </ul>
 
             </div>
         </div>

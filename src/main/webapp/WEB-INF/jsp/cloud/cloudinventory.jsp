@@ -31,7 +31,7 @@
                     <c:choose>
                         <c:when test="${list.size()==0}">
                             <div class="null-tip">
-                                <img src="${ctx}/img/null.png"/>
+                                <img src="${ctx}/img/null.png" class="img"/>
                                 <div class="info">没有内容可供显示</div>
                             </div>
                         </c:when>
@@ -50,7 +50,7 @@
                                         <div class="pro-detail">
                                             <div class="name">${stock.goodname}</div>
                                             <div class="bottom-box">
-                                                <div class="price">¥150.00</div>
+                                                <div class="price">¥${stock.price}</div>
                                                 <div class="num">X${stock.stock}</div>
                                             </div>
                                         </div>
