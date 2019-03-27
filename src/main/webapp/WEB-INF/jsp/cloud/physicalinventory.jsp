@@ -43,7 +43,7 @@
                                             <img src="${ctx}/img/ala.jpg" width="70" height="70" class="product-img"/>
                                         </c:when>
                                         <c:otherwise>
-                                            <img src="${ctx}${stock.imgfile}" width="70" height="70" class="product-img"/>
+                                            <img src="${ctx}/img_goods/${stock.imgfile}" width="70" height="70" class="product-img"/>
                                         </c:otherwise>
                                     </c:choose>
                                     <div class="pro-detail">

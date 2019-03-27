@@ -60,7 +60,7 @@
                                             <img src="${ctx}/img/ala.jpg" class="product-img"/>
                                         </c:when>
                                         <c:otherwise>
-                                            <img src="${ctx}${stock.imgfile}" class="product-img"/>
+                                            <img src="${ctx}/img_goods/${stock.imgfile}" class="product-img"/>
                                         </c:otherwise>
                                     </c:choose>
                                     <div class="product-detail">
@@ -94,7 +94,7 @@
                                             <img src="${ctx}/img/ala.jpg" class="product-img"/>
                                         </c:when>
                                         <c:otherwise>
-                                            <img src="${ctx}${stock.imgfile}" class="product-img"/>
+                                            <img src="${ctx}/img_goods/${stock.imgfile}" class="product-img"/>
                                         </c:otherwise>
                                     </c:choose>
                                     <div class="product-detail">
@@ -128,7 +128,7 @@
                                             <img src="${ctx}/img/ala.jpg" class="product-img"/>
                                         </c:when>
                                         <c:otherwise>
-                                            <img src="${ctx}${stock.imgfile}" class="product-img"/>
+                                            <img src="${ctx}/img_goods/${stock.imgfile}" class="product-img"/>
                                         </c:otherwise>
                                     </c:choose>
                                     <div class="product-detail">
@@ -161,7 +161,7 @@
                                             <img src="${ctx}/img/ala.jpg" class="product-img"/>
                                         </c:when>
                                         <c:otherwise>
-                                            <img src="${ctx}${stock.imgfile}" class="product-img"/>
+                                            <img src="${ctx}/img_goods/${stock.imgfile}" class="product-img"/>
                                         </c:otherwise>
                                     </c:choose>
                                     <div class="product-detail">
@@ -194,7 +194,7 @@
                                             <img src="${ctx}/img/ala.jpg" class="product-img"/>
                                         </c:when>
                                         <c:otherwise>
-                                            <img src="${ctx}${stock.imgfile}" class="product-img"/>
+                                            <img src="${ctx}/img_goods/${stock.imgfile}" class="product-img"/>
                                         </c:otherwise>
                                     </c:choose>
                                     <div class="product-detail">
