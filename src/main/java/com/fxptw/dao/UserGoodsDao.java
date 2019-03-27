@@ -98,7 +98,7 @@ public class UserGoodsDao {
 
     //根据主键查询购货
     public UserGoods getUserGoodsById(int id) {
-        String sql = "select * from t_user_goods where id=?";
+        String sql = "select tug.*,tg.imgfile from t_user_goods tug left join t_goods tg on tug.goodid=tg.id where tug.id=?";
         List<UserGoods> gs = baseDao.query(sql,UserGoods.class,new Object[]{id});
         if(gs.size()>0){
             return gs.get(0);
@@ -111,7 +111,7 @@ public class UserGoodsDao {
 
     //查询不同状态的购买物品数量
     public List<UserGoods> getShopingList(int userid,String flag) {
-        String sql = "select * from t_user_goods where flag=? and userid=?  order by cdate desc ";
+        String sql = "select tug.*,tg.imgfile from t_user_goods tug left join t_goods tg on tug.goodid=tg.id  where tug.flag=? and tug.userid=?  order by tug.cdate desc ";
 
         return baseDao.query(sql,UserGoods.class,new Object[]{flag,userid});
     }
