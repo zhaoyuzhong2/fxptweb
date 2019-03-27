@@ -71,7 +71,7 @@
                                                         <img src="${ctx}/img/ala.jpg" width="70" height="70" class="pro-img"/>
                                                     </c:when>
                                                     <c:otherwise>
-                                                        <img src="${ctx}${usergood.imgfile}" width="70" height="70" class="pro-img"/>
+                                                        <img src="${ctx}/img_goods/${usergood.imgfile}" width="70" height="70" class="pro-img"/>
                                                     </c:otherwise>
                                                 </c:choose>
                                                 <div class="pro">
@@ -171,7 +171,7 @@
                                                     <img src="${ctx}/img/ala.jpg" width="70" height="70" class="pro-img"/>
                                                 </c:when>
                                                 <c:otherwise>
-                                                    <img src="${ctx}${usergood.imgfile}" width="70" height="70" class="pro-img"/>
+                                                    <img src="${ctx}/img_goods/${usergood.imgfile}" width="70" height="70" class="pro-img"/>
                                                 </c:otherwise>
                                             </c:choose>
 
@@ -221,7 +221,7 @@
                                                     <img src="${ctx}/img/ala.jpg" width="70" height="70" class="pro-img"/>
                                                 </c:when>
                                                 <c:otherwise>
-                                                    <img src="${ctx}${usergood.imgfile}" width="70" height="70" class="pro-img"/>
+                                                    <img src="${ctx}/img_goods/${usergood.imgfile}" width="70" height="70" class="pro-img"/>
                                                 </c:otherwise>
                                             </c:choose>
 
@@ -276,7 +276,7 @@
                                                     <img src="${ctx}/img/ala.jpg" width="70" height="70" class="pro-img"/>
                                                 </c:when>
                                                 <c:otherwise>
-                                                    <img src="${ctx}${usergood.imgfile}" width="70" height="70" class="pro-img"/>
+                                                    <img src="${ctx}/img_goods/${usergood.imgfile}" width="70" height="70" class="pro-img"/>
                                                 </c:otherwise>
                                             </c:choose>
 

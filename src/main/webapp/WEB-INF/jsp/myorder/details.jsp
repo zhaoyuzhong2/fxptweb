@@ -59,7 +59,7 @@
                                         <img src="${ctx}/img/ala.jpg" width="70" height="70" class="product-img"/>
                                     </c:when>
                                     <c:otherwise>
-                                        <img src="${ctx}${usergood.imgfile}" width="70" height="70" class="product-img"/>
+                                        <img src="${ctx}/img_goods/${usergood.imgfile}" width="70" height="70" class="product-img"/>
                                     </c:otherwise>
                                 </c:choose>
                                 <div class="product-name">${usergood.goodname}</div>
