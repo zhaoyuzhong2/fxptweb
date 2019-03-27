@@ -38,7 +38,16 @@
             <input type="checkbox" id="check" name="check" value="${ug.id}" checked/>
             <i class="check-icon"></i>
         </label>
-        <img class="product-img" src="${ctx}/img/product_img.png"/>
+        <c:choose>
+            <c:when test="${ug.imgfile==null}">
+                <img src="${ctx}/img/product1.png" width="70" height="70"/>
+            </c:when>
+            <c:otherwise>
+                <img src="${ctx}/img_goods/${ug.imgfile}" width="70" height="70"/>
+            </c:otherwise>
+        </c:choose>
+
+
         <div class="info">
             <div class="product-name">${ug.goodname}</div>
             <div class="price">¥${ug.buyprice}</div>

@@ -34,7 +34,14 @@
     <c:forEach var="ug" items="${ugs}">
     <div class="product">
         <div class="left">
-            <img class="product-img" src="${ctx}/img/product_img.png"/>
+            <c:choose>
+                <c:when test="${ug.imgfile==null}">
+                    <img src="${ctx}/img/product1.png" width="70" height="70"/>
+                </c:when>
+                <c:otherwise>
+                    <img src="${ctx}/img_goods/${ug.imgfile}" width="70" height="70"/>
+                </c:otherwise>
+            </c:choose>
             <div class="product-name">${ug.goodname}</div>
         </div>
         <div class="right text-right">
