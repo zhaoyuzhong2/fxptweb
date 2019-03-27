@@ -153,14 +153,14 @@ public class UserGoodsDao {
 
     //根据订单号查询订单
     public List<UserGoods> selectGoodsByCode(String code) {
-        String sql="SELECT tug.*,tgf.imgfile FROM t_user_goods  tug LEFT JOIN t_goods_file tgf ON tug.goodid=tgf.goodid" ;
+        String sql="SELECT tug.*,tgf.imgfile FROM t_user_goods  tug LEFT JOIN t_goods tgf ON tug.goodid=tgf.id" ;
         sql = sql +  " WHERE tug.flag!='9'  AND tug.code=? ";
         return baseDao.query(sql,UserGoods.class,new Object[]{code});
     }
     //根据订单号查询订单
     public List<UserGoods> selectGoodsByCodeAndFlag(String flag,String code) {
         String sql="SELECT tug.*,tgf.imgfile FROM t_user_goods  tug\n" +
-                "LEFT JOIN t_goods_file tgf ON tug.goodid=tgf.goodid\n" +
+                "LEFT JOIN t_goods tgf ON tug.goodid=tgf.id\n" +
                 "WHERE tug.flag=? \n" +
                 "AND tug.code=?";
         return baseDao.query(sql,UserGoods.class,new Object[]{flag,code});
