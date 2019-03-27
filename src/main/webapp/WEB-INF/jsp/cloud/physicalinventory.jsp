@@ -49,7 +49,7 @@
                                     <div class="pro-detail">
                                         <div class="name">${stock.goodname}</div>
                                         <div class="bottom-box">
-                                            <div class="price">¥150.00</div>
+                                            <div class="price">¥${stock.price}</div>
                                             <div class="num">${stock.stock}</div>
                                         </div>
                                     </div>

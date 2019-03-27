@@ -33,18 +33,10 @@
                     <img src="${ctx}/img/null.png" class="img"/>
                     <div class="info">没有内容可供显示</div>
                 </div>--%>
-                <ul class="c-product-list3">
-                    <li>
-                        <img src="${ctx}/img/ala.jpg" width="70" height="70" class="product-img"/>
-                        <div class="pro-detail">
-                            <div class="name">胶原蛋白小分子钛饮</div>
-                            <div class="bottom-box">
-                                <div class="price">¥150.00</div>
-                                <div class="num">X50</div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+                    <div class="null-tip">
+                        <img src="${ctx}/img/null.png"/>
+                        <div class="info">没有内容可供显示</div>
+                    </div>
             </div>
 
             <div class="page-content tab" id="tab-2">
@@ -52,18 +44,11 @@
                     <img src="${ctx}/img/null.png" class="img"/>
                     <div class="info">没有内容可供显示哦</div>
                 </div>--%>
-                <ul class="c-product-list3">
-                    <li>
-                        <img src="${ctx}/img/ala.jpg" width="70" height="70" class="product-img"/>
-                        <div class="pro-detail">
-                            <div class="name">胶原蛋白小分子钛饮</div>
-                            <div class="bottom-box">
-                                <div class="price">¥150.00</div>
-                                <div class="num">X50</div>
-                            </div>
+                        <div class="null-tip">
+                            <img src="${ctx}/img/null.png"/>
+                            <div class="info">没有内容可供显示</div>
                         </div>
-                    </li>
-                </ul>
+
             </div>
 
             <div class="page-content tab" id="tab-3">
@@ -71,18 +56,12 @@
                     <img src="${ctx}/img/null.png" class="img"/>
                     <div class="info">没有内容可供显示哦！</div>
                 </div>--%>
-                    <ul class="c-product-list3">
-                        <li>
-                            <img src="${ctx}/img/ala.jpg" width="70" height="70" class="product-img"/>
-                            <div class="pro-detail">
-                                <div class="pro-name">胶原蛋白小分子钛饮</div>
-                                <div class="bottom-box">
-                                    <div class="price">¥150.00</div>
-                                    <div class="num">X50</div>
-                                </div>
+
+                            <div class="null-tip">
+                                <img src="${ctx}/img/null.png"/>
+                                <div class="info">没有内容可供显示</div>
                             </div>
-                        </li>
-                    </ul>
+
             </div>
         </div>
     </div>
