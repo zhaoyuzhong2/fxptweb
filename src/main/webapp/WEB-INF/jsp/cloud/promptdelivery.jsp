@@ -23,7 +23,7 @@
         <input type="hidden" id="param" name="param" value=""/>
         <div class="toolbar toolbar-bottom-md toolbar-bottom-btn">
             <div class="toolbar-inner">
-                <span class="link info"><span>合计:</span><span class="num" id="num">0件</span></span>
+                <span class="link info"><span>合计:</span><span class="num" id="num">0</span>件</span>
                 <a href="#" class="link cart-btn" onclick="check()"><i class="icon-cart"></i><span>下单提货</span></a>
             </div>
         </div>
@@ -38,7 +38,7 @@
                 <c:otherwise>
                     <ul class="c-product-list2">
                         <c:forEach items="${list}" var="stock">
-                            <input type="hidden" id="n${stock.id}" value="${stock.stock}"/>
+                            <input type="hidden" id="n${stock.goodid}" value="${stock.stock}"/>
                             <li class="display-flex justify-content-space-between">
                                 <c:choose>
                                     <c:when test="${stock.imgfile}==null">
@@ -54,7 +54,7 @@
                                     <div class="num clearfix">
                                         <div class="right">
                                                 <%--<i class="sub-btn" id="jian${g.id}" onclick="changenum(${g.id},-1)">-</i>--%>
-                                            <input class="val" type="text" id="num${stock.id}" value="0" />
+                                            <input class="val" type="text" id="num${stock.goodid}" value="0" />
                                                 <%--<i class="add-btn" id="jia${g.id}"  onclick="changenum(${g.id},1)">＋</i>--%>
                                         </div>
                                     </div>
@@ -86,8 +86,9 @@ function check() {
         if(ids.indexOf(",")>0) {
             var id = ids.split(",");
             for (var i = 0; i < id.length; i++) {
-                var n = $("#n" + id[i]).val();
-                var num = $("#num" + id[i]).val();//直接拼接字符串就可以了
+                var n = eval($("#n" + id[i]).val());
+                var num = eval($("#num" + id[i]).val());//直接拼接字符串就可以了
+
                 if(num>n){
                     Showbo.Msg.alert('提货数量不能大于库存数量！');
                     return false;
@@ -98,8 +99,8 @@ function check() {
                 total = total + num;
             }
         }else{
-            var n = $("#n" + ids).val();
-            var num = $("#num" + ids).val();//直接拼接字符串就可以了
+            var n = eval($("#n" + ids).val());
+            var num = eval($("#num" + ids).val());//直接拼接字符串就可以了
             if(num>n){
                 Showbo.Msg.alert('提货数量不能大于库存数量！');
                 return false;
@@ -115,7 +116,7 @@ function check() {
             return false;
         }
 
-        $("#num").text(total+"件");
+        $("#num").text(total);
         $("#param").val(param);
         Showbo.Msg.confirm('确定要提货吗？',function (btn) {
             if(btn=='yes'){
