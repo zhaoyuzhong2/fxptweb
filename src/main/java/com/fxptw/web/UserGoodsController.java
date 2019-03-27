@@ -206,7 +206,7 @@ public class UserGoodsController {
                 uggs.add(ug);
 
 			}
-			System.out.println("result:"+result);
+			//System.out.println("result:"+result);
 			model.addAttribute("userid",userid);
 			model.addAttribute("result",result);
 			model.addAttribute("total",total);
